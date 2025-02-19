@@ -27,6 +27,29 @@ void add_data(char* file_name, char* user_input)
 }
 
 
+void extract_words(char* file_name)
+{
+    FILE* file = fopen(file_name, "r");
+    if(file == NULL)
+    {
+        printf("Не удалось открыть файл!\n");
+        return;
+    }
+
+    fseek(file, 0, SEEK_END);
+    int file_size = ftell(file);
+    rewind(file);
+    printf("%d", file_size);
+
+    // char delimiters = " ,.!?";
+
+
+
+}
+
+
+
+
 int main(int argc, char* argv[])
 {
 
