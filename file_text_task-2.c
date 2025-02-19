@@ -58,7 +58,7 @@ void extract_words(char* file_name)
         word = strtok(NULL, delimiters);
     }
 
-    printf("Второе слово: %s\n", words[1]);
+    printf("\nВторое слово: %s\n", words[1]);
     printf("Предпоследнее слово: %s\n", words[count-2]);
     
 
@@ -68,8 +68,31 @@ void extract_words(char* file_name)
 
     fclose(file);
 
-
 }
+
+
+
+void data_output(char* file_name)
+{
+    printf("\nСодержимое файла:\n");
+    FILE* file = fopen(file_name, "r");
+    if(file == NULL)
+    {
+        printf("Не удалось открыть файл!\n");
+        return ;
+    }
+
+    char ch;
+    while((ch = fgetc(file)) != EOF)
+    {
+        putchar(ch);
+    }
+
+
+    fclose(file);
+}
+
+
 
 
 
@@ -84,7 +107,7 @@ if (argc < 2)
     }
     // argv[1] =--= file_name
 
-    printf("Вы хотите считать данные?( нажмите 1 )\n");
+    printf("\nВы хотите считать данные?( нажмите 1 )\n");
     printf("Или записать новые и получить результат?( любая клавиша )\n");
 
     char* user_choice = malloc(256 * sizeof(char));
@@ -92,6 +115,7 @@ if (argc < 2)
 
     if(user_choice[0] == '1')
     {
+        data_output(argv[1]);
         extract_words(argv[1]);
     }
 
@@ -99,6 +123,7 @@ if (argc < 2)
     {
         char* user_input = get_words();
         add_data(argv[1], user_input);
+        extract_words(argv[1]);
     }
 
     free(user_choice);
