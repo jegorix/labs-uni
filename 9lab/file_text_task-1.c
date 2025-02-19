@@ -3,7 +3,7 @@
 // Поменять местами самое длинное слово и самое коротко.
 #include <stdio.h>
 #include <stdlib.h>
-// #include <string.h>
+
 
 
 void data_output(char* file_name)

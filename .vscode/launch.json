@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/macbook/Desktop/lab-2/labs-2term/9lab",
+      "program": "/Users/macbook/Desktop/lab-2/labs-2term/9lab/build/Debug/outDebug"
+    }
+  ]
+}
