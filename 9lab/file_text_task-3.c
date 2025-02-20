@@ -56,24 +56,37 @@ void data_output(char* file_name)
 
 
 
-char* identify_longest_word(char* file_name)
+char** words_sep(char* file_name, int* count)
 {
     FILE* file = fopen(file_name, "r");
     if(file == NULL)
     {
         printf("Не удалось открыть файл!\n");
-        return ;
+        return NULL;
     }
 
     fseek(file, 0, SEEK_END);
     int file_size = ftell(file);
     rewind(file);
 
-    char* buffer = malloc(file_size * sizeof(char));
+    char* buffer = malloc((file_size + 1) * sizeof(char));
     fread(buffer, sizeof(char), file_size, file);
     buffer[file_size] = '\0';
 
+    fclose(file);
 
+    char* delimiters = " ,.?!";
+    char* word = strtok(buffer, delimiters);
+    char** words = malloc(50 * sizeof(char*));
+
+    for(*count = 0; word != NULL; (*count)++)
+    {
+        words[*count] = word;
+        word = strtok(NULL, delimiters);
+
+    }
+
+    return words;
 
 }
 
@@ -108,8 +121,12 @@ if (argc < 2)
         data_output(argv[1]);
     }
 
-   char* longest_word = identify_longest_word(argv[1]);
+    int words_count = 0;
+    char** words_array = words_sep(argv[1], &words_count) ;
+    char* longest_word = identify_longest_word(argv[1]);
 
     free(user_choice);
+
+
 
 }
