@@ -108,6 +108,22 @@ int identify_longest_word(char** words_array, int words_count)
 }
 
 
+int identify_shortest_word(char** words_array, int words_count)
+{
+    int shortest_word_index = 0;
+    for(int i = 1; i < words_count; i++)
+    {
+        if (strlen(words_array[shortest_word_index]) > strlen(words_array[i]))
+        {
+            shortest_word_index = i;
+
+        }
+    }
+    printf("Самое короткое слово: %s\n", words_array[shortest_word_index]);
+    return shortest_word_index;
+
+}
+
 
 
 
@@ -143,7 +159,10 @@ if (argc < 2)
     int words_count = 0;
     char** words_array = words_sep(argv[1], &words_count) ;
     int long_index = identify_longest_word(words_array, words_count);
+    int short_index = identify_shortest_word(words_array, words_count);
     printf("= %d\n", long_index);
+    printf("= %d\n", short_index);
+
 
     
     free(words_array);
