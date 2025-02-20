@@ -102,7 +102,7 @@ int identify_longest_word(char** words_array, int words_count)
 
         }
     }
-    printf("Самое длинное слово: %s\n", words_array[longest_word_index]);
+    printf("\nСамое длинное слово: %s\n", words_array[longest_word_index]);
     return longest_word_index;
 
 }
@@ -124,6 +124,27 @@ int identify_shortest_word(char** words_array, int words_count)
 
 }
 
+
+void change_words(char** words_array, int long_index, int short_index, int words_count)
+{
+    printf("\nИзмененная строка\n");
+    for(int i = 0; i < words_count; i++)
+    {
+        if(i == long_index)
+        {
+            printf("%s ", words_array[short_index]);
+        }
+        else if(i == short_index)
+        {
+            printf("%s ", words_array[long_index]);
+        }
+        else
+        {
+            printf("%s ", words_array[i]);
+        }
+    }
+    printf("\n");
+}
 
 
 
@@ -160,12 +181,10 @@ if (argc < 2)
     char** words_array = words_sep(argv[1], &words_count) ;
     int long_index = identify_longest_word(words_array, words_count);
     int short_index = identify_shortest_word(words_array, words_count);
-    printf("= %d\n", long_index);
-    printf("= %d\n", short_index);
+    change_words(words_array, long_index, short_index, words_count);
 
-
-    
-    free(words_array);
+    free(words_array[0]);
+    free(words_array); 
 
 
 
