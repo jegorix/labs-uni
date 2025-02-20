@@ -91,6 +91,24 @@ char** words_sep(char* file_name, int* count)
 }
 
 
+int identify_longest_word(char** words_array, int words_count)
+{
+    int longest_word_index = 0;
+    for(int i = 1; i < words_count; i++)
+    {
+        if (strlen(words_array[longest_word_index]) < strlen(words_array[i]))
+        {
+            longest_word_index = i;
+
+        }
+    }
+    printf("Самое длинное слово: %s\n", words_array[longest_word_index]);
+    return longest_word_index;
+
+}
+
+
+
 
 
 int main(int argc, char* argv[])
@@ -119,13 +137,16 @@ if (argc < 2)
         char* user_input = get_words();
         add_data(argv[1], user_input);
         data_output(argv[1]);
+        free(user_choice);
     }
 
     int words_count = 0;
     char** words_array = words_sep(argv[1], &words_count) ;
-    char* longest_word = identify_longest_word(argv[1]);
+    int long_index = identify_longest_word(words_array, words_count);
+    printf("= %d\n", long_index);
 
-    free(user_choice);
+    
+    free(words_array);
 
 
 
