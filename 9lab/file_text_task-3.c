@@ -10,6 +10,7 @@ char* get_words()
     char* input = malloc(256 * sizeof(char));
     printf("Введите слова:\n");
     fgets(input, 256, stdin);
+    input[strcspn(input, "\n")] = '\0';
     return input;
 }
 
@@ -48,7 +49,7 @@ void data_output(char* file_name)
     {
         putchar(ch);
     }
-
+    printf("\n");
 
     fclose(file);
 }
@@ -125,25 +126,32 @@ int identify_shortest_word(char** words_array, int words_count)
 }
 
 
-void change_words(char** words_array, int long_index, int short_index, int words_count)
+void change_words(char** words_array, int long_index, int short_index, int words_count, char* file_name)
 {
-    printf("\nИзмененная строка\n");
+
+    FILE* file = fopen(file_name, "w");
     for(int i = 0; i < words_count; i++)
     {
-        if(i == long_index)
+        if(long_index == i)
         {
-            printf("%s ", words_array[short_index]);
+            fwrite(words_array[short_index], strlen(words_array[short_index]), 1, file);
         }
-        else if(i == short_index)
+
+        else if(short_index == i)
         {
-            printf("%s ", words_array[long_index]);
+            fwrite(words_array[long_index], strlen(words_array[long_index]), 1, file);
         }
+
         else
         {
-            printf("%s ", words_array[i]);
+            fwrite(words_array[i], strlen(words_array[i]), 1, file);
         }
+        fwrite(" ", sizeof(char), 1, file);
     }
-    printf("\n");
+
+
+    fclose(file);
+
 }
 
 
@@ -181,9 +189,9 @@ if (argc < 2)
     char** words_array = words_sep(argv[1], &words_count) ;
     int long_index = identify_longest_word(words_array, words_count);
     int short_index = identify_shortest_word(words_array, words_count);
-    change_words(words_array, long_index, short_index, words_count);
+    change_words(words_array, long_index, short_index, words_count, argv[1]);
+    data_output(argv[1]);
 
-    free(words_array[0]);
     free(words_array); 
 
 
