@@ -94,6 +94,25 @@ void data_output(char* file_name)
 
 
 
+void identify_user_choice(char* user_choice, char* file_name)
+{
+    if(user_choice[0] == '1')
+    {
+        data_output(file_name);
+        extract_words(file_name);
+    }
+
+    else
+    {
+        char* user_input = get_words();
+        add_data(file_name, user_input);
+        extract_words(file_name);
+    }
+
+    free(user_choice);
+}
+
+
 
 
 
@@ -105,7 +124,6 @@ if (argc < 2)
         printf("Использование: %s <file_name>\n", argv[0]);
         return 1;
     }
-    // argv[1] =--= file_name
 
     printf("\nВы хотите считать данные?( нажмите 1 )\n");
     printf("Или записать новые и получить результат?( любая клавиша )\n");
@@ -113,20 +131,8 @@ if (argc < 2)
     char* user_choice = malloc(256 * sizeof(char));
     fgets(user_choice, 256, stdin);
 
-    if(user_choice[0] == '1')
-    {
-        data_output(argv[1]);
-        extract_words(argv[1]);
-    }
+    identify_user_choice(user_choice, argv[1]);
 
-    else
-    {
-        char* user_input = get_words();
-        add_data(argv[1], user_input);
-        extract_words(argv[1]);
-    }
-
-    free(user_choice);
 
 }
 //change directory
