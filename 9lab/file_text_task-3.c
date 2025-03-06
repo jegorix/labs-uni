@@ -156,6 +156,28 @@ void change_words(char** words_array, int long_index, int short_index, int words
 
 
 
+void identify_user_choice(char* user_choice, char* file_name)
+{
+
+    if(user_choice[0] == '1')
+    {
+        data_output(file_name);
+    }
+
+    else
+    {
+        char* user_input = get_words();
+        add_data(file_name, user_input);
+        data_output(file_name);
+        free(user_choice);
+    }
+
+}
+
+
+
+
+
 int main(int argc, char* argv[])
 {
 
@@ -164,7 +186,6 @@ if (argc < 2)
         printf("Использование: %s <file_name>\n", argv[0]);
         return 1;
     }
-    // argv[1] =--= file_name
 
     printf("\nВы хотите считать данные?( нажмите 1 )\n");
     printf("Или записать новые и получить результат?( любая клавиша )\n");
@@ -172,28 +193,16 @@ if (argc < 2)
     char* user_choice = malloc(256 * sizeof(char));
     fgets(user_choice, 256, stdin);
 
-    if(user_choice[0] == '1')
-    {
-        data_output(argv[1]);
-    }
-
-    else
-    {
-        char* user_input = get_words();
-        add_data(argv[1], user_input);
-        data_output(argv[1]);
-        free(user_choice);
-    }
+    identify_user_choice(user_choice, argv[1]);
 
     int words_count = 0;
-    char** words_array = words_sep(argv[1], &words_count) ;
+    char** words_array = words_sep(argv[1], &words_count);
     int long_index = identify_longest_word(words_array, words_count);
     int short_index = identify_shortest_word(words_array, words_count);
     change_words(words_array, long_index, short_index, words_count, argv[1]);
     data_output(argv[1]);
 
     free(words_array); 
-
 
 
 }

@@ -1,6 +1,6 @@
 // С клавиатуры заполнить файл словами. Вывести содержимое файла на экран.
 
-// Поменять местами самое длинное слово и самое коротко.
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -48,12 +48,6 @@ void add_data(char* file_name, char* user_input)
 char* get_words(void)
 {
     char* input = malloc(256 * sizeof(char));
-    // if (input == NULL)
-    // {
-    //     printf("Ошибка выделения памяти!\n");
-    //     exit(1);
-    // }
-
     printf("Введите слова:\n");
     fgets(input, 256, stdin);
     return input;
