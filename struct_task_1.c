@@ -4,12 +4,15 @@
 
 #include <stdio.h>
 #include <time.h>
+#include <stdlib.h>
 
 
 enum
 {
     max_limit = 2147483647,
-    min_limit = 0
+    min_limit = -2147483647,
+    rand_max_limit = 1000000,
+    rand_min_limit = -1000000,
 };
 
 
@@ -49,11 +52,28 @@ int execute_verirfication(int min_limit, int max_limit)
 
 
 
-void identify_user_choice()
+
+int identify_user_choice()
 {
-    printf("Введите целое число самостоятельно - 1. Выбрать случайное - любая клавиша");
-    int user_choice = execute_verirfication(min_limit, max_limit);
-    printf("Your choice: %d", user_choice);
+    char input[256];
+    int number;
+    printf("Введите целое число самостоятельно - 1. Выбрать случайное - любая клавиша:\n");
+    fgets(input, 256, stdin);
+
+
+    switch(input[0])
+    {
+        case '1':
+        printf("Введите число:\n");
+        number = execute_verirfication(min_limit, max_limit);
+        break;
+
+        default:
+        number = rand_min_limit + rand() % (rand_max_limit * 2 + 1);
+        break;
+
+    }
+    return number;
 
 }
 
@@ -64,7 +84,10 @@ void identify_user_choice()
 
 int main(void)
 {
-    identify_user_choice();
+   
+    srand(time(NULL));
+    int user_number = identify_user_choice();
+    printf("YOur number = %d\n", user_number);
 
 
     return 0;
