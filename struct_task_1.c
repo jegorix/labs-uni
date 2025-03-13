@@ -3,39 +3,68 @@
 // 11.03.2025
 
 #include <stdio.h>
+#include <time.h>
+
+
+enum
+{
+    max_limit = 2147483647,
+    min_limit = 0
+};
+
+
+int execute_verirfication(int min_limit, int max_limit)
+{
+    char input[100];
+    int number;
+    char symbol;
+     
+    while(1)
+    {
+        if(fgets(input, sizeof(input), stdin) == NULL)
+        {
+            printf("Ошибка ввода! Попробуйте еще раз!\n");
+            continue;
+        }
+
+        if (sscanf(input, "%d %c", &number, &symbol) != 1)
+        {
+            printf("Ошибка ввода! Введите целое число:\n");
+            continue;
+        }
+
+        if (number > max_limit || number < min_limit)
+        {
+            printf("Ошибка ввода! Введите число из диапазона [%d, %d]:\n", min_limit, max_limit);
+            continue;
+        }
+
+        return number;
+
+    }
+
+}
+
+
+
+
+
+void identify_user_choice()
+{
+    printf("Введите целое число самостоятельно - 1. Выбрать случайное - любая клавиша");
+    int user_choice = execute_verirfication(min_limit, max_limit);
+    printf("Your choice: %d", user_choice);
+
+}
+
+
+
+
+
 
 int main(void)
 {
-    int num;
-    printf("Введите число: \n");
-    scanf("%d", &num);
-
-    int beg_num = num;
-
-    if(num < 0)
-    {
-        num = -num;
-    }
-
-
-    while (num >= 0)
-    {
-        if (num == 1)
-        {
-            printf("Остаток от деления числа %d на 2 = 1 \n", beg_num);
-            break;
-        }
-
-        if (num == 0)
-        {
-            printf("Остаток от деления числа %d на 2 = 0 \n", beg_num);
-            break;
-        }
-
-        num -= 2;
-    }
-    
-    printf("Проверка: %d\n", beg_num % 2);
+    identify_user_choice();
 
 
     return 0;
