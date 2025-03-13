@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/macbook/Desktop/lab-2/labs-2term/output/struct_task_1'
+relocations:     []
+...

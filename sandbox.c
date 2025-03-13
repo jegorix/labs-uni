@@ -35,22 +35,29 @@ int main(void)
     char user_choice;
     scanf("%c", &user_choice);
 
-    if (user_choice == '1')
+
+
+    switch (user_choice)
     {
+        case '1':
         current_user.can_read ^= 1;
         printf("read status: %d\n", current_user.can_read);
-    }
+        break;
 
-    if (user_choice == '2')
-    {
+        case '2':
         current_user.can_write ^= 1;
         printf("write status: %d\n", current_user.can_write);
-    }
+        break;
 
-    if(user_choice == '3')
-    {
+        case '3':
         current_user.can_execute ^= 1;
         printf("execute status: %d\n", current_user.can_execute);
+        break;
+
+        default:
+        printf("Неизвестный выбор\n");
+        break;
+
     }
 
 

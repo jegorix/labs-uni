@@ -92,12 +92,31 @@ char** words_sep(char* file_name, int* count)
 }
 
 
+
+
+
+int symbol_length(char* word)
+{
+    int count = 0;
+    while (*word)
+    {
+        if ((*word & 0xC0) != 0x80) // Проверяем, что это не байт продолжения в UTF-8
+        {
+            count++;
+        }
+        word++;
+    }
+    return count;
+}
+
+
+
 int identify_longest_word(char** words_array, int words_count)
 {
     int longest_word_index = 0;
     for(int i = 1; i < words_count; i++)
     {
-        if (strlen(words_array[longest_word_index]) < strlen(words_array[i]))
+        if (symbol_length(words_array[longest_word_index]) < symbol_length(words_array[i]))
         {
             longest_word_index = i;
 
@@ -114,7 +133,7 @@ int identify_shortest_word(char** words_array, int words_count)
     int shortest_word_index = 0;
     for(int i = 1; i < words_count; i++)
     {
-        if (strlen(words_array[shortest_word_index]) > strlen(words_array[i]))
+        if (symbol_length(words_array[shortest_word_index]) > symbol_length(words_array[i]))
         {
             shortest_word_index = i;
 
