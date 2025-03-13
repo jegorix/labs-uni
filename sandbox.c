@@ -27,6 +27,38 @@ int main(void)
     // left shift <<
     // rigth shift >>
 
+    struct UserPermissons current_user = {1, 0, 0};
+    current_user.can_write |= 1;
+    current_user.can_execute ^= 1;
+
+    printf("Желаете изменить права поля?(1 - read, 2 - write, 3 - execute)\n");
+    char user_choice;
+    scanf("%c", &user_choice);
+
+    if (user_choice == '1')
+    {
+        current_user.can_read ^= 1;
+        printf("read status: %d\n", current_user.can_read);
+    }
+
+    if (user_choice == '2')
+    {
+        current_user.can_write ^= 1;
+        printf("write status: %d\n", current_user.can_write);
+    }
+
+    if(user_choice == '3')
+    {
+        current_user.can_execute ^= 1;
+        printf("execute status: %d\n", current_user.can_execute);
+    }
+
+
+
+    printf("Read: %d, write: %d, can execute: %d\n", current_user.can_read, current_user.can_write, current_user.can_execute);
+
+
+
 
     // struct Permissions program = {1, 0, 1, 0};
 
@@ -38,9 +70,6 @@ int main(void)
     // printf("program runs: %d, debugger runs: %d, errors: %d, access: %d\n", program.status, program.debugger, program.error, program.access);
 
 
-    
-
-    
 
     return 0;
 
