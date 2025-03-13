@@ -79,22 +79,12 @@ int identify_user_choice()
 
 
 
-void find_remainder(int user_number)
-{
-
-    printf("Остаток от деления числа %d на 2 = %d\n", user_number, user_number & 1);
-
-}
-
-
-
-
 int main(void)
 {
     srand(time(NULL));
     int user_number = identify_user_choice();
-
     find_remainder(user_number);
+    printf("Остаток от деления числа %d на 2 = %d\n", user_number, user_number & 1);
 
     return 0;
 }
