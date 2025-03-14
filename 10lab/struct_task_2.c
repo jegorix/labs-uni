@@ -65,7 +65,7 @@ typedef struct
 {
     int square;
     char* name;
-    Perimiter perm;
+    Perimiter perim;
     char* color;
 } Square;
 
@@ -80,15 +80,25 @@ void handle_figure_input(int figure_count)
         char* fig_name = malloc(256 * sizeof(char));
         printf("Введите имя вашей фигуры № %d:\n", i + 1);
         fgets(fig_name, 256, stdin);
+        fig_name[strcspn(fig_name, "\n")] = '\0';
         figure[i].name = malloc(strlen(fig_name) + 1);
         strcpy(figure[i].name, fig_name);
         free(fig_name);
-        
-    }
 
-    for(int i = 0; i < figure_count; i++)
-    {
-        printf("Имя фигуры № %d is %s", i + 1, figure[i].name);
+        printf("Введите площадь фигуры '%s':\n", figure[i].name);
+        figure[i].square = execute_verirfication(min_limit, max_limit);
+
+        printf("Введите периметр фигуры '%s'\n", figure[i].name);
+        figure[i].perim.perm = execute_verirfication(min_limit, max_limit);
+
+        printf("Введите цвет фигуры '%s':\n", figure[i].name);
+        char* fig_color = malloc(256 * sizeof(char));
+        fgets(fig_color, 256, stdin);
+        fig_color[strcspn(fig_name, "\n")] = '\0';
+        figure[i].color = malloc(strlen(fig_color) + 1);
+        strcpy(figure[i].color, fig_color);
+        free(fig_color);
+
     }
 
     
@@ -101,7 +111,7 @@ void identify_figure_count()
     char* user_choice = malloc(50 * sizeof(char));
     printf("Введите количество фигур:\n");
     int figure_count = execute_verirfication(min_limit, max_limit);
-    printf("Ввести фигуры вручную - 1. Рандомные фигуры - любая клавиша:");
+    printf("Ввести фигуры вручную - 1. Рандомные фигуры - любая клавиша:\n");
     fgets(user_choice, sizeof(user_choice), stdin);
 
     switch(user_choice[0])
