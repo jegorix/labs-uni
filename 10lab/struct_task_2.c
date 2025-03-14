@@ -199,16 +199,44 @@ void find_figures(Square* figure, int figure_count, int limit_square)
 }
 
 
-void delete_figure(const char* fig_name, int* figure_count, Square* figure)
+void delete_figure(const char* fig_name, int* figure_count, Square** figure)
 {
 
     for(int i = 0; i < *figure_count; i++)
     {
-        if(strcmp(figure[i].name, fig_name) == 0)
+
+        if(strcmp((*figure)[i].name, fig_name) == 0)
         {
-            printf("Найдена\n");
+            
+            free((*figure)[i].name);
+            free((*figure)[i].color);
+
+
+            for(int j = i; j < (*figure_count) - 1; j++)
+            {
+                (*figure)[j] = (*figure)[j+1];
+            }
+
+            (*figure_count)--;
+
+            if(*figure_count > 0)
+            {
+            *figure = realloc(*figure, (*figure_count) * sizeof(Square));
+            printf("Фигура с именем '%s' успешна удалена \n", fig_name);
+            }
+
+            else
+            {
+                printf("Фигура с именем '%s' успешна удалена \n", fig_name);
+                printf("Список фигур пуст!");
+                free(*figure);
+                return;
+            }
+
         }
     }
+
+    output_figures(*figure, *figure_count);
 
 }
 
@@ -241,7 +269,7 @@ void user_action(Square* figures, int* figure_count)
         printf("Введите имя удаляемой фигуры:\n");
         fgets(fig_name, sizeof(fig_name), stdin);
         fig_name[strcspn(fig_name, "\n")] = '\0';
-        delete_figure(fig_name, &figure_count, figures);
+        delete_figure(fig_name, figure_count, &figures);
         }
         break;
 
