@@ -71,7 +71,7 @@ typedef struct
 
 
 
-void handle_figure_input(int figure_count)
+Square* handle_figure_input(int figure_count)
 {
     Square* figure = malloc(sizeof(Square) * figure_count); // create figures array
 
@@ -101,41 +101,50 @@ void handle_figure_input(int figure_count)
 
     }
 
+    return figure;
+
     
 }
 
 
 
-void identify_figure_count()
+Square* identify_figures(int* figure_count)
 {
     char* user_choice = malloc(50 * sizeof(char));
     printf("Введите количество фигур:\n");
-    int figure_count = execute_verirfication(min_limit, max_limit);
+    figure_count = execute_verirfication(min_limit, max_limit);
     printf("Ввести фигуры вручную - 1. Рандомные фигуры - любая клавиша:\n");
     fgets(user_choice, sizeof(user_choice), stdin);
 
     switch(user_choice[0])
     {
         case '1':
-        handle_figure_input(figure_count);
-        break;
+        Square* figures = handle_figure_input(figure_count);
+        return figures;
 
-        // default:
-        // random_figure_input(figure_count);
-        // break;
+        default:
+        Square* figures = random_figures(figure_count);
+        return figures;
 
     }
 
 }
 
 
+// void output_figures(Square* figure, int figure_count)
+// {
+
+
+// }
+
+
 
 
 int main(void)
 {
-
-    identify_figure_count();
-
+    int* figure_count;
+    Square* figures = identify_figures(&figure_count);
+    // output_figures(figures, figure_count);
 
     // Square* circle = malloc(sizeof(Square) * 3);
 
