@@ -73,17 +73,22 @@ typedef struct
 
 void handle_figure_input(int figure_count)
 {
-    char* fig_name = malloc(256 * sizeof(char));
     Square* figure = malloc(sizeof(Square) * figure_count); // create figures array
 
     for(int i = 0; i < figure_count; i++)
     {
+        char* fig_name = malloc(256 * sizeof(char));
         printf("Введите имя вашей фигуры № %d:\n", i + 1);
         fgets(fig_name, 256, stdin);
         figure[i].name = malloc(strlen(fig_name) + 1);
         strcpy(figure[i].name, fig_name);
-        printf("%s\n",figure[i].name);
+        free(fig_name);
+        
+    }
 
+    for(int i = 0; i < figure_count; i++)
+    {
+        printf("Имя фигуры № %d is %s", i + 1, figure[i].name);
     }
 
     
@@ -96,7 +101,7 @@ void identify_figure_count()
     char* user_choice = malloc(50 * sizeof(char));
     printf("Введите количество фигур:\n");
     int figure_count = execute_verirfication(min_limit, max_limit);
-    printf("Ввести фигуры вручную - 1. Рандомные фигуры - любая клавиша");
+    printf("Ввести фигуры вручную - 1. Рандомные фигуры - любая клавиша:");
     fgets(user_choice, sizeof(user_choice), stdin);
 
     switch(user_choice[0])
