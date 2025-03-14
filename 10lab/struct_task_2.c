@@ -46,6 +46,41 @@ int execute_verirfication(int min_limit, int max_limit)
 
 
 
+float execute_verirfication_float(float min_limit, float max_limit)
+{
+    char input[100];
+    float number;
+    char symbol;
+     
+    while(1)
+    {
+        if(fgets(input, sizeof(input), stdin) == NULL)
+        {
+            printf("Ошибка ввода! Попробуйте еще раз!\n");
+            continue;
+        }
+
+        if (sscanf(input, "%f %c", &number, &symbol) != 1)
+        {
+            printf("Ошибка ввода! Введите число с плавающей запятой:\n");
+            continue;
+        }
+
+        if (number > max_limit || number < min_limit)
+        {
+            printf("Ошибка ввода! Введите число из диапазона [%.2f, %.2f]:\n", min_limit, max_limit);
+            continue;
+        }
+
+        return number;
+
+    }
+
+}
+
+
+
+
 enum
 {
     max_limit = 2147483647,
@@ -89,12 +124,12 @@ Square* handle_figure_input(int figure_count)
         figure[i].square = execute_verirfication(min_limit, max_limit);
 
         printf("Введите периметр фигуры '%s'\n", figure[i].name);
-        figure[i].perim.perm = execute_verirfication(min_limit, max_limit);
+        figure[i].perim.perm = execute_verirfication_float(min_limit, max_limit);
 
         printf("Введите цвет фигуры '%s':\n", figure[i].name);
         char* fig_color = malloc(256 * sizeof(char));
         fgets(fig_color, 256, stdin);
-        fig_color[strcspn(fig_name, "\n")] = '\0';
+        fig_color[strcspn(fig_color, "\n")] = '\0';
         figure[i].color = malloc(strlen(fig_color) + 1);
         strcpy(figure[i].color, fig_color);
         free(fig_color);
@@ -110,41 +145,48 @@ Square* handle_figure_input(int figure_count)
 
 Square* identify_figures(int* figure_count)
 {
-    char* user_choice = malloc(50 * sizeof(char));
+    char user_choice[50];
     printf("Введите количество фигур:\n");
-    figure_count = execute_verirfication(min_limit, max_limit);
+    *figure_count = execute_verirfication(min_limit, max_limit);
     printf("Ввести фигуры вручную - 1. Рандомные фигуры - любая клавиша:\n");
     fgets(user_choice, sizeof(user_choice), stdin);
 
     switch(user_choice[0])
     {
         case '1':
-        Square* figures = handle_figure_input(figure_count);
-        return figures;
+        return handle_figure_input(*figure_count);
 
-        default:
-        Square* figures = random_figures(figure_count);
-        return figures;
+        // default:
+        // Square* figures = random_figures(figure_count);
+        // return figures;
 
     }
 
 }
 
 
-// void output_figures(Square* figure, int figure_count)
-// {
+void output_figures(Square* figure, int figure_count)
+{
 
+    for(int i = 0; i < figure_count; i++)
+    {
+        printf("\nФигура № %d:\n", i + 1);
+        printf("Имя: %s\n", figure[i].name);
+        printf("Площадь: %d\n", figure[i].square);
+        printf("Периметр: %.2f\n", figure[i].perim.perm);
+        printf("\n");
+    }
 
-// }
+}
 
 
 
 
 int main(void)
 {
-    int* figure_count;
+    int figure_count;
     Square* figures = identify_figures(&figure_count);
-    // output_figures(figures, figure_count);
+    output_figures(figures, figure_count);
 
     // Square* circle = malloc(sizeof(Square) * 3);
 
