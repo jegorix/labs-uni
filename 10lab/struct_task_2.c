@@ -73,10 +73,28 @@ typedef struct
 
 void identify_figure_count()
 {
+    char* user_choice = malloc(50 * sizeof(char));
     printf("Введите количество фигур:\n");
-    // figure_count = execute_verification();
+    int figure_count = execute_verification();
+    printf("Ввести фигуры вручную - 1. Рандомные фигуры - любая клавиша");
+    fgets(user_choice, sizeof(user_choice), stdin);
+
+    switch(user_choice[0])
+    {
+        case '1':
+        handle_figure_input(figure_count);
+        break;
+
+        default:
+        random_figure_input(figure_count);
+        break;
+
+    }
 
 }
+
+
+handle_figure_input(figure_count)
 
 
 
