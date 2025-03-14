@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 
 
@@ -142,6 +143,36 @@ Square* handle_figure_input(int figure_count)
 }
 
 
+Square* random_figures(int figure_count)
+{
+
+    Square* figure = malloc(figure_count * sizeof(Square));
+
+    char* names[] = {"Круг", "Квадрат", "Прямоугольник", "Ромб", "Параллелограм", "Трапеция", "Треугольник", "Шестиугольник"};
+    char* colors[] = {"Красный", "Оранжевый", "Желтый", "Зеленый", "Голубой", "Синий", "Фазан", "Черный", "Белый"};
+    
+    for(int i = 0; i < figure_count; i++)
+    {
+        char* rand_name = names[rand() % 8];
+        figure[i].name = malloc(strlen(rand_name) + 1);
+        strcpy(figure[i].name, rand_name);
+
+
+        figure[i].square = (rand() % 1000) + 1;
+        figure[i].perim.perm = 1.0 + ((float)rand() / RAND_MAX) * (1000.0 - 1.0);
+
+        char* rand_color = colors[rand() % 9];
+        figure[i].color = malloc(strlen(rand_color) + 1);
+        strcpy(figure[i].color, rand_color);
+
+    }
+
+    return figure;
+
+}
+
+
+
 
 Square* identify_figures(int* figure_count)
 {
@@ -154,11 +185,14 @@ Square* identify_figures(int* figure_count)
     switch(user_choice[0])
     {
         case '1':
+        {
         return handle_figure_input(*figure_count);
+        }
 
-        // default:
-        // Square* figures = random_figures(figure_count);
-        // return figures;
+        default:
+        {
+        return random_figures(*figure_count);
+        }
 
     }
 
@@ -167,6 +201,8 @@ Square* identify_figures(int* figure_count)
 
 void output_figures(Square* figure, int figure_count)
 {
+
+    printf("\nСписок фигур:\n");
 
     for(int i = 0; i < figure_count; i++)
     {
@@ -283,6 +319,7 @@ void user_action(Square* figures, int* figure_count)
 
 int main(void)
 {
+    srand(time(NULL));
     int figure_count;
     Square* figures = identify_figures(&figure_count);
 
