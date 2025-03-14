@@ -174,9 +174,48 @@ void output_figures(Square* figure, int figure_count)
         printf("Имя: %s\n", figure[i].name);
         printf("Площадь: %d\n", figure[i].square);
         printf("Периметр: %.2f\n", figure[i].perim.perm);
-        printf("Цвет:\n", figure[i].color);
+        printf("Цвет: %s\n", figure[i].color);
         printf("\n");
     }
+
+}
+
+
+void find_figures(Square* figure, int figure_count, int limit_square)
+{
+    printf("Фигуры с площадью меньше, чем %d:\n", limit_square);
+    for(int i = 0; i < figure_count; i++)
+    {
+        if(figure[i].square < limit_square)
+        {
+            printf("\nФигура № %d:\n", i + 1);
+            printf("Имя: %s\n", figure[i].name);
+            printf("Площадь: %d (<%d)\n", figure[i].square, limit_square);
+            printf("Периметр: %.2f\n", figure[i].perim.perm);
+            printf("Цвет: %s\n", figure[i].color);
+            printf("\n");
+        }
+    }
+}
+
+
+
+void user_action(Square* figures, int* figure_count)
+{
+    char user_choice[50];
+    printf("Выберите действие:\n");
+    printf("Найти фигуры с площадью, меньше заданной - 1\n");
+    printf("Удалить фигуры с заданным названием - любая клавиша\n");
+
+    switch(user_choice[0])
+    {
+        case '1':
+        printf("Введите площадь, относительно которой будет производиться поиск:\n");
+        int limit_square = execute_verirfication(min_limit, max_limit);
+        find_figures(figures, *figure_count, limit_square);
+        break;
+    }
+    
 
 }
 
@@ -188,6 +227,8 @@ int main(void)
     int figure_count;
     Square* figures = identify_figures(&figure_count);
     output_figures(figures, figure_count);
+
+    user_action(figures, &figure_count);
 
     // Square* circle = malloc(sizeof(Square) * 3);
 
