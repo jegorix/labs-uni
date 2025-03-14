@@ -174,6 +174,7 @@ void output_figures(Square* figure, int figure_count)
         printf("Имя: %s\n", figure[i].name);
         printf("Площадь: %d\n", figure[i].square);
         printf("Периметр: %.2f\n", figure[i].perim.perm);
+        printf("Цвет:\n", figure[i].color);
         printf("\n");
     }
 
