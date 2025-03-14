@@ -4,7 +4,7 @@
 
 // Новицкий
 
-// 13.03.2025
+// 14.03.2025
 
 #include <stdio.h>
 #include <stdlib.h>
