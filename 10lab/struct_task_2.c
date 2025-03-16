@@ -327,12 +327,7 @@ int main(void)
 
     user_action(figures, &figure_count);
 
-    // Square* circle = malloc(sizeof(Square) * 3);
-
-    // circle[0].square = 26;
-    // strcpy(circle[0].name, "Circle");
-
-    // printf("%s\n", circle[0].name);
+    free(figures);
 
 
     return 0;
