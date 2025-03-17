@@ -7,6 +7,7 @@
 #include <stdlib.h>
 
 
+
 enum
 {
     max_limit = 2147483647,
@@ -48,8 +49,10 @@ int execute_verirfication(int min_limit, int max_limit)
 
 }
 
-
-
+struct 
+{
+    unsigned mask: 1;
+} even_check = {1};
 
 
 
@@ -78,25 +81,11 @@ int identify_user_choice()
 }
 
 
-
-
-// void find_remainder(int user_number)
-// {
-
-//     printf("Остаток от деления числа %d на 2 = %d\n", user_number, user_number & 1);
-
-// }
-
-
-
-
 int main(void)
 {
     srand(time(NULL));
     int user_number = identify_user_choice();
-    printf("Остаток от деления числа %d на 2 = %d\n", user_number, user_number & 1);
+    printf("Остаток от деления числа %d на 2 = %d\n", user_number, user_number & even_check.mask);
 
     return 0;
 }
-
-// последний бит 1 или 0 посмотреть
