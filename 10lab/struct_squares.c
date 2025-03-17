@@ -239,17 +239,19 @@ void find_figures(Square* figure, int figure_count, int limit_square)
 
 void delete_figure(const char* fig_name, int* figure_count, Square** figure)
 {
+    int found = 0;
 
     for(int i = 0; i < *figure_count; i++)
     {
-
-        if(strcmp(figure[i]->name, fig_name) == 0)
+        if(strcmp((*figure)[i].name, fig_name) == 0)
         {
+         
             
-            free(figure[i]->name);
-            free(figure[i]->color);
+            free((*figure)[i].name);
+            free((*figure)[i].color);
 
-
+           
+    
             for(int j = i; j < (*figure_count) - 1; j++)
             {
                 (*figure)[j] = (*figure)[j+1];
@@ -257,31 +259,31 @@ void delete_figure(const char* fig_name, int* figure_count, Square** figure)
 
             (*figure_count)--;
 
+    
             if(*figure_count > 0)
             {
-            *figure = realloc(*figure, (*figure_count) * sizeof(Square));
-            printf("Фигура с именем '%s' успешна удалена \n", fig_name);
+                *figure = realloc(*figure, (*figure_count) * sizeof(Square));
+                printf("Фигура с именем '%s' успешно удалена.\n", fig_name);
             }
-
             else
             {
-                printf("Фигура с именем '%s' успешна удалена \n", fig_name);
-                printf("Список фигур пуст!");
+                printf("Фигура с именем '%s' успешно удалена.\n", fig_name);
+                printf("Список фигур пуст!\n");
                 free(*figure);
                 return;
             }
 
-        }
-
-        else
-        {
-            printf("Фигура с именем '%s' не найдена.\n", fig_name);
-            return;
+            found = 1;  
+            break;  
         }
     }
 
+   
+    if (!found)
+    {
+        printf("Фигура с именем '%s' не найдена.\n", fig_name);
+    }
     output_figures(*figure, *figure_count);
-
 }
 
 
