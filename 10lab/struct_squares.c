@@ -241,25 +241,20 @@ void delete_figure(const char* fig_name, int* figure_count, Square** figure)
 {
     int found = 0;
 
-    for(int i = 0; i < *figure_count; i++)
+    for(int i = 0; i < *figure_count;)
     {
         if(strcmp((*figure)[i].name, fig_name) == 0)
         {
-         
-            
             free((*figure)[i].name);
             free((*figure)[i].color);
 
-           
-    
             for(int j = i; j < (*figure_count) - 1; j++)
             {
-                (*figure)[j] = (*figure)[j+1];
+                (*figure)[j] = (*figure)[j + 1];
             }
 
             (*figure_count)--;
 
-    
             if(*figure_count > 0)
             {
                 *figure = realloc(*figure, (*figure_count) * sizeof(Square));
@@ -273,12 +268,14 @@ void delete_figure(const char* fig_name, int* figure_count, Square** figure)
                 return;
             }
 
-            found = 1;  
-            break;  
+            found = 1;
+        }
+        else
+        {
+            i++;
         }
     }
 
-   
     if (!found)
     {
         printf("Фигура с именем '%s' не найдена.\n", fig_name);
@@ -288,12 +285,13 @@ void delete_figure(const char* fig_name, int* figure_count, Square** figure)
 
 
 
+
 void user_action(Square* figures, int* figure_count)
 {
     char user_choice[50];
     printf("Выберите действие:\n");
     printf("Найти фигуры с площадью, меньше заданной - 1\n");
-    printf("Удалить фигуры с заданным названием - любая клавиша\n");
+    printf("Удалить фигуру с заданным названием - любая клавиша\n");
 
     fgets(user_choice, sizeof(user_choice), stdin);
     user_choice[strcspn(user_choice, "\n")] = '\0';
