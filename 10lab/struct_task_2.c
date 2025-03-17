@@ -6,11 +6,7 @@
 
 // 14.03.2025
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-
+#include "validators.h"
 
 
 enum
@@ -30,7 +26,7 @@ typedef struct
 
 typedef struct
 {
-    int square;
+    unsigned int square: 32;
     char* name;
     Perimiter perim;
     char* color;
@@ -38,74 +34,6 @@ typedef struct
 
 
 
-
-
-
-int execute_verirfication(int min_limit, int max_limit)
-{
-    char input[100];
-    int number;
-    char symbol;
-     
-    while(1)
-    {
-        if(fgets(input, sizeof(input), stdin) == NULL)
-        {
-            printf("Ошибка ввода! Попробуйте еще раз!\n");
-            continue;
-        }
-
-        if (sscanf(input, "%d %c", &number, &symbol) != 1)
-        {
-            printf("Ошибка ввода! Введите целое число:\n");
-            continue;
-        }
-
-        if (number > max_limit || number < min_limit)
-        {
-            printf("Ошибка ввода! Введите число из диапазона [%d, %d]:\n", min_limit, max_limit);
-            continue;
-        }
-
-        return number;
-
-    }
-
-}
-
-
-
-float execute_verirfication_float(float min_limit, float max_limit)
-{
-    char input[100];
-    float number;
-    char symbol;
-     
-    while(1)
-    {
-        if(fgets(input, sizeof(input), stdin) == NULL)
-        {
-            printf("Ошибка ввода! Попробуйте еще раз!\n");
-            continue;
-        }
-
-        if (sscanf(input, "%f %c", &number, &symbol) != 1)
-        {
-            printf("Ошибка ввода! Введите число с плавающей запятой:\n");
-            continue;
-        }
-
-        if (number > max_limit || number < min_limit)
-        {
-            printf("Ошибка ввода! Введите число из диапазона [%.2f, %.2f]:\n", min_limit, max_limit);
-            continue;
-        }
-
-        return number;
-
-    }
-
-}
 
 
 
@@ -321,6 +249,8 @@ void user_action(Square* figures, int* figure_count)
     
 
 }
+
+
 
 
 
