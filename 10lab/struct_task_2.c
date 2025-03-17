@@ -13,6 +13,34 @@
 
 
 
+enum
+{
+    max_limit = 2147483647,
+    min_limit = 0,
+};
+
+
+typedef struct
+{
+    float perm;
+
+} Perimiter;
+
+
+
+typedef struct
+{
+    int square;
+    char* name;
+    Perimiter perim;
+    char* color;
+} Square;
+
+
+
+
+
+
 int execute_verirfication(int min_limit, int max_limit)
 {
     char input[100];
@@ -78,32 +106,6 @@ float execute_verirfication_float(float min_limit, float max_limit)
     }
 
 }
-
-
-
-
-enum
-{
-    max_limit = 2147483647,
-    min_limit = 0,
-};
-
-
-typedef struct
-{
-    float perm;
-
-} Perimiter;
-
-
-
-typedef struct
-{
-    int square;
-    char* name;
-    Perimiter perim;
-    char* color;
-} Square;
 
 
 
@@ -241,11 +243,11 @@ void delete_figure(const char* fig_name, int* figure_count, Square** figure)
     for(int i = 0; i < *figure_count; i++)
     {
 
-        if(strcmp((*figure)[i].name, fig_name) == 0)
+        if(strcmp(figure[i]->name, fig_name) == 0)
         {
             
-            free((*figure)[i].name);
-            free((*figure)[i].color);
+            free(figure[i]->name);
+            free(figure[i]->color);
 
 
             for(int j = i; j < (*figure_count) - 1; j++)
@@ -269,6 +271,12 @@ void delete_figure(const char* fig_name, int* figure_count, Square** figure)
                 return;
             }
 
+        }
+
+        else
+        {
+            printf("Фигура с именем '%s' не найдена.\n", fig_name);
+            return;
         }
     }
 
