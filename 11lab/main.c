@@ -24,10 +24,10 @@
 
 int main()
  {
- create_stacks();
+
+ user_choice_action();
 
 
- // user_choice_action();
 
   return 0;
  }
