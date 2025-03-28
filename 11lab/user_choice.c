@@ -6,6 +6,7 @@
 #include "integer_stack.h"
 #include <stdio.h>
 #include <string.h>
+#include "sort_third_stack.h"
 
 void user_choice_action()
     {
@@ -26,7 +27,7 @@ void user_choice_action()
 
         case '2':
           {
-          return;
+          build_third_stack();
           }break;
 
         default:
