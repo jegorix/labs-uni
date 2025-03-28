@@ -84,25 +84,77 @@ void stack_print(OBJ* top, int stack_number)
 
 
 
+
+void stacks_operations(OBJ* top_1, OBJ* top_2)
+    {
+  int running = 1;
+
+  while(running)
+    {
+    printf("\n");
+  char user_input[50];
+    printf("Выберите операцию:\n");
+    printf("Содержимое первого стека: - 1\n");
+    printf("Содержимое второго стека: - 2\n");
+    printf("Содержимое обоих стеков: - 3\n");
+    printf("Все элементы первого стека, которые есть во втором стеке: - 4\n");
+    printf("Выход - любая другая клавиша\n");
+
+    fgets(user_input, 50, stdin);
+
+  switch(user_input[0])
+  {
+    case '1':
+    {
+      stack_print(top_1, 1);
+    }break;
+
+    case '2':
+    {
+      stack_print(top_2, 2);
+    }break;
+
+    case '3':
+    {
+      stack_print(top_1, 1);
+      stack_print(top_2, 2);
+    }break;
+
+    case '4':
+       {
+       special_stack_output(top_1, top_2);
+       }break;
+
+    default:
+    {
+      running = 0;
+    }break;
+
+  }
+
+  }
+
+    }
+
+
+
 void create_stacks()
 {
-printf("Введите размер первого стека:\n");
-int first_stack_size = execute_verification(min_limit, max_limit);
-OBJ* top_one = NULL;
-top_one = declare_stack(first_stack_size, top_one, 1);
-stack_print(top_one, 1);
+  printf("Введите размер первого стека:\n");
+  int first_stack_size = execute_verification(min_limit, max_limit);
+  OBJ* top_one = NULL;
+  top_one = declare_stack(first_stack_size, top_one, 1);
 
 
-printf("Введите размер второго стека:\n");
-int second_stack_size = execute_verification(min_limit, max_limit);
-OBJ* top_two = NULL;
-top_two = declare_stack(second_stack_size, top_two, 2);
-stack_print(top_two, 2);
 
+  printf("Введите размер второго стека:\n");
+  int second_stack_size = execute_verification(min_limit, max_limit);
+  OBJ* top_two = NULL;
+  top_two = declare_stack(second_stack_size, top_two, 2);
 
-special_stack_output(top_one, top_two);
+  stacks_operations(top_one, top_two);
+
 
 }
-
 
 
