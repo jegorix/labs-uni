@@ -14,8 +14,8 @@ enum
     rand_min_limit = -1000000,
   };
 
-int execute_verirfication(int min_limit, int max_limit);
-float execute_verirfication_float(float min_limit, float max_limit);
+int execute_verification(int min_limit, int max_limit);
+float execute_verification_float(float min_limit, float max_limit);
 
 
 #endif //VALIDATORS_H

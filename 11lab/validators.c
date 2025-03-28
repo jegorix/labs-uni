@@ -5,7 +5,7 @@
 #include "validators.h"
 
 
-int execute_verirfication(int min_limit, int max_limit)
+int execute_verification(int min_limit, int max_limit)
 {
   char input[100];
   int number;
@@ -39,7 +39,7 @@ int execute_verirfication(int min_limit, int max_limit)
 
 
 
-float execute_verirfication_float(float min_limit, float max_limit)
+float execute_verification_float(float min_limit, float max_limit)
 {
   char input[100];
   float number;
