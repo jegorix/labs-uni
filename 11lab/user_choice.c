@@ -5,6 +5,7 @@
 #include "user_choice.h"
 #include "integer_stack.h"
 #include <stdio.h>
+#include <string.h>
 
 void user_choice_action()
     {
@@ -16,11 +17,24 @@ void user_choice_action()
 
       fgets(user_input, 50, stdin);
 
-//      switch(user_input[0])
-//      {
-//        case '1':
-//
-//      };
+      switch(user_input[0])
+      {
+        case '1':
+          {
+            create_stacks();
+          }break;
+
+        case '2':
+          {
+          return;
+          }break;
+
+        default:
+          {
+          return;
+          }
+
+      }
 
 
 
