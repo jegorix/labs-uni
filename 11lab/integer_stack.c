@@ -58,6 +58,29 @@ void stack_print(OBJ* top, int stack_number)
 
 
 
+ void special_stack_output(OBJ* top_1, OBJ* top_2)
+          {
+     printf("Все элементы первого стека, которые есть во втором стеке:\n");
+     OBJ* current_1 = top_1;
+     OBJ* current_2 = top_2;
+
+     while(current_1 != NULL)
+       {
+       while(current_2 != NULL)
+         {
+       if(current_1->data == current_2->data)
+           {
+           printf("%d\n", current_1->data);
+           }
+           current_2 = current_2->next;
+         }
+         current_1 = current_1->next;
+         current_2 = top_2;
+       }
+
+
+          }
+
 
 
 
@@ -76,6 +99,10 @@ OBJ* top_two = NULL;
 top_two = declare_stack(second_stack_size, top_two, 2);
 stack_print(top_two, 2);
 
+
+special_stack_output(top_one, top_two);
+
 }
+
 
 
