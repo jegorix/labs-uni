@@ -9,6 +9,11 @@
 #include "validators.h"
 
 
+
+
+
+
+
 int check_increasing(int data, int stack_num)
     {
 
@@ -123,57 +128,57 @@ OBJ* make_third_stack(int stack_size_1, int stack_size_2, OBJ* top_1, OBJ* top_2
 
 
 
-// void user_action(OBJ* top_1, OBJ* top_2, OBJ* top_3)
-//        {
-//        printf("Выберите действие:\n");
-//    int running = 1;
-//
-//    while(running)
-//    {
-//        printf("\n");
-//        char user_input[50];
-//        printf("Выберите операцию:\n");
-//        printf("Содержимое первого стека: - 1\n");
-//        printf("Содержимое второго стека: - 2\n");
-//        printf("Содержимое обоих стеков: - 3\n");
-//        printf("Третий стек отсортирванный по возрастанию: - 4\n");
-//        printf("Выход - любая другая клавиша\n");
-//
-//        fgets(user_input, 50, stdin);
-//
-//        switch(user_input[0])
-//        {
-//            case '1':
-//            {
-//                stack_print(top_1, 1);
-//            }break;
-//
-//            case '2':
-//            {
-//                stack_print(top_2, 2);
-//            }break;
-//
-//            case '3':
-//            {
-//                stack_print(top_1, 1);
-//                stack_print(top_2, 2);
-//            }break;
-//
-//            case '4':
-//            {
-//
-//            }break;
-//
-//            default:
-//            {
-//                running = 0;
-//            }break;
-//
-//        }
-//
-//    }
-//
-//        }
+ void user_action(OBJ* top_1, OBJ* top_2, OBJ* top_3)
+        {
+        printf("Выберите действие:\n");
+    int running = 1;
+
+    while(running)
+    {
+        printf("\n");
+        char user_input[50];
+        printf("Выберите операцию:\n");
+        printf("Содержимое первого стека: - 1\n");
+        printf("Содержимое второго стека: - 2\n");
+        printf("Содержимое обоих стеков: - 3\n");
+        printf("Третий стек отсортирванный по возрастанию: - 4\n");
+        printf("Выход - любая другая клавиша\n");
+
+        fgets(user_input, 50, stdin);
+
+        switch(user_input[0])
+        {
+            case '1':
+            {
+                stack_print(top_1, 1);
+            }break;
+
+            case '2':
+            {
+                stack_print(top_2, 2);
+            }break;
+
+            case '3':
+            {
+                stack_print(top_1, 1);
+                stack_print(top_2, 2);
+            }break;
+
+            case '4':
+            {
+                stack_print(top_3, 3);
+            }break;
+
+            default:
+            {
+                running = 0;
+            }break;
+
+        }
+
+    }
+
+        }
 
 
 
@@ -195,9 +200,9 @@ void create_multy_stacks()
 
 
     OBJ* third_stack = make_third_stack(first_stack_size, second_stack_size, top_one, top_two);
-    stack_print(third_stack, 3);
 
-//    user_action(top_one, top_two, third_stack);
+
+    user_action(top_one, top_two, third_stack);
 
 }
 
