@@ -9,7 +9,17 @@
 #include "validators.h"
 
 
+void output_reverse_stack(OBJ* top)
+    {
+      if (top == NULL)
+        {
+        return;
+        }
 
+        output_reverse_stack(top->next);
+        printf("%d\n", top->data);
+
+    }
 
 
 
@@ -142,6 +152,7 @@ OBJ* make_third_stack(int stack_size_1, int stack_size_2, OBJ* top_1, OBJ* top_2
         printf("Содержимое второго стека: - 2\n");
         printf("Содержимое обоих стеков: - 3\n");
         printf("Третий стек отсортирванный по возрастанию: - 4\n");
+        printf("Третий стек отсортирванный по убыванию: - 5\n");
         printf("Выход - любая другая клавиша\n");
 
         fgets(user_input, 50, stdin);
@@ -167,6 +178,17 @@ OBJ* make_third_stack(int stack_size_1, int stack_size_2, OBJ* top_1, OBJ* top_2
             case '4':
             {
                 stack_print(top_3, 3);
+            }break;
+
+            case '5':
+            {
+                if (top_3 == NULL)
+                {
+                    printf("Стек пуст...\n");
+                    return;
+                }
+              printf("Содержимое Стека № %d\n", 3);
+              output_reverse_stack(top_3);
             }break;
 
             default:
