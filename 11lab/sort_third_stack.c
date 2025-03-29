@@ -72,32 +72,6 @@ OBJ* declare_multy_stack(int stack_size, OBJ* top, int stack_number)
 }
 
 
-//OBJ* stack_push_end(OBJ* top, int data)
-//    {
-//      OBJ* new_elem = malloc(sizeof(OBJ));
-//      new_elem->data = data;
-//      new_elem->next = NULL;
-//
-//      if(top == NULL)
-//        {
-//        return new_elem;
-//        }
-//
-//        OBJ* temp = top;
-//        while(temp->next != NULL)
-//          {
-//          temp = temp->next;
-//          }
-//
-//          temp->next = new_elem;
-//
-//          return top;
-//    }
-//
-
-
-
-
 OBJ* make_third_stack(int stack_size_1, int stack_size_2, OBJ* top_1, OBJ* top_2)
     {
 
