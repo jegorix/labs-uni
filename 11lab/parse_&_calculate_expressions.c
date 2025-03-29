@@ -28,10 +28,45 @@ void parse_expressions(char* expression)
       {
       int number = atoi(token);
       top = stack_push(top, number);
-      printf("число = %d добавлено в стек\n", number);
+
       }
 
+     else if (is_operator(token[0]))
+        {
+          if(top == NULL || top->next == NULL)
+            {
+            printf("Недостаточное количество операндов для операции '%c'\n", token[0]);
+            return;
+            }
+
+            int b = top->data;
+            top = stack_pop(top);
+            int a = top->data;
+            top = stack_pop(top);
+            int result;
+
+            switch (token[0])
+            {
+              case '+': result = a + b; break;
+              case '-': result = a - b; break;
+              case '*': result = a * b; break;
+              case '/':
+                if (b == 0)
+                  {
+                   printf("Деление на 0 выполнить невозможно\n");
+                   return;
+                  }
+                  result = a / b;
+                  break;
+            }
+
+        top = stack_push(top, result);
+        printf("%d %c %d = %d\n", a, token[0] , b, result);
+
+        }
+
       token = strtok(NULL, " ");
+
     }
 
     }
