@@ -16,6 +16,18 @@ OBJ* stack_push(OBJ* top, int data)
     }
 
 
+OBJ* stack_pop(OBJ* top)
+        {
+  if (top == NULL)
+    {
+    return top;
+    }
+    OBJ* next_elem = top->next;
+    free(top);
+    return next_elem;
+        }
+
+
  OBJ* declare_stack(int stack_size, OBJ* top, int stack_number)
   {
 
