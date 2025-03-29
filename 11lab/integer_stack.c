@@ -27,6 +27,15 @@ OBJ* stack_pop(OBJ* top)
     return next_elem;
         }
 
+int stack_peek(OBJ* top)
+            {
+  if (top == NULL)
+    {
+    return 0;
+    }
+    return top->data;
+            }
+
 
  OBJ* declare_stack(int stack_size, OBJ* top, int stack_number)
   {
