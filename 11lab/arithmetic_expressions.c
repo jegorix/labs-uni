@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "validators.h"
 
 char* make_file()
     {
@@ -22,6 +23,45 @@ char* make_file()
    return file_name;
     }
 
+
+
+char* get_words()
+{
+    char* input = malloc(256 * sizeof(char));
+    printf("Введите выражение:\n");
+    fgets(input, 256, stdin);
+    return input;
+}
+
+
+void add_data(char* file_name, char* user_input)
+{
+    FILE* file = fopen(file_name, "a+");
+    if(file == NULL)
+    {
+        printf("Не удалось открыть файл!\n");
+        return;
+    }
+
+    fputs(user_input, file);
+    fclose(file);
+
+}
+
+
+
+void create_expressions(char* file_name)
+        {
+  printf("Сколько арифметических выражений вы хотите записать?");
+  int expressions_count = execute_verification(0, max_limit);
+  printf("Введите арифметическое выражение, используя ' -, +, *, / и скобки () ' ");
+  for(int i = 0; i < expressions_count; i++)
+    {
+    printf("%d-ое выражение:\n", i+1);
+    char* user_expression = get_words();
+    add_data(file_name, user_expression);
+    }
+        }
 
 
 
