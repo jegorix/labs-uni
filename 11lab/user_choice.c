@@ -7,14 +7,15 @@
 #include <stdio.h>
 #include <string.h>
 #include "sort_third_stack.h"
-
+#include "arithmetic_expressions.h"
 void user_choice_action()
     {
       char user_input[50];
       printf("Выберите номер задачи:\n");
       printf("Задача № 1 - введите цифру 1\n");
       printf("Задача № 2 - введите цифру 2\n");
-      printf("Задача № 3 - любая другая клавиша \n");
+      printf("Задача № 3 - введите цифру 3\n");
+      printf("Выход - любая другая клавиша \n");
 
       fgets(user_input, 50, stdin);
 
@@ -29,6 +30,11 @@ void user_choice_action()
           {
           build_third_stack();
           }break;
+
+        case '3':
+        {
+          make_or_choose_file();
+        }break;
 
         default:
           {
