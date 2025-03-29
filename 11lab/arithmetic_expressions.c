@@ -83,7 +83,7 @@ void extract_expressions(char* file_name, int expressions_count)
        fgets(buffer, 256, file);
        buffer[strcspn(buffer, "\n")] = 0;
        parse_expressions(buffer);
-//       printf("%s\n", buffer);
+       printf("%s\n", buffer);
 
     }
     free(buffer);
