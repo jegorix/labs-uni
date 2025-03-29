@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "validators.h"
+#include "integer_stack.h"
+#include "ctype.h"
 
 int is_operator(char c)
     {
@@ -17,19 +19,19 @@ int is_operator(char c)
 void parse_expressions(char* expression)
     {
   char* token = strtok(expression, " ");
+   OBJ* top = NULL;
+
   while(token != NULL)
     {
-    if (is_operator(token[0]))
-          {
-          printf("Оператор - %s\n", token);
-          }
 
-     else
-        {
-           printf("Операнд - %s\n", token);
-        }
+    if(isdigit(token[0]) || (token[0] == '-' && isdigit(token[1])))
+      {
+      int number = atoi(token);
+      top = stack_push(top, number);
+      printf("число = %d добавлено в стек\n", number);
+      }
 
-       token = strtok(NULL, " ");
+      token = strtok(NULL, " ");
     }
 
     }
