@@ -17,5 +17,7 @@ OBJ* stack_push(OBJ* top, int data);
 void stacks_operations(OBJ* top_1, OBJ* top_2);
 void special_stack_output(OBJ* top_1, OBJ* top_2);
 void stack_print(OBJ* top, int stack_number);
+OBJ* stack_pop(OBJ* top);
+int stack_peek(OBJ* top);
 
 #endif //INTEGER_STACK_H
