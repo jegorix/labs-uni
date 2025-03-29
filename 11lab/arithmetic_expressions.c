@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "validators.h"
+#include "parse_&_calculate_expressions.h"
 
 char* make_file()
     {
@@ -51,15 +52,6 @@ void add_data(char* file_name, char* user_input)
 
 
 
-//void calculate_expressins(char* string)
-//    {
-//
-//    }
-
-
-
-
-
 
 void create_expressions(char* file_name, int* expressions_count)
         {
@@ -89,8 +81,9 @@ void extract_expressions(char* file_name, int expressions_count)
   for(int i = 0; i < expressions_count; i++)
     {
        fgets(buffer, 256, file);
-       char* result = calculate_expressions();
-       printf("%s\n", buffer);
+       buffer[strcspn(buffer, "\n")] = 0;
+       parse_expressions(buffer);
+//       printf("%s\n", buffer);
 
     }
     free(buffer);
