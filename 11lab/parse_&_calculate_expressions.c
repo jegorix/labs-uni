@@ -12,6 +12,52 @@
 #include "ctype.h"
 
 
+int check_for_errors(char* expression, int* error_position)
+    {
+  int pos = 0;
+  int balance = 0;
+
+  for(int i = 0; expression[i] != '\0'; i++)
+    {
+    pos++;
+    if(expression[i] == '(')
+      {
+          balance++;
+      }
+
+      else if(expression[i] == ')')
+        {
+          balance--;
+          if (balance < 0)
+            {
+                *error_position = pos;
+                return 1;
+            }
+        }
+
+        else if ((expression[i] < '0' || expression[i] > '9') &&
+               expression[i] != '-' && expression[i] != '+' &&
+               expression[i] != '*' && expression[i] != '/' &&
+                expression[i] != '.' && expression[i] != ' ')
+          {
+          *error_position = pos;
+          return 2;
+          }
+
+    }
+    if (balance == 0)
+      {
+      *error_position = pos;
+      return 3;
+      }
+      return 0;
+    }
+
+
+
+
+
+
 OBJ* stack_push_double(OBJ* top, double data)
 {
   OBJ* temp = malloc(sizeof(OBJ));
