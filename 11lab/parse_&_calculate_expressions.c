@@ -12,6 +12,27 @@
 #include "ctype.h"
 
 
+ObjDouble* stack_pop_double(ObjDouble* top, double* value)
+    {
+      if (top == NULL) return NULL;
+
+      *value = top->value;
+      ObjDouble* temp = top;
+      top = top->next;
+      free(temp);
+      return top;
+
+    }
+
+ObjDouble* stack_push_double(ObjDouble* top, double value)
+{
+  ObjDouble* temp = malloc(sizeof(ObjDouble));
+  temp->value = value;
+  temp->next = top;
+  return temp;
+
+}
+
 
 
 
@@ -62,22 +83,22 @@ int check_for_errors(char* expression, int* error_position)
 
 
 
-StractNode* stack_push_ex(StractNode* top, char* data)
+StackNode* stack_push_ex(StackNode* top, char* data)
 {
-  StractNode* temp = malloc(sizeof(StractNode));
+  StackNode* temp = malloc(sizeof(StackNode));
   temp->data = strdup(data);
   temp->next = top;
   return temp;
 }
 
-StractNode* stack_pop_ex(StractNode* top)
+StackNode* stack_pop_ex(StackNode* top)
     {
   if (top == NULL)
       {
       return NULL;
       }
 
-      StractNode* temp = top;
+      StackNode* temp = top;
       top = top->next;
       free(temp->data);
       free(temp);
@@ -85,6 +106,9 @@ StractNode* stack_pop_ex(StractNode* top)
       return top;
 
     }
+
+
+
 
 
  int priority(char operator)
@@ -99,83 +123,101 @@ StractNode* stack_pop_ex(StractNode* top)
 
 
 
-
-void convert_to_rpn(char* expression)
-    {
-  char* token = strtok(expression, " ");
-  while(token != NULL)
-      {
-        char* endptr;
-        double number = strtod(token, &endptr);
-        if (*endptr == '\0')
-          {
-          printf("%s\n", token);
-          }
-
-        token = strtok(NULL, " ");
-
-      }
-    }
-
-
-int is_operator(char c)
-    {
-  return (c == '+' || c == '-' || c == '*' || c == '/' );
-    }
-
-void parse_expressions(char* expression)
-    {
-  char* token = strtok(expression, " ");
-   OBJ* top = NULL;
-
-  while(token != NULL)
-    {
-
-    char* endptr;
-    double number = strtod(token, &endptr);
-
-    if (*endptr == '\0')
-      {
-      printf("Добавляю в стек: %lf\n", number);
-      top = stack_push_double(top, number);
-      }
-
-     else if (is_operator(token[0]))
-        {
-          if(top == NULL || top->next == NULL)
+void convert_to_rpn(char* expression, char* rpn_result)
             {
-            printf("Недостаточное количество операндов для операции '%c'\n", token[0]);
-            return;
-            }
+              StackNode* operators = NULL;
+              int j = 0;
+              for(int i = 0; expression[i] != '\0'; i++)
+                {
+                if (expression[i] == ' '){continue;}
 
-            double b = top->data;
-            top = stack_pop(top);
-            double a = top->data;
-            top = stack_pop(top);
-            double result;
-
-            switch (token[0])
-            {
-              case '+': result = a + b; break;
-              case '-': result = a - b; break;
-              case '*': result = a * b; break;
-              case '/':
-                if (b == 0)
+                if (isdigit(expression[i] || expression[i] == '.'))
                   {
-                   printf("Деление на 0 выполнить невозможно\n");
-                   return;
+                  rpn_result[j++] = expression[i];
                   }
-                  result = a / b;
-                  break;
+
+                else if (expression[i] == '('){ operators = stack_push_ex(operators, "(");}
+                else if (expression[i] == ')')
+                  {
+                    while(operators != NULL && strcmp(operators->data, "("))
+                    {
+                        rpn_result[j++] = operators->data[0];
+                        operators = stack_pop_ex(operators);
+                    }
+                    operators = stack_pop_ex(operators);
+                  }
+                  else if (expression[i] == '*' || expression[i] == '/' ||
+                           expression[i] == '+' || expression[i] == '-')
+                    {
+                        while(operators != NULL && priority(operators->data[0]) >= priority(expression[i]))
+                          {
+                          rpn_result[j++] = operators->data[0];
+                          operators = stack_pop_ex(operators);
+                          }
+
+                    }
+                    char op[2] = {expression[i], '\0'};
+                    operators = stack_push_ex(operators, op);
+                }
+
+                while(operators != NULL)
+                  {
+                  rpn_result[j++] = operators->data[0];
+                  operators = stack_pop_ex(operators);
+                  }
+
+                  rpn_result[j] = '\0';
+
             }
 
-        top = stack_push_double(top, result);
-        printf("%.2lf %c %.2lf = %.2lf\n", a, token[0] , b, result);
 
-        }
+          double evaluate_rpn(char* rpn)
+                {
+                  ObjDouble* stack = NULL;
+                  char buffer[20];
+                  int buf_index = 0;
 
-      token = strtok(NULL, " ");
+                  for(int i = 0; rpn[i] != '\0'; i++)
+                    {
+                      if(isdigit(rpn[i]) || rpn[i] == '.')
+                        {
+                        buffer[buf_index++] = rpn[i];
+                        }
 
-    }
+                       else if(rpn[i] == ' ' && buf_index > 0)
+                          {
+                          buffer[buf_index] = '\0';
+                          stack = stack_push_double(stack, atof(buffer));
+                          buf_index = 0;
+                          }
 
-    }
+                        else if(rpn[i] == '+' || rpn[i] == '-'
+                                 || rpn[i] == '*' || rpn[i] == '/')
+                            {
+                                 double a, b, result;
+                                stack = stack_pop_double(stack, &b);
+                                stack = stack_pop_double(stack, &a);
+
+                                switch(rpn[i])
+                                {
+                                    case '+': result = a + b; break;
+                                    case '-': result = a - b; break;
+                                    case '*': result = a * b; break;
+                                    case '/':
+                                      if( b == 0 )
+                                        {
+                                        printf("Ошибка деления на ноль\n");
+                                        return 0;
+                                        }
+                                      result = a / b;
+                                      break;
+                                }
+                                stack = stack_push_double(stack, result);
+
+                            }
+                    }
+                    double final_result;
+                    stack = stack_pop_double(stack, &final_result);
+                    return final_result;
+
+                }
