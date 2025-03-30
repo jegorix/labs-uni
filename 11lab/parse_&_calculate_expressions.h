@@ -4,6 +4,13 @@
 
 #ifndef PARSE___CALCULATE_EXPRESSIONS_H
 #define PARSE___CALCULATE_EXPRESSIONS_H
+
+typedef struct
+    {
+  char* data;
+  struct StackNode* next;
+    } StractNode;
+
 void parse_expressions(char* expression);
 int is_operator(char c);
 void convert_to_rpn(char* expression);
