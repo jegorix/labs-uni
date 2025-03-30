@@ -67,8 +67,10 @@ void create_expressions(char* file_name, int* expressions_count)
     }
         }
 
-void extract_expressions(char* file_name, int expressions_count)
+void extract_expressions(char* file_name, int* expressions_count, char*** expressions)
             {
+  char line[256];
+  *expressions_count = 0;
   FILE* file = fopen(file_name, "r");
   if(file == NULL)
     {
@@ -76,40 +78,25 @@ void extract_expressions(char* file_name, int expressions_count)
       return;
     }
 
+    while(fgets(line,256, file))
+      {
+      (*expressions_count)++;
+      }
+      fseek(file, 0, SEEK_SET);
 
-  char* buffer = malloc(256 * sizeof(char));
-  for(int i = 0; i < expressions_count; i++)
-    {
-       fgets(buffer, 256, file);
-       buffer[strcspn(buffer, "\n")] = 0;
-       parse_expressions(buffer);
-       printf("%s\n", buffer);
+      *expressions = malloc((*expressions_count) * sizeof(char*));
 
-    }
-    free(buffer);
+      for(int i = 0; i < *expressions_count; i++)
+        {
+        fgets(line, 256, file);
+        line[strcspn(line, "\n")] = 0;
+        (*expressions)[i] = strdup(line);
+        }
 
-fclose(file);
+    fclose(file);
             }
 
 
- int count_sentence(char* file_name)
-                {
-   FILE* file = fopen(file_name, "r");
-   int sentence_count = 0;
-   char ch;
-   while((ch = fgetc(file)) != EOF)
-     {
-        if(ch == '\0' || ch == '\n' || ch == '=')
-          {
-
-          sentence_count++;
-          }
-     }
-
-    printf("%d\n", sentence_count);
-     fclose(file);
-     return sentence_count;
-                }
 
 
 void make_or_choose_file()
@@ -121,13 +108,14 @@ void make_or_choose_file()
   fgets(user_input, 50, stdin);
   char* file_name;
   int expressions_count;
+  char** expressions;
 
   switch (user_input[0])
   {
     case '1':
        file_name = make_file();
        create_expressions(file_name, &expressions_count);
-       extract_expressions(file_name, expressions_count);
+       extract_expressions(file_name, &expressions_count, &expressions);
        free(file_name);
        break;
 
@@ -136,8 +124,7 @@ void make_or_choose_file()
        printf("Введите имя существующего файла: ");
        fgets(file_name, 50, stdin);
        file_name[strcspn(file_name, "\n")] = 0;
-      expressions_count = count_sentence(file_name);
-      extract_expressions(file_name, expressions_count);
+      extract_expressions(file_name, &expressions_count, &expressions);
 
       free(file_name);
       break;
