@@ -12,6 +12,10 @@
 #include "ctype.h"
 
 
+
+
+
+
 int check_for_errors(char* expression, int* error_position)
     {
   int pos = 0;
@@ -58,13 +62,39 @@ int check_for_errors(char* expression, int* error_position)
 
 
 
-OBJ* stack_push_double(OBJ* top, double data)
+StractNode* stack_push_ex(StractNode* top, char* data)
 {
-  OBJ* temp = malloc(sizeof(OBJ));
-  temp->data = data;
+  StractNode* temp = malloc(sizeof(StractNode));
+  temp->data = strdup(data);
   temp->next = top;
   return temp;
 }
+
+StractNode* stack_pop_ex(StractNode* top)
+    {
+  if (top == NULL)
+      {
+      return NULL;
+      }
+
+      StractNode* temp = top;
+      top = top->next;
+      free(temp->data);
+      free(temp);
+
+      return top;
+
+    }
+
+
+ int priority(char operator)
+        {
+   if (operator == '+' || operator == '-')
+     {return 1;}
+   else if (operator == '*' || operator == '/')
+     {return 2;}
+   return 0;
+        }
 
 
 
