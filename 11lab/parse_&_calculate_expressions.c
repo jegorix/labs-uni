@@ -131,8 +131,70 @@ StackNode* stack_pop_ex(StackNode* top)
 
 
 
+double evaluate_rpn(char* rpn)
+            {
+  ObjDouble* stack = NULL;
+  char buffer[20];
+  int buf_index = 0;
+
+  for(int i = 0; rpn[i] != '\0'; i++)
+    {
+
+    if(isdigit(rpn[i]) || rpn[i] == '.')
+      {
+      buffer[buf_index++] = rpn[i];
+      }
+
+    else if (rpn[i] == ' ' && buf_index > 0)
+        {
+          buffer[buf_index] = '\0';
+          stack = stack_push_double(stack, atof(buffer));
+          buf_index = 0;
+        }
+
+    else if(rpn[i] == '+' || rpn[i] == '-' || rpn[i] == '*' || rpn[i] == '/')
+          {
+          double a, b, result;
+          if(!stack && !stack->next)
+            {
+            printf("Ошибка! Недостаточно операндов для данной операции\n");
+            while(stack){stack = stack_pop_double(stack, &a);}
+            return 0;
+            }
+            stack = stack_pop_double(stack, &b);
+            stack = stack_pop_double(stack, &a);
+
+            switch(rpn[i])
+            {
+              case '+': result = a + b; break;
+              case '-': result = a - b; break;
+              case '*': result = a * b; break;
+              case '/':
+                if(b==0)
+                  {
+                  printf("Ошибка деления на ноль\n");
+                  while(stack){stack = stack_pop_double(stack, &a);}
+                  return 0;
+                  }
+                  result = a / b;
+                  break;
+            }
+            stack = stack_push_double(stack, result);
+          }
+    }
+    double final_result;
+    if(!stack || stack->next)
+      {
+      printf("Ошибка: некорректное выражение\n");
+      while(stack){stack = stack_pop_double(stack, &final_result);}
+      return 0;
+      }
+      stack = stack_pop_double(stack, &final_result);
+
+      return final_result;
 
 
+            }
 
 
 
