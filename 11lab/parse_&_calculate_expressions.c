@@ -35,56 +35,91 @@ ObjDouble* stack_push_double(ObjDouble* top, double value)
 
 
 
-
-
-int check_for_errors(char* expression, int* error_position) {
+int check_for_errors(char* expression, int* error_pos)
+    {
   int balance = 0;
-  int expecting_operand = 1; // 1 - ждем операнд или унарный оператор, 0 - ждем оператор
+  int expecting_operator = 1;
   int pos = 0;
 
-  for (int i = 0; expression[i] != '\0'; i++) {
-    if (expression[i] == ' ') continue;
-    pos++;
+  for(int i = 0; expression[i] != '\0'; i++)
+    {
+    if(expression[i] == ' ')continue; pos++;
 
-    if (expression[i] == '(') {
-      balance++;
-      expecting_operand = 1;
-    } else if (expression[i] == ')') {
-      balance--;
-      if (balance < 0) {
-        *error_position = pos;
-        return 1; // Лишняя закрывающая скобка
+    if(expression[i] == '/' && expression[i+2] == '0')
+      {
+      *error_pos = pos;
+      return 4;
       }
-      expecting_operand = 0;
-    } else if (isdigit(expression[i]) || expression[i] == '.') {
-      expecting_operand = 0;
-    } else if (expression[i] == '+' || expression[i] == '-' ||
-               expression[i] == '*' || expression[i] == '/') {
-      if (expecting_operand && (expression[i] == '+' || expression[i] == '-')) {
-        // Унарный оператор допустим в начале или после оператора
-        continue;
-      } else if (!expecting_operand) {
-        expecting_operand = 1;
-      } else {
-        *error_position = pos;
-        return 2; // Оператор без операнда
-      }
-               } else {
-                 *error_position = pos;
-                 return 3; // Недопустимый символ
-               }
-  }
 
-  if (balance != 0) {
-    *error_position = pos;
-    return 1; // Несбалансированные скобки
-  }
-  if (expecting_operand) {
-    *error_position = pos;
-    return 2; // Выражение заканчивается оператором
-  }
-  return 0;
-}
+      else if(expression[i] == '(')
+      {
+        balance++;
+        expecting_operator = 1;
+      }
+      else if(expression[i] == ')')
+        {
+        balance--;
+        expecting_operator = 0;
+
+        if (balance < 0)
+          {
+          *error_pos = pos;
+          return 1;
+          }
+          expecting_operator = 0;
+        }
+
+        else if (isdigit(expression[i]) || expression[i] == '.')
+          {
+          expecting_operator = 0;
+          }
+
+         else if(expression[i] == '+' || expression[i] == '-' ||
+                 expression[i] == '*' || expression[i] == '/')
+            {
+            if(expecting_operator && (expression[i] == '+' || expression[i] == '-'))
+              {
+              continue;
+              }
+
+              else if (!expecting_operator)
+                {
+                expecting_operator = 1;
+                }
+
+                else
+                  {
+                  *error_pos = pos;
+                  return 2;
+                  }
+            }
+
+            else
+              {
+              *error_pos = pos;
+              return 3;
+              }
+    }
+    if (balance !=  0)
+      {
+      *error_pos = pos;
+      return 1;
+      }
+
+    if(expecting_operator)
+      {
+      *error_pos = pos;
+      return 3;
+      }
+
+
+    return 0;
+    }
+
+
+
+
+
 
 
 
@@ -172,7 +207,7 @@ double evaluate_rpn(char* rpn)
               case '/':
                 if(b==0)
                   {
-                  printf("Ошибка деления на ноль\n");
+                  printf("Ошибка деления на ноль в позиции %d\n", i);
                   while(stack){stack = stack_pop_double(stack, &a);}
                   return 0;
                   }
