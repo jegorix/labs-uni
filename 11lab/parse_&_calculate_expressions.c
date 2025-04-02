@@ -169,7 +169,7 @@ StackNode* stack_pop_ex(StackNode* top)
 double evaluate_rpn(char* rpn)
             {
   ObjDouble* stack = NULL;
-  char buffer[20];
+  char buffer[256];
   int buf_index = 0;
 
   for(int i = 0; rpn[i] != '\0'; i++)
@@ -190,7 +190,7 @@ double evaluate_rpn(char* rpn)
     else if(rpn[i] == '+' || rpn[i] == '-' || rpn[i] == '*' || rpn[i] == '/')
           {
           double a, b, result;
-          if(!stack && !stack->next)
+          if(stack == NULL)
             {
             printf("Ошибка! Недостаточно операндов для данной операции\n");
             while(stack){stack = stack_pop_double(stack, &a);}
@@ -218,7 +218,7 @@ double evaluate_rpn(char* rpn)
           }
     }
     double final_result;
-    if(!stack || stack->next)
+    if(stack == NULL || stack->next)
       {
       printf("Ошибка: некорректное выражение\n");
       while(stack){stack = stack_pop_double(stack, &final_result);}
