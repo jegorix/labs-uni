@@ -31,13 +31,14 @@ char* get_words()
     char* input = malloc(256 * sizeof(char));
     printf("Введите выражение:\n");
     fgets(input, 256, stdin);
+    input[strcspn(input, "\n")] = 0;
     return input;
 }
 
 
 void add_data(char* file_name, char* user_input)
 {
-    FILE* file = fopen(file_name, "a+");
+    FILE* file = fopen(file_name, "a");
     if(file == NULL)
     {
         printf("Не удалось открыть файл!\n");
@@ -45,6 +46,7 @@ void add_data(char* file_name, char* user_input)
     }
 
     fputs(user_input, file);
+    fputc('\n', file);
     fclose(file);
 
 }
@@ -55,15 +57,16 @@ void add_data(char* file_name, char* user_input)
 
 void create_expressions(char* file_name, int* expressions_count)
         {
-  printf("Сколько арифметических выражений вы хотите записать?");
+  printf("Сколько арифметических выражений вы хотите записать?\n");
   *expressions_count = execute_verification(0, max_limit);
-  printf("Введите арифметическое выражение, используя ' -, +, *, / и скобки () ' ");
+  printf("Введите арифметическое выражение, используя ' -, +, *, / и скобки () '\n");
   for(int i = 0; i < *expressions_count; i++)
     {
     printf("%d-ое выражение:\n", i+1);
     char* user_expression = get_words();
     user_expression[strcspn(user_expression, "\n")] = 0;
     add_data(file_name, user_expression);
+    free(user_expression);
     }
         }
 
@@ -99,6 +102,54 @@ void extract_expressions(char* file_name, int* expressions_count, char*** expres
 
 
 
+
+void calculate_expressions(int expressions_count, char** expressions) {
+    FILE* file_output = fopen("output.txt", "w");
+    if (file_output == NULL) {
+        printf("Не удалось открыть output.txt!\n");
+        return;
+    }
+
+    for (int i = 0; i < expressions_count; i++) {
+        int error_pos;
+        int error_code = check_for_errors(expressions[i], &error_pos);
+
+        if (error_code != 0)
+        {
+            if (error_code == 1)
+             {
+                fprintf(file_output, "Ошибка в позиции %d: несбалансированные скобки\n", error_pos);
+              }
+            else if (error_code == 2)
+            {
+                fprintf(file_output, "Ошибка в позиции %d: синтаксическая ошибка\n", error_pos);
+            }
+
+            else if(error_code == 4)
+              {
+              fprintf(file_output, "Ошибка в позициях %d и %d: деление на ноль\n", error_pos, error_pos + 1);
+              }
+
+            else
+            {
+                fprintf(file_output, "Ошибка в позиции %d: недопустимый символ\n", error_pos);
+            }
+
+            continue;
+        }
+        char rpn[256] = "";
+        convert_to_rpn(expressions[i], rpn);
+        double result = evaluate_rpn(rpn);
+        fprintf(file_output, "Результат выражения %d: %.2f\n", i+1, result);
+    }
+    fclose(file_output);
+    printf("Обработка файла завершена. Результаты записаны в output.txt\n");
+}
+
+
+
+
+
 void make_or_choose_file()
     {
   char user_input[50];
@@ -116,6 +167,7 @@ void make_or_choose_file()
        file_name = make_file();
        create_expressions(file_name, &expressions_count);
        extract_expressions(file_name, &expressions_count, &expressions);
+     calculate_expressions(expressions_count, expressions);
        free(file_name);
        break;
 
@@ -125,11 +177,10 @@ void make_or_choose_file()
        fgets(file_name, 50, stdin);
        file_name[strcspn(file_name, "\n")] = 0;
       extract_expressions(file_name, &expressions_count, &expressions);
+      calculate_expressions(expressions_count, expressions);
 
       free(file_name);
       break;
-
-
 
   }
 
