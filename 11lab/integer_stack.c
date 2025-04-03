@@ -54,6 +54,27 @@ int stack_peek(OBJ* top)
 
 
 
+OBJ* random_declare_stack(int stack_size, OBJ* top, int stack_number)
+      {
+
+
+  for(int i = 0; i < stack_size; i++)
+  {
+
+    int regular_data = min + rand() % (max - min + 1);
+    top = stack_push(top, regular_data);
+
+  }
+
+  return top;
+
+      }
+
+
+
+
+
+
 
 void stack_print(OBJ* top, int stack_number)
       {
@@ -161,17 +182,53 @@ void stacks_operations(OBJ* top_1, OBJ* top_2)
 
 void create_stacks()
 {
+  char user_input[50];
+
   printf("Введите размер первого стека:\n");
   int first_stack_size = execute_verification(min_limit, max_limit);
   OBJ* top_one = NULL;
-  top_one = declare_stack(first_stack_size, top_one, 1);
+  printf("Выберите тип заполнения:\n");
+  printf("1 - в ручную\n");
+  printf("любая другая клавиша - случайные числа\n");
+  fgets(user_input, 50, stdin);
+
+  switch(user_input[0])
+    {
+    case '1':
+      top_one = declare_stack(first_stack_size, top_one, 1);
+      break;
+
+     default:
+       top_one = random_declare_stack(first_stack_size, top_one, 1);
+       stack_print(top_one, 1);
+       break;
 
 
+    }
+
+    char user_input_2[50];
 
   printf("Введите размер второго стека:\n");
   int second_stack_size = execute_verification(min_limit, max_limit);
   OBJ* top_two = NULL;
-  top_two = declare_stack(second_stack_size, top_two, 2);
+  printf("Выберите тип заполнения:\n");
+  printf("любая другая клавиша - случайные числа\n");
+
+  fgets(user_input_2, 50, stdin);
+
+  switch(user_input_2[0])
+  {
+    case '1':
+      top_two = declare_stack(first_stack_size, top_two, 2);
+    break;
+
+    default:
+      top_two = random_declare_stack(first_stack_size, top_two, 2);
+      stack_print(top_two, 2);
+    break;
+
+
+  }
 
   stacks_operations(top_one, top_two);
 
