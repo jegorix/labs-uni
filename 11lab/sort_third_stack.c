@@ -30,7 +30,7 @@ int check_increasing(int data, int stack_num)
     while(data <= stack_num)
     {
         data = execute_verification(min_limit, max_limit);
-        if (data <=stack_num)
+        if (data <= stack_num)
         {
             printf("Введите значение превышающее %d\n", stack_num);
         }
@@ -70,6 +70,44 @@ OBJ* declare_multy_stack(int stack_size, OBJ* top, int stack_number)
     return top;
 
 }
+
+
+
+
+
+
+
+OBJ* random_declare_multy_stack(int stack_size, OBJ* top, int stack_number)
+{
+
+    if (stack_size < 1)
+    {
+        printf("Стек пуст...\n");
+        return NULL;
+    }
+
+
+    int regular_data =  -100 + rand() % (201);
+    top = stack_push(top, regular_data);
+
+    for(int i = 1; i < stack_size; i++)
+    {
+         int delta = 1 + rand() % 100;
+         regular_data += delta;
+
+        top = stack_push(top, regular_data);
+
+    }
+    return top;
+
+}
+
+
+
+
+
+
+
 
 
 OBJ* make_third_stack(int stack_size_1, int stack_size_2, OBJ* top_1, OBJ* top_2)
@@ -180,18 +218,61 @@ OBJ* make_third_stack(int stack_size_1, int stack_size_2, OBJ* top_1, OBJ* top_2
 
 void create_multy_stacks()
 {
+    srand(time(NULL));
+    char user_choice[50];
     printf("Введите размер первого стека:\n");
     int first_stack_size = execute_verification(min_limit, max_limit);
     OBJ* top_one = NULL;
-    top_one = declare_multy_stack(first_stack_size, top_one, 1);
+
+
+
+    printf("Выберите тип заполнения:\n");
+    printf("1 - в ручную\n");
+    printf("любая другая клавиша - случайные числа\n");
+
+    fgets(user_choice, 50, stdin);
+
+    switch(user_choice[0])
+    {
+        case '1':
+            top_one = declare_multy_stack(first_stack_size, top_one, 1);
+        break;
+
+        default:
+            top_one = random_declare_multy_stack(first_stack_size, top_one, 1);
+        break;
+
+
+    }
+
     stack_print(top_one, 1);
 
 
 
+    char user_сhoice_2[50];
     printf("Введите размер второго стека:\n");
     int second_stack_size = execute_verification(min_limit, max_limit);
     OBJ* top_two = NULL;
-    top_two = declare_multy_stack(second_stack_size, top_two, 2);
+
+
+
+    printf("Выберите тип заполнения:\n");
+    printf("1 - в ручную\n");
+    printf("любая другая клавиша - случайные числа\n");
+
+    fgets(user_сhoice_2, 50, stdin);
+
+    switch(user_сhoice_2[0])
+    {
+        case '1':
+            top_two = declare_multy_stack(second_stack_size, top_two, 2);
+        break;
+
+        default:
+            top_two = random_declare_multy_stack(second_stack_size, top_two, 2);
+        break;
+    }
+
     stack_print(top_two, 2);
 
 

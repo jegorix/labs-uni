@@ -56,7 +56,7 @@ int stack_peek(OBJ* top)
 
 OBJ* random_declare_stack(int stack_size, OBJ* top, int stack_number)
       {
-
+  srand(time(NULL));
 
   for(int i = 0; i < stack_size; i++)
   {
@@ -219,11 +219,11 @@ void create_stacks()
   switch(user_input_2[0])
   {
     case '1':
-      top_two = declare_stack(first_stack_size, top_two, 2);
+      top_two = declare_stack(second_stack_size, top_two, 2);
     break;
 
     default:
-      top_two = random_declare_stack(first_stack_size, top_two, 2);
+      top_two = random_declare_stack(second_stack_size, top_two, 2);
       stack_print(top_two, 2);
     break;
 
