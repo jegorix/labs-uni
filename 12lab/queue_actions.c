@@ -121,7 +121,40 @@ void queue_fill(Queue* queue)
 
 }
 
+int queue_pop(Queue* queue)
+{
+    if(queue->begin == NULL)
+    {
+        printf("Очередь пуста! Извлечение невозможно.\n");
+        return -1;
+    }
 
+    Node* temp = queue->begin;
+    int data = temp->value;
+
+    queue->begin = queue->begin->Next;
+
+    if(queue->begin == NULL)
+    {
+        queue->back = NULL;
+    }
+    free(temp);
+    return data;
+
+}
+
+void clear_queue(Queue* queue)
+{
+    if(queue->begin == NULL)
+    {
+        printf("\nОчередь пуста...\n");
+        return;
+    }
+    while(queue->begin != NULL)
+    {
+        queue_pop(queue);
+    }
+}
 
 
 
@@ -131,6 +164,7 @@ void queue_actions_menu()
     printf("Введите максимальный размер очереди\n");
     int queue_size = execute_verification(0, max_limit);
     Queue* queue = create_queue(queue_size);
+    int catch;
 
     while(1) {
 
@@ -144,7 +178,7 @@ void queue_actions_menu()
                "7 - Стереть очередь\n"
                "8 - Выход\n");
 
-        int user_input = execute_verification(1, 7);
+        int user_input = execute_verification(1, 8);
 
         switch (user_input) {
             case 1:
@@ -161,8 +195,23 @@ void queue_actions_menu()
                 queue_push(queue, data);
                 break;
 
+            case 4:
+                catch = queue_pop(queue);
+                if(catch == -1)
+                {
+                    continue;
+                }
+                printf("\nПервый элемент в очереди %d\n", catch);
+                break;
+
+
             case 5:
                 printf("Количество элементов очереди: %d\n", get_size(queue));
+                break;
+
+            case 7:
+                clear_queue(queue);
+                printf("\nОчередь успешно очищена\n");
                 break;
 
             case 8:
