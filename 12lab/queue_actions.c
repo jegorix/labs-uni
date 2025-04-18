@@ -20,7 +20,7 @@ Queue* create_queue(int queue_size)
 void queue_output(Queue* queue)
 {
     Node* current = queue->begin;
-    printf("Очередь:\n");
+    printf("Содержимое очереди:\n");
 
     if(current == NULL)
     {
@@ -79,6 +79,49 @@ void queue_push(Queue* queue, int value)
 
 }
 
+void queue_fill(Queue* queue)
+{
+    int current_size = get_size(queue);
+    if (current_size >= queue->max_size)
+    {
+        printf("Невозможно выполнить операцию заполнение очереди,\n"
+               "так как она уже заполнена\n");
+        return;
+    }
+
+    printf("Заполнение в ручную - 1\n");
+    printf("Случайными значениями - любая другая клавиша\n");
+    char user_input[50];
+    fgets(user_input, 50, stdin);
+
+    switch (user_input[0]) {
+
+        case '1':
+        {
+            for (int i = 0; i < queue->max_size; i++) {
+                printf("Введите число для добавления:\n");
+                int data = execute_verification(min_limit, max_limit);
+                queue_push(queue, data);
+            }
+            printf("Очередь была успешно заполнена!\n");
+        }break;
+
+        default:
+        {
+            for (int i = 0; i < queue->max_size; i++) {
+                int data = rand_min_limit + rand() % (rand_max_limit - rand_min_limit + 1);
+                queue_push(queue, data);
+            }
+            printf("Очередь была успешно заполнена!\n");
+        }break;
+
+
+    }
+
+
+}
+
+
 
 
 
@@ -91,14 +134,15 @@ void queue_actions_menu()
 
     while(1) {
 
-        printf("Выберите операцию для работы с очередью:\n"
+        printf("\nВыберите операцию для работы с очередью:\n"
                "1 - Вывод очереди на экран\n"
                "2 - Заполнение очереди\n"
                "3 - Добавление элемента в очередь\n"
                "4 - Извлечение элемента очереди\n"
                "5 - Узнать размер очереди\n"
                "6 - Режим удаления и совпадения\n"
-               "7 - Выход\n");
+               "7 - Стереть очередь\n"
+               "8 - Выход\n");
 
         int user_input = execute_verification(1, 7);
 
@@ -108,7 +152,7 @@ void queue_actions_menu()
                 break;
 
             case 2:
-//            queue_fill(queue);
+            queue_fill(queue);
                 break;
 
             case 3:
@@ -121,10 +165,9 @@ void queue_actions_menu()
                 printf("Количество элементов очереди: %d\n", get_size(queue));
                 break;
 
-            case 7:
+            case 8:
                 printf("Выход...\n");
                 exit(1);
-                break;
 
         }
 

@@ -7,6 +7,8 @@
 #include "stdio.h"
 #include "validators.h"
 #include "stdlib.h"
+#include <time.h>
+#include <string.h>
 
 typedef struct
 {
@@ -26,5 +28,6 @@ Queue* create_queue(int queue_size);
 void queue_output(Queue *queue);
 void queue_actions_menu();
 int get_size(Queue* queue);
+void queue_fill(Queue* queue);
 
 #endif //INC_12LAB_QUEUE_ACTIONS_H
