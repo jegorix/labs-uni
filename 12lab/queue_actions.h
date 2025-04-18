@@ -23,6 +23,7 @@ typedef struct
 
 
 Queue* create_queue(int queue_size);
+void queue_output(Queue *queue);
 void queue_actions_menu();
 
 #endif //INC_12LAB_QUEUE_ACTIONS_H
