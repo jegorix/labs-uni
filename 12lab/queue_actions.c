@@ -218,8 +218,9 @@ void queue_actions_menu()
     int queue_size = execute_verification(0, max_limit);
     Queue* queue = create_queue(queue_size);
     int catch;
+    int running = 1;
 
-    while(1) {
+    while(running) {
 
         printf("\nВыберите операцию для работы с очередью:\n"
                "1 - Вывод очереди на экран\n"
@@ -275,7 +276,8 @@ void queue_actions_menu()
 
             case 8:
                 printf("Выход...\n");
-                exit(1);
+                running = 0;
+                continue;
 
         }
 
