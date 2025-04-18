@@ -2,6 +2,14 @@
 // Created by jegorix on 18.04.25.
 //
 
+//Создать очередь для целых чисел. Максимальный размер очереди вводится с экрана. Создать
+//функции для ввода и вывода элементов очереди. Ввести в очередь числа с экрана. После этого перейти
+//в режим, при котором при каждом вводе числа из очереди удаляется первый элемент, и если он
+//совпадает с введенным числом, то он добавляется в очередь.
+//
+
+
+
 #include "queue_actions.h"
 
 
@@ -145,14 +153,59 @@ int queue_pop(Queue* queue)
 
 void clear_queue(Queue* queue)
 {
-    if(queue->begin == NULL)
-    {
-        printf("\nОчередь пуста...\n");
-        return;
-    }
+//    if(queue->begin == NULL)
+//    {
+//        printf("\nОчередь пуста...\n");
+//        return;
+//    }
     while(queue->begin != NULL)
     {
         queue_pop(queue);
+    }
+}
+
+
+void special_mode(Queue* queue)
+{
+    char user_choice[50];
+    int running = 1;
+
+    while(running) {
+        if (queue->back == NULL || queue->begin == NULL)
+        {
+            return;
+        }
+
+        printf("\nВведите элемент для сравнения:\n");
+        int check_number = execute_verification(min_limit, max_limit);
+        if (check_number == queue->begin->value) {
+            queue_push(queue, check_number);
+            printf("\n%d совпал с первым элементом очереди => добавлен в конец\n", check_number);
+            queue_output(queue);
+
+            printf("\nЖелаете продолжить?\n"
+                   "1 - Нет\n"
+                   "Любая другая клавиша - Да\n");
+
+            fgets(user_choice, 50, stdin);
+
+            switch (user_choice[0]) {
+                case '1': {
+                   running = 0;
+                    continue;
+                } break;
+                default: {
+                    continue;
+                }
+
+            }
+
+
+
+        } else {
+            printf("\nУдален элемент очереди: %d\n", queue_pop(queue));
+            queue_output(queue);
+        }
     }
 }
 
@@ -208,6 +261,12 @@ void queue_actions_menu()
             case 5:
                 printf("Количество элементов очереди: %d\n", get_size(queue));
                 break;
+
+            case 6:
+                clear_queue(queue);
+                queue_fill(queue);
+                special_mode(queue);
+
 
             case 7:
                 clear_queue(queue);
