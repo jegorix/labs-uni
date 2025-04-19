@@ -33,5 +33,8 @@ void push_front(Deque* deque, int data);
 void push_back(Deque* deque, int data);
 void deque_push_menu(Deque* deque, int value);
 void deque_fill(Deque* deque);
+void deque_pop_menu(Deque* deque);
+int pop_front(Deque* deque);
+int pop_back(Deque* deque);
 
 #endif //INC_12LAB_DEQUE_ACTIONS_H

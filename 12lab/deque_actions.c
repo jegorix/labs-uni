@@ -210,6 +210,82 @@ void deque_fill(Deque* deque)
 
 }
 
+int pop_back(Deque* deque)
+{
+    if(isEmpty(deque))
+    {
+        printf("\nДек пуст! Извлечение невозможно.\n");
+        return -1;
+    }
+
+    deNode* temp = deque->back;
+    int data = temp->value;
+    deque->back = deque->back->Prev;
+
+    if(deque->back == NULL)
+    {
+        deque->begin = NULL;
+    }
+    else
+    {
+        deque->back->Next = NULL;
+    }
+
+    free(temp);
+    return data;
+}
+
+
+int pop_front(Deque* deque)
+{
+    if(isEmpty(deque))
+    {
+        printf("\nДек пуст! Извлечение невозможно.\n");
+        return -1;
+    }
+
+    deNode* temp = deque->begin;
+    int data = temp->value;
+    deque->begin = deque->begin->Next;
+
+    if(deque->begin == NULL)
+    {
+        deque->back = NULL;
+    }
+    else
+    {
+        deque->begin->Prev = NULL;
+    }
+
+    free(temp);
+    return data;
+}
+
+
+
+
+void deque_pop_menu(Deque* deque)
+{
+    printf("\nВыберите место извлечения элемента из дека\n"
+           "Первый элемент - 1\n"
+           "Последний элемент -  любая другая клавиша\n");
+
+    char user_input[50];
+
+    fgets(user_input, 50, stdin);
+
+    switch (user_input[0]) {
+        case '1':
+            printf("\nПервый элемент дека %d\n", pop_front(deque));
+            break;
+
+        default:
+            printf("\nПоследний элемент дека %d\n",  pop_back(deque));
+
+    }
+
+}
+
 
 
 
@@ -218,7 +294,6 @@ void deque_actions_menu()
     printf("Введите максимальный размер дека\n");
     int deque_size = execute_verification(0, max_limit);
     Deque* deque = create_deque(deque_size);
-    int catch;
     int running = 1;
 
     while(running) {
@@ -254,19 +329,16 @@ void deque_actions_menu()
                 int data = execute_verification(min_limit, max_limit);
                 deque_push_menu(deque, data);
                 break;
-//
-//            case 4:
-//                catch = queue_pop(queue);
-//                if(catch == -1)
-//                {
-//                    continue;
-//                }
-//                printf("\nПервый элемент в очереди %d\n", catch);
-//                break;
-//
-//
+
+            case 4:
+
+                deque_pop_menu(deque);
+
+                break;
+
+
             case 5:
-                printf("Количество элементов очереди: %d\n", get_size_deq(deque));
+                printf("Количество элементов дека: %d\n", get_size_deq(deque));
                 break;
 //
 //            case 6:
@@ -275,15 +347,15 @@ void deque_actions_menu()
 //                special_mode(queue);
 //
 //
-//            case 7:
-//                clear_queue(queue);
-//                printf("\nОчередь успешно очищена\n");
-//                break;
-//
-//            case 8:
-//                printf("Выход...\n");
-//                running = 0;
-//                continue;
+            case 7:
+                clear_deque(deque);
+                printf("\nОчередь успешно очищена\n");
+                break;
+
+            case 8:
+                printf("Выход...\n");
+                running = 0;
+                continue;
 
         }
 
