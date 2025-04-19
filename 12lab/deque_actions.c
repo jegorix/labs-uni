@@ -17,7 +17,7 @@ Deque* create_deque(int deque_size)
     deque->begin = NULL;
     deque->back = NULL;
     deque->max_size = deque_size;
-    printf("Дек был успешно создан, его размер = %d", deque->max_size);
+    printf("\nДек был успешно создан, его размер = %d\n", deque->max_size);
     return deque;
 }
 
@@ -287,6 +287,15 @@ void deque_pop_menu(Deque* deque)
 }
 
 
+void clear_deque(Deque* deque)
+{
+    while(!isEmpty(deque))
+    {
+        pop_back(deque);
+    }
+}
+
+
 
 
 void deque_actions_menu()
@@ -349,7 +358,7 @@ void deque_actions_menu()
 //
             case 7:
                 clear_deque(deque);
-                printf("\nОчередь успешно очищена\n");
+                printf("\nДек успешно очищен\n");
                 break;
 
             case 8:
