@@ -20,6 +20,10 @@ int handle_user_choice(int user_choice)
             deque_actions_menu();
             break;
 
+        case 4:
+            printf("\nВыход...\n");
+            return 4;
+
     }
 
     return 1;
