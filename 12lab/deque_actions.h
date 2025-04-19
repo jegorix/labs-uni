@@ -37,5 +37,7 @@ void deque_pop_menu(Deque* deque);
 int pop_front(Deque* deque);
 int pop_back(Deque* deque);
 void clear_deque(Deque* deque);
+void special_deq_mode(Deque* deque);
+void deq_base_output(Deque* deque);
 
 #endif //INC_12LAB_DEQUE_ACTIONS_H

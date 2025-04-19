@@ -40,6 +40,19 @@ int get_size_deq(Deque* deque)
 
 
 
+void deq_base_output(Deque* deque)
+{
+    deNode* current_2 = deque->begin;
+    printf("\nСодержимое дека в прямом порядке:\n");
+    while(current_2 != NULL)
+    {
+        printf("%d ", current_2->value);
+        current_2 = current_2->Next;
+    }
+    printf("\n");
+}
+
+
 void deque_output(Deque* deque)
 {
     if(isEmpty(deque))
@@ -187,7 +200,7 @@ void deque_fill(Deque* deque)
 
         case '1':
         {
-            for (int i = 0; i < deque->max_size - get_size_deq(deque); i++) {
+            for (int i = 0; i < deque->max_size; i++) {
                 printf("Введите число для добавления:\n");
                 int data = execute_verification(min_limit, max_limit);
                 push_back(deque, data);
@@ -197,7 +210,7 @@ void deque_fill(Deque* deque)
 
         default:
         {
-            for (int i = 0; i < deque->max_size - get_size_deq(deque); i++) {
+            for (int i = 0; i < deque->max_size; i++) {
                 int data = rand_min_limit + rand() % (rand_max_limit - rand_min_limit + 1);
                 push_back(deque, data);
             }
@@ -296,6 +309,58 @@ void clear_deque(Deque* deque)
 }
 
 
+void special_deq_mode(Deque* deque)
+{
+    int running = 1;
+    int count = 0;
+
+    while(running) {
+        if(isEmpty(deque))
+        {
+            printf("Дек пуст...\n"
+                   "Выход...\n");
+            running = 0;
+            break;
+        }
+
+        if (count >= 5)
+        {
+            printf("\nЖелаете продолжить?\n"
+                   "Да - любая клавиша\n"
+                   "Нет - 1\n");
+
+            char user_input[50];
+            fgets(user_input, 50, stdin);
+
+            switch (user_input[0]) {
+                case '1':
+                    running = 0;
+                    return;
+
+                default:
+                    count = 0;
+                    break;
+            }
+
+        }
+        deq_base_output(deque);
+        printf("\nВведите число для анализа:\n");
+        int number = execute_verification(min_limit, max_limit);
+        int value = pop_front(deque);
+        if (number != value) {
+            push_back(deque, number);
+            printf("%d не совпал с элементом слева (%d) => он (%d) добавлен справа\n", number, value, number);
+            deq_base_output(deque);
+        }
+        else {
+            printf("%d совпал с элементом слева (%d)  => элемент слева (%d) просто удален\n", number, value, value);
+            deq_base_output(deque);
+        }
+        count++;
+    }
+}
+
+
 
 
 void deque_actions_menu()
@@ -349,13 +414,13 @@ void deque_actions_menu()
             case 5:
                 printf("Количество элементов дека: %d\n", get_size_deq(deque));
                 break;
-//
-//            case 6:
-//                clear_queue(queue);
-//                queue_fill(queue);
-//                special_mode(queue);
-//
-//
+
+            case 6:
+                clear_deque(deque);
+                deque_fill(deque);
+                special_deq_mode(deque);
+
+
             case 7:
                 clear_deque(deque);
                 printf("\nДек успешно очищен\n");
