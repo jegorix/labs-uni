@@ -168,6 +168,48 @@ void deque_push_menu(Deque* deque, int value)
 }
 
 
+void deque_fill(Deque* deque)
+{
+    int current_size = get_size_deq(deque);
+    if (current_size >= deque->max_size)
+    {
+        printf("\nНевозможно выполнить операцию заполнение дека,\n"
+               "так как он уже заполнен\n");
+        return;
+    }
+
+    printf("Заполнение в ручную - 1\n");
+    printf("Случайными значениями - любая другая клавиша\n");
+    char user_input[50];
+    fgets(user_input, 50, stdin);
+
+    switch (user_input[0]) {
+
+        case '1':
+        {
+            for (int i = 0; i < deque->max_size - get_size_deq(deque); i++) {
+                printf("Введите число для добавления:\n");
+                int data = execute_verification(min_limit, max_limit);
+                push_back(deque, data);
+            }
+            printf("\nДек был успешно заполнен!\n");
+        }break;
+
+        default:
+        {
+            for (int i = 0; i < deque->max_size - get_size_deq(deque); i++) {
+                int data = rand_min_limit + rand() % (rand_max_limit - rand_min_limit + 1);
+                push_back(deque, data);
+            }
+            printf("\nДек был успешно заполнен!\n");
+        }break;
+
+
+    }
+
+
+}
+
 
 
 
@@ -197,12 +239,17 @@ void deque_actions_menu()
             case 1:
                 deque_output(deque);
                 break;
-//
-//            case 2:
-//                queue_fill(queue);
-//                break;
-//
+
+            case 2:
+                deque_fill(deque);
+                break;
+
             case 3:
+                if(get_size_deq(deque) >= deque->max_size)
+                {
+                    printf("Дек переполнен! Нельзя добавить элемент (максимальный размер: %d).\n",deque->max_size);
+                    continue;
+                }
                 printf("Введите число для добавления:\n");
                 int data = execute_verification(min_limit, max_limit);
                 deque_push_menu(deque, data);

@@ -32,5 +32,6 @@ int get_size_deq(Deque* deque);
 void push_front(Deque* deque, int data);
 void push_back(Deque* deque, int data);
 void deque_push_menu(Deque* deque, int value);
+void deque_fill(Deque* deque);
 
 #endif //INC_12LAB_DEQUE_ACTIONS_H
