@@ -62,7 +62,7 @@ void handle_queue(Queue* queue_1, Queue* queue_2, int que_number)
                "7 - Стереть очередь\n"
                "\n>> 8 - Проверить очереди на равенство <<\n"
                "\n9 - Работать с другой очередью\n"
-               "10 - Выход\n");
+               "10 - Выход в главное меню\n");
 
         int user_input = execute_verification(1, 10);
 
@@ -131,7 +131,7 @@ void handle_queue(Queue* queue_1, Queue* queue_2, int que_number)
             case 10:
                 printf("Выход...\n");
                 running = 0;
-                exit(1);
+                return;
 
         }
 
