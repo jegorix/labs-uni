@@ -38,9 +38,10 @@ void queue_output(Queue* queue)
 
     while (current != NULL)
     {
-        printf("%d\n", current->value);
+        printf("%d ", current->value);
         current = current->Next;
     }
+    printf("\n");
 
 }
 
