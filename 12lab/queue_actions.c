@@ -193,7 +193,7 @@ void special_mode(Queue* queue)
                 case '1': {
                    running = 0;
                     continue;
-                } break;
+                }
                 default: {
                     continue;
                 }
