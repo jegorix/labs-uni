@@ -5,12 +5,48 @@
 #include "queue_identity.h"
 
 
+int compare_queues(Queue* queue1, Queue* queue2)
+{
+    int size1 = get_size(queue1);
+    int size2 = get_size(queue2);
+
+    if(size1 != size2)
+    {
+        printf("Очереди имеют разный размер (%d ≠ %d).\n", size1, size2);
+        return 0;
+    }
+
+    if(size1 == 0)
+    {
+        printf("Очереди пусты...\n");
+        return 1;
+    }
+
+    Node* current_1 = queue1->begin;
+    Node* current_2 = queue2->begin;
+
+    while(current_1 != NULL && current_2 != NULL)
+    {
+        if(current_1->value != current_2->value)
+        {
+            printf("Очереди различаются: элемент %d ≠ %d.\n", current_1->value, current_2->value);
+            return 0;
+        }
+        current_1->Next;
+        current_2->Next;
+    }
+ return 1;
+}
+
+
+
 
 
 void handle_queue(Queue* queue_1, Queue* queue_2, int que_number)
 {
     int catch;
     int running = 1;
+    int res;
 
     while(running) {
 
@@ -22,8 +58,8 @@ void handle_queue(Queue* queue_1, Queue* queue_2, int que_number)
                "5 - Узнать размер очереди\n"
                "6 - Проверка очередей на равенство\n"
                "7 - Стереть очередь\n"
-               "8 - Проверить очереди на равенство\n"
-               "9 - Работать с другой очередью\n"
+               "\n>> 8 - Проверить очереди на равенство <<\n"
+               "\n9 - Работать с другой очередью\n"
                "10 - Выход\n");
 
         int user_input = execute_verification(1, 10);
@@ -64,6 +100,18 @@ void handle_queue(Queue* queue_1, Queue* queue_2, int que_number)
                 printf("\nОчередь успешно очищена\n");
                 break;
 
+            case 8:
+               res = compare_queues(queue_1, queue_2);
+               if(res)
+               {
+                   printf("Очереди равны!\n");
+               }
+               else
+               {
+                   printf("Очереди не равны!\n");
+               }
+                break;
+
             case 9:
                 printf("Работа с другой очередью %d\n", que_number);
                 return;
@@ -95,7 +143,7 @@ void queue_identity_menu() {
     int running = 1;
 
     while (running) {
-        printf("С какой очередью вы желаете работать?\n"
+        printf("\nС какой очередью вы желаете работать?\n"
                "Очередь №1 - 1\n"
                "Очередь №2 - 2\n"
                "Выход - 3\n");
