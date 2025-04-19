@@ -251,10 +251,10 @@ void queue_actions_menu()
 
             case 4:
                 catch = queue_pop(queue);
-                if(catch == -1)
-                {
-                    continue;
-                }
+//                if(catch == -1)
+//                {
+//                    continue;
+//                }
                 printf("\nПервый элемент в очереди %d\n", catch);
                 break;
 
