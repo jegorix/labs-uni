@@ -30,5 +30,7 @@ void queue_actions_menu();
 int get_size(Queue* queue);
 void queue_fill(Queue* queue);
 int queue_pop(Queue* queue);
+void clear_queue(Queue* queue);
+void special_mode(Queue* queue);
 
 #endif //INC_12LAB_QUEUE_ACTIONS_H

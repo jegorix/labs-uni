@@ -20,7 +20,7 @@ Queue* create_queue(int queue_size)
     queue->begin = NULL;
     queue->back = NULL;
     queue->max_size = queue_size;
-    printf("Очередь успешно создана, ее размер = %d", queue_size);
+    printf("\nОчередь успешно создана, ее размер = %d\n", queue_size);
     return queue;
 }
 
