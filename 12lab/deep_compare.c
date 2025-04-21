@@ -76,7 +76,8 @@ void handle_queue(Queue* queue_1, Queue* queue_2, int que_number)
                 break;
 
             case 3:
-                printf("Введите число для добавления:\n");
+                printf("\nВведите число для добавления:\n");
+                printf(">> ");
                 int data = execute_verification(min_limit, max_limit);
                 queue_push(queue_1, data);
                 break;

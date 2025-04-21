@@ -64,6 +64,7 @@ void deque_output(Deque* deque)
     printf("\nВ каком формате вывести дек?\n"
            "В прямой последовательности - любая клавиша\n"
            "В обратной последовательности - 1\n");
+    printf(">> ");
 
     char user_input[50];
     deNode* current_1 = deque->back;
@@ -160,7 +161,7 @@ void deque_push_menu(Deque* deque, int value)
     printf("\nВыберите место добавления элемента в дек\n"
            "В начало - 1\n"
            "В конец -  любая другая клавиша\n");
-
+    printf(">> ");
     char user_input[50];
 
     fgets(user_input, 50, stdin);
@@ -193,6 +194,7 @@ void deque_fill(Deque* deque)
 
     printf("Заполнение в ручную - 1\n");
     printf("Случайными значениями - любая другая клавиша\n");
+    printf(">> ");
     char user_input[50];
     fgets(user_input, 50, stdin);
 
@@ -201,7 +203,8 @@ void deque_fill(Deque* deque)
         case '1':
         {
             for (int i = 0; i < deque->max_size; i++) {
-                printf("Введите число для добавления:\n");
+                printf("\nВведите число для добавления:\n");
+                printf(">> ");
                 int data = execute_verification(min_limit, max_limit);
                 push_back(deque, data);
             }
@@ -282,6 +285,7 @@ void deque_pop_menu(Deque* deque)
     printf("\nВыберите место извлечения элемента из дека\n"
            "Первый элемент - 1\n"
            "Последний элемент -  любая другая клавиша\n");
+    printf(">> ");
 
     char user_input[50];
 
@@ -328,6 +332,7 @@ void special_deq_mode(Deque* deque)
             printf("\nЖелаете продолжить?\n"
                    "Да - любая клавиша\n"
                    "Нет - 1\n");
+            printf(">> ");
 
             char user_input[50];
             fgets(user_input, 50, stdin);
@@ -345,6 +350,7 @@ void special_deq_mode(Deque* deque)
         }
         deq_base_output(deque);
         printf("\nВведите число для анализа:\n");
+        printf(">> ");
         int number = execute_verification(min_limit, max_limit);
         int value = pop_front(deque);
         if (number != value) {
@@ -366,6 +372,7 @@ void special_deq_mode(Deque* deque)
 void deque_actions_menu()
 {
     printf("Введите максимальный размер дека\n");
+    printf(">> ");
     int deque_size = execute_verification(0, max_limit);
     Deque* deque = create_deque(deque_size);
     int running = 1;
@@ -381,6 +388,7 @@ void deque_actions_menu()
                "6 - Режим удаления и совпадения\n"
                "7 - Стереть дек\n"
                "8 - Выход\n");
+        printf(">> ");
 
         int user_input = execute_verification(1, 8);
 
@@ -400,6 +408,7 @@ void deque_actions_menu()
                     continue;
                 }
                 printf("Введите число для добавления:\n");
+                printf(">> ");
                 int data = execute_verification(min_limit, max_limit);
                 deque_push_menu(deque, data);
                 break;

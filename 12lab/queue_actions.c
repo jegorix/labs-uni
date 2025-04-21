@@ -100,6 +100,7 @@ void queue_fill(Queue* queue)
 
     printf("Заполнение в ручную - 1\n");
     printf("Случайными значениями - любая другая клавиша\n");
+    printf(">> ");
     char user_input[50];
     fgets(user_input, 50, stdin);
 
@@ -178,7 +179,9 @@ void special_mode(Queue* queue)
         }
 
         printf("\nВведите элемент для сравнения:\n");
+        printf(">> ");
         int check_number = execute_verification(min_limit, max_limit);
+
         if (check_number == queue->begin->value) {
             queue_push(queue, check_number);
             printf("\n%d совпал с первым элементом очереди => добавлен в конец\n", check_number);
@@ -187,6 +190,7 @@ void special_mode(Queue* queue)
             printf("\nЖелаете продолжить?\n"
                    "1 - Нет\n"
                    "Любая другая клавиша - Да\n");
+            printf(">> ");
 
             fgets(user_choice, 50, stdin);
 
@@ -216,6 +220,7 @@ void special_mode(Queue* queue)
 void queue_actions_menu()
 {
     printf("Введите максимальный размер очереди\n");
+    printf(">> ");
     int queue_size = execute_verification(0, max_limit);
     Queue* queue = create_queue(queue_size);
     int catch;
@@ -232,6 +237,7 @@ void queue_actions_menu()
                "6 - Режим удаления и совпадения\n"
                "7 - Стереть очередь\n"
                "8 - Выход\n");
+        printf(">> ");
 
         int user_input = execute_verification(1, 8);
 
@@ -246,6 +252,7 @@ void queue_actions_menu()
 
             case 3:
                 printf("Введите число для добавления:\n");
+                printf(">> ");
                 int data = execute_verification(min_limit, max_limit);
                 queue_push(queue, data);
                 break;
