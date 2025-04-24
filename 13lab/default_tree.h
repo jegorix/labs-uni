@@ -22,6 +22,9 @@ typedef struct
 
 void default_tree_menu();
 Node* create_tree_manually();
+void in_order_show(Node* root);
+Node* insert(Node* root, int value);
+Node* createNode(int value);
 
 
 #endif //INC_13LAB_DEFAULT_TREE_H
