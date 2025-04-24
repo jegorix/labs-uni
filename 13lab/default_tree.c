@@ -45,6 +45,21 @@ Node* insert(Node* root, int value)
 }
 
 
+void in_order_show(Node* root)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+
+    in_order_show(root->left);
+    printf("%d ", root->data);
+    in_order_show(root->right);
+}
+
+
+
+
 Node* create_tree_manually()
 {
     Node* root = NULL;
@@ -59,6 +74,7 @@ Node* create_tree_manually()
         root = insert(root, value);
 
     }
+    printf("Дерево успешно создано!\n");
     return root;
 
 }
@@ -82,6 +98,7 @@ void default_tree_menu()
             {
                 case '1':
                     root = create_tree_manually();
+                    in_order_show(root);
                    break;
 
 
