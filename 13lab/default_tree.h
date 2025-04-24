@@ -12,6 +12,7 @@ Node* create_tree_manually();
 void default_tree_menu();
 Node* create_tree_hand_rand();
 Node* create_tree_rand();
+void default_tree_actions(Node* root);
 
 
 #endif //INC_13LAB_DEFAULT_TREE_H

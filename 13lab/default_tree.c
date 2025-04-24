@@ -6,6 +6,8 @@
 //2. Произвести удаление элементов дерева, выбираемых пользователем.
 //3. Выполнить задание по вариантам.
 //4. Добавить визуализацию полученного дерева.
+//7. Написать функцию, определяющую максимальное количество одинаковых
+//        элементов бинарного дерева.
 
 #include "default_tree.h"
 #include "tree_functions.h"
@@ -65,6 +67,58 @@ Node* create_tree_rand()
     return root;
 }
 
+void default_tree_actions(Node* root)
+{
+    int running = 1;
+    int value;
+
+    while(running) {
+        printf("\nВыберите действие\n"
+               "1 - Создать дерево снова\n"
+               "2 - Просмотреть содержимое дерева\n"
+               "3 - Добавить элемент в дерево\n"
+               "4 - Удалить элемент дерева\n"
+               "5 - Найти элемент дерева\n"
+               "6 - Максимальное количество одинаковых элементов бинарного дерева\n"
+               "7 - Задача послойного обход бинарного дерева\n"
+               "8 - Очистить дерево\n"
+               "9 - Выход\n");
+
+        int user_choice = execute_verification(1, 9);
+
+        switch (user_choice)
+        {
+            case 1:
+                default_tree_menu();
+                break;
+
+            case 2:
+                //output_menu()
+                in_order_show(root);
+                break;
+
+            case 3:
+                printf("\nВведите значение для добавления:\n>> ");
+                value = execute_verification(min_limit, max_limit);
+                root = insert(root, value);
+                printf("Значение %d успешно добавлено!\n", value);
+                break;
+
+            case 9:
+                printf("Выход...");
+                running = 0;
+                break;
+
+
+        }
+
+    }
+
+    return;
+
+}
+
+
 
 
 
@@ -84,19 +138,21 @@ void default_tree_menu()
             {
                 case '1':
                     root = create_tree_manually();
-                    in_order_show(root);
+//                    in_order_show(root);
                    break;
 
                 case '2':
                     root = create_tree_hand_rand();
-                    in_order_show(root);
+//                    in_order_show(root);
                     break;
 
                 default:
                     root = create_tree_rand();
-                    in_order_show(root);
+//                    in_order_show(root);
 
             }
+
+            default_tree_actions(root);
 
 
 }
