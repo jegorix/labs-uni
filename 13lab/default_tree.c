@@ -84,10 +84,14 @@ void default_tree_actions(Node* root)
                "8 - Очистить дерево\n"
                "9 - Выход\n");
 
-        int user_choice = execute_verification(1, 9);
+        int user_choice = execute_verification(0, 9);
 
         switch (user_choice)
         {
+            case 0:
+                in_order_show(root);
+                break;
+
             case 1:
                 default_tree_menu();
                 break;
@@ -105,16 +109,16 @@ void default_tree_actions(Node* root)
                 break;
 
             case 9:
-                printf("Выход...");
+                printf("Выйти в главное меню");
                 running = 0;
                 break;
+
 
 
         }
 
     }
 
-    return;
 
 }
 
@@ -153,6 +157,8 @@ void default_tree_menu()
             }
 
             default_tree_actions(root);
+
+
 
 
 }

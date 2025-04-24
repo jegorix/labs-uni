@@ -29,7 +29,7 @@
 int main(void)
 {
     int running = 1;
-    while(running) {
+    while(running != 3) {
 
         printf("\nВыберите номер задачи:\n"
                "\n1 - Максимальное количество одинаковых элементов\n"
