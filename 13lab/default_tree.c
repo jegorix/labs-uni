@@ -67,6 +67,41 @@ Node* create_tree_rand()
     return root;
 }
 
+
+
+void output_menu(Node* root)
+{
+    printf("\nВыберите способ вывода:\n"
+           "1 - По возрастанию\n"
+           "2 - По убыванию\n"
+           "3 - В виде дерева\n>> ");
+
+    int choice = execute_verification(1,3);
+    switch(choice)
+    {
+        case 1:
+            printf("\nВывод дерева по возрастанию:\n");
+            in_order_show(root);
+            break;
+
+        case 2:
+            printf("\nВывод дерева по убыванию:\n");
+            reversed_in_order_show(root);
+            break;
+
+        case 3:
+            printf("В виде дерева:\n");
+            as_tree_print(root, 0, 0);
+    }
+    printf("\n");
+
+
+
+
+}
+
+
+
 void default_tree_actions(Node* root)
 {
     int running = 1;
@@ -97,8 +132,7 @@ void default_tree_actions(Node* root)
                 break;
 
             case 2:
-                //output_menu()
-                in_order_show(root);
+                output_menu(root);
                 break;
 
             case 3:
