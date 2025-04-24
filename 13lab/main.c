@@ -1,4 +1,4 @@
-#include <stdio.h>
+
 //Новицкий
 //24.04.2025
 //
@@ -22,9 +22,25 @@
 //вершина-потомок в дереве, то добавляем этот потомок в очередь; 5) удаляем из очереди
 //        элемент q
 
+#include "validators.h"
+#include <stdio.h>
+#include "tree_lobby.h"
+
+int main(void)
+{
+    int running = 1;
+    while(running) {
+
+        printf("\nВыберите номер задачи:\n"
+               "\n1 - Максимальное количество одинаковых элементов\n"
+               "\n2 - Послойный обход бинарного дерева\n"
+               "\n3 - Выход\n");
+
+        printf("\n>> ");
+        int choice = execute_verification(1, 3);
+        running = tree_work_menu(choice);
+
+    }
 
 
-int main(void) {
-    printf("Hello, World!\n");
-    return 0;
 }
