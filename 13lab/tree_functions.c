@@ -49,3 +49,37 @@ void in_order_show(Node* root)
     printf("%d ", root->data);
     in_order_show(root->right);
 }
+
+void reversed_in_order_show(Node* root)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+    reversed_in_order_show(root->right);
+    printf("%d ", root->data);
+    reversed_in_order_show(root->left);
+
+}
+
+void as_tree_print(Node* root, int space, int isRight)
+{
+    if(root == NULL){return;}
+
+    int delta = 5;
+    space += delta;
+
+    as_tree_print(root->right, space, 1);
+    printf("\n");
+    for(int i = delta; i < space; i++){printf(" ");}
+
+    if(space > delta)
+    {
+        if(isRight){printf("/ ");}
+        else{printf("\\ ");}
+    }
+
+    printf("%d\n", root->data);
+    as_tree_print(root->left, space, 0);
+
+}
