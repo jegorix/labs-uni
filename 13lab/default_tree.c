@@ -51,6 +51,20 @@ Node* create_tree_hand_rand()
 
 }
 
+Node* create_tree_rand()
+{
+    Node* root = NULL;
+    int count = rand() % (30 - 5 + 1) + 5;
+    for(int i = 0; i < count; i++)
+    {
+        int value = rand() % (100 - 0 + 1) + 0;
+        root = insert(root, value);
+    }
+    printf("Дерево успешно создано!\n");
+
+    return root;
+}
+
 
 
 
@@ -78,13 +92,11 @@ void default_tree_menu()
                     in_order_show(root);
                     break;
 
-
-
+                default:
+                    root = create_tree_rand();
+                    in_order_show(root);
 
             }
-
-
-
 
 
 }

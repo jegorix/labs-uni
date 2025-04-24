@@ -20,5 +20,4 @@ void in_order_show(Node* root);
 Node* insert(Node* root, int value);
 Node* createNode(int value);
 
-
 #endif //INC_13LAB_TREE_FUNCTIONS_H
