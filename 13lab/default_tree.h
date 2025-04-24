@@ -25,6 +25,7 @@ Node* create_tree_manually();
 void in_order_show(Node* root);
 Node* insert(Node* root, int value);
 Node* createNode(int value);
+Node* create_tree_hand_rand();
 
 
 #endif //INC_13LAB_DEFAULT_TREE_H
