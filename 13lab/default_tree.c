@@ -142,6 +142,15 @@ void default_tree_actions(Node* root)
                 printf("Значение %d успешно добавлено!\n", value);
                 break;
 
+            case 5:
+                printf("Введите элемент для поиска:\n");
+                value = execute_verification(min_limit, max_limit);
+                root = search_node(root, value);
+                if(root != NULL){printf("\nЭлемент найден %d.\n", root->data);}
+                else{printf("\nЭлемент не найден.\n");}
+                break;
+
+
             case 9:
                 printf("Выйти в главное меню");
                 running = 0;

@@ -83,3 +83,23 @@ void as_tree_print(Node* root, int space, int isRight)
     as_tree_print(root->left, space, 0);
 
 }
+
+
+Node* search_node(Node* node, int value)
+{
+    if(node == NULL || node->data == value)
+    {
+        return node;
+    }
+
+    if(value <= node->data)
+    {
+      return search_node(node->left, value);
+    }
+
+    else if(value >= node->data)
+    {
+        return search_node(node->right, value);
+    }
+
+}
