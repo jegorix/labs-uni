@@ -167,6 +167,9 @@ void default_tree_actions(Node* root)
                 else{printf("\nЭлемент со значением %d не найден!\n", value);}
                 break;
 
+            case 6:
+                find_repeats(root);
+
 
             case 7:
                 if(root == NULL) {printf("\nДерево уже было очищено ранее...\n"); break;}
@@ -193,8 +196,6 @@ void default_tree_actions(Node* root)
 
 
 
-
-
 void default_tree_menu()
 {
     srand(time(NULL));
@@ -211,17 +212,17 @@ void default_tree_menu()
             {
                 case '1':
                     root = create_tree_manually();
-//                    in_order_show(root);
+
                    break;
 
                 case '2':
                     root = create_tree_hand_rand();
-//                    in_order_show(root);
+
                     break;
 
                 default:
                     root = create_tree_rand();
-//                    in_order_show(root);
+
 
             }
 

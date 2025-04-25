@@ -7,6 +7,7 @@
 
 
 #include "tree_functions.h"
+#include "find_repeats.h"
 
 Node* create_tree_manually();
 void default_tree_menu();
