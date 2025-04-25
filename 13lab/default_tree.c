@@ -109,6 +109,7 @@ void default_tree_actions(Node* root)
 
     while(running) {
         printf("\nВыберите действие\n"
+               "0 - Быстрый просмотр содержимого дерева\n"
                "1 - Создать дерево снова\n"
                "2 - Просмотреть содержимое дерева\n"
                "3 - Добавить элемент в дерево\n"
@@ -116,14 +117,17 @@ void default_tree_actions(Node* root)
                "5 - Найти элемент дерева\n"
                "6 - Максимальное количество одинаковых элементов бинарного дерева\n"
                "7 - Очистить дерево\n"
-               "8 - Выход\n");
+               "8 - Выход\n>> ");
 
         int user_choice = execute_verification(0, 9);
 
         switch (user_choice)
         {
             case 0:
+                if(root == NULL) {printf("\nДерево пусто...\n"); break;}
+                printf("\n");
                 in_order_show(root);
+                printf("\n");
                 break;
 
             case 1:
@@ -131,6 +135,7 @@ void default_tree_actions(Node* root)
                 break;
 
             case 2:
+                if(root == NULL) {printf("\nДерево пусто...\n"); break;}
                 output_menu(root);
                 break;
 
@@ -142,6 +147,7 @@ void default_tree_actions(Node* root)
                 break;
 
             case 4:
+                if(root == NULL) {printf("\nДерево пусто...\n"); break;}
                 printf("Введите значение элемента для удаления\n >> ");
                 value = execute_verification(min_limit, max_limit);
                 Node* found = search_node(root, value);
@@ -153,6 +159,7 @@ void default_tree_actions(Node* root)
 
 
             case 5:
+                if(root == NULL) {printf("\nДерево пусто...\n"); break;}
                 printf("Введите элемент для поиска:\n >>");
                 value = execute_verification(min_limit, max_limit);
                 Node* temp = search_node(root, value);
@@ -162,8 +169,11 @@ void default_tree_actions(Node* root)
 
 
             case 7:
+                if(root == NULL) {printf("\nДерево уже было очищено ранее...\n"); break;}
                clean_tree(root);
-               printf("Дерево успешно очищено");
+               printf("\nДерево успешно очищено\n");
+               root = NULL;
+               break;
 
 
             case 8:

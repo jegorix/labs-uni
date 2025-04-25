@@ -164,3 +164,14 @@ Node* delete(Node* root, int value)
     return root;
 
 }
+
+void clean_tree(Node* root)
+{
+    if(root == NULL) return;
+
+   clean_tree(root->right);
+   clean_tree(root->left);
+
+   free(root);
+
+}
