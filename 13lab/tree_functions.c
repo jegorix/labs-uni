@@ -85,21 +85,82 @@ void as_tree_print(Node* root, int space, int isRight)
 }
 
 
+
+
 Node* search_node(Node* node, int value)
 {
-    if(node == NULL || node->data == value)
+    if(node == NULL) return NULL;
+    if(node->data == value) return node;
+
+    if(node->data > value)
     {
-        return node;
+        return search_node(node->left, value);
     }
 
-    if(value <= node->data)
+    return search_node(node->right, value);
+
+}
+
+
+Node* minValueNode(Node* node)
+{
+    if(node == NULL){return NULL;}
+
+    while(node->left != NULL)
     {
-      return search_node(node->left, value);
+        node = node->left;
+    }
+    return node;
+}
+
+
+
+
+Node* delete(Node* root, int value)
+{
+    if(root == NULL)
+    {
+        printf("Элемент со значением %d не найден.\n", value);
+        return NULL;
     }
 
-    else if(value >= node->data)
+    if(root->data > value)
     {
-        return search_node(node->right, value);
+        root->left = delete(root->left, value);
     }
+    else if(root->data < value)
+    {
+        root->right = delete(root->right, value);
+    }
+    else
+    {
+        if(root->left == NULL && root->right == NULL)
+        {
+            free(root);
+            return NULL;
+        }
+
+       else if(root->left == NULL)
+        {
+            Node* temp = root->right;
+            free(root);
+            return temp;
+        }
+
+        else if(root->right == NULL)
+        {
+            Node* temp = root->left;
+            free(root);
+            return temp;
+        }
+
+        Node* temp = minValueNode(root->right);
+        root->data = temp->data;
+        root->right = delete(root->right, temp->data);
+
+
+    }
+
+    return root;
 
 }

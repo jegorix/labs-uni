@@ -11,7 +11,7 @@
 
 #include "default_tree.h"
 #include "tree_functions.h"
-
+#include <time.h>
 
 
 
@@ -115,9 +115,8 @@ void default_tree_actions(Node* root)
                "4 - Удалить элемент дерева\n"
                "5 - Найти элемент дерева\n"
                "6 - Максимальное количество одинаковых элементов бинарного дерева\n"
-               "7 - Задача послойного обход бинарного дерева\n"
-               "8 - Очистить дерево\n"
-               "9 - Выход\n");
+               "7 - Очистить дерево\n"
+               "8 - Выход\n");
 
         int user_choice = execute_verification(0, 9);
 
@@ -142,16 +141,32 @@ void default_tree_actions(Node* root)
                 printf("Значение %d успешно добавлено!\n", value);
                 break;
 
-            case 5:
-                printf("Введите элемент для поиска:\n");
+            case 4:
+                printf("Введите значение элемента для удаления\n >> ");
                 value = execute_verification(min_limit, max_limit);
-                root = search_node(root, value);
-                if(root != NULL){printf("\nЭлемент найден %d.\n", root->data);}
-                else{printf("\nЭлемент не найден.\n");}
+                Node* found = search_node(root, value);
+                if(found != NULL){printf("Элемент %d успешно удален!\n", value);}
+                root = delete(root, value);
                 break;
 
 
-            case 9:
+
+
+            case 5:
+                printf("Введите элемент для поиска:\n >>");
+                value = execute_verification(min_limit, max_limit);
+                Node* temp = search_node(root, value);
+                if(root != NULL){printf("\nЭлемент со значением %d найден!\n", temp->data);}
+                else{printf("\nЭлемент со значением %d не найден!\n", value);}
+                break;
+
+
+            case 7:
+               clean_tree(root);
+               printf("Дерево успешно очищено");
+
+
+            case 8:
                 printf("Выйти в главное меню");
                 running = 0;
                 break;
@@ -172,6 +187,7 @@ void default_tree_actions(Node* root)
 
 void default_tree_menu()
 {
+    srand(time(NULL));
     Node* root = NULL;
     char user_choice[50];
     printf("\nВыберите способ создания дерева:\n"

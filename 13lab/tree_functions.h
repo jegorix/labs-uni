@@ -22,5 +22,6 @@ Node* createNode(int value);
 void reversed_in_order_show(Node* root);
 void as_tree_print(Node* root, int space, int isRight);
 Node* search_node(Node* root, int value);
+Node* delete(Node* root, int value);
 
 #endif //INC_13LAB_TREE_FUNCTIONS_H
