@@ -109,7 +109,8 @@ void default_tree_actions(Node* root)
 
     while(running) {
         printf("\nВыберите действие\n"
-               "0 - Быстрый просмотр содержимого дерева\n"
+//               "0 - Быстрый просмотр содержимого дерева\n"
+               "0 - Размер дерева\n"
                "1 - Создать дерево снова\n"
                "2 - Просмотреть содержимое дерева\n"
                "3 - Добавить элемент в дерево\n"
@@ -123,11 +124,18 @@ void default_tree_actions(Node* root)
 
         switch (user_choice)
         {
+//            case 0:
+//                if(root == NULL) {printf("\nДерево пусто...\n"); break;}
+//                printf("\n");
+//                in_order_show(root);
+//                printf("\n");
+//                break;
+
             case 0:
                 if(root == NULL) {printf("\nДерево пусто...\n"); break;}
-                printf("\n");
-                in_order_show(root);
-                printf("\n");
+                int size = 0;
+                get_tree_size(root, &size);
+                printf("Размер дерева = %d", size);
                 break;
 
             case 1:

@@ -24,5 +24,6 @@ void as_tree_print(Node* root, int space, int isRight);
 Node* search_node(Node* root, int value);
 Node* delete(Node* root, int value);
 void clean_tree(Node* root);
+void get_tree_size(Node* root, int* size);
 
 #endif //INC_13LAB_TREE_FUNCTIONS_H

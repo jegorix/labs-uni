@@ -175,3 +175,12 @@ void clean_tree(Node* root)
    free(root);
 
 }
+
+void get_tree_size(Node* root, int* size)
+{
+    if(root == NULL) return;
+    get_tree_size(root->left, size);
+    (*size)++;
+    get_tree_size(root->right, size);
+
+}
