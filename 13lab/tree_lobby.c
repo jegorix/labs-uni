@@ -12,9 +12,9 @@ int tree_work_menu(int choice)
             default_tree_menu();
             break;
 
-        case 3:
+        case 2:
             printf("Выход...\n");
-            return 3;
+            return 2;
     }
 }
 
