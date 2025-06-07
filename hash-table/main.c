@@ -14,14 +14,12 @@ int main()
 
    char* key_1 = "apple";
    char* key_2 = "grape";
-   printf("dict[%s] = index = %d\n", key_1, hash_function(key_1, table_size));
-   printf("dict[%s] = index = %d\n", key_2, hash_function(key_2, table_size));
-
 
    insert(table, key_1, 5, table_size);
    insert(table, key_2, 7, table_size);
 
    search(table, key_1, table_size);
+   search(table, key_2, table_size);
 
 
 

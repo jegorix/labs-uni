@@ -22,30 +22,48 @@ void insert(HashEntry* table, const char* key, int value, int table_size)
 {
     assert(table != NULL);
     int index = hash_function(key, table_size);
-    if(!table[index].occupied)
+    int original_index = index;
+
+    while(table[index].occupied)
     {
-        table[index].key = malloc(strlen(key) + 1);
-        strcpy(table[index].key, key);
-        table[index].value = value;
-        table[index].occupied = 1;
-        printf("inserted key = %s, value = %d\n", key, value);
+        if(strcmp(table[index].key, key) == 0)
+        {
+            table[index].value = value;
+            printf("updated key = %s, value = %d\n", key, value);
+            return;
+        }
+        index = (index + 1) % table_size;
+
+        if(index == original_index)
+        {
+            printf("Hash table is full! Can't insert key: %s\n", key);
+            return;
+        }
     }
-    else
-    {
-        printf("Collision found\n");
-    }
+    table[index].key = malloc(strlen(key) + 1);
+    assert(table[index].key != NULL);
+    strcpy(table[index].key, key);
+    table[index].value = value;
+    table[index].occupied = 1;
 }
+
 
 int search(HashEntry* table, const char* key, int table_size)
 {
     int index = hash_function(key, table_size);
-    if(table[index].occupied && !strcmp(table[index].key, key))
+    int original_index = index;
+
+    while(table[index].occupied)
     {
-        printf("table[%s] = %d\n", key, table[index].value);
+        if(strcmp(table[index].key, key) == 0)
+        {
+            printf("table[%s] = %d\n", key, table[index].value);
+            return table[index].value;
+        }
+        index = (index + 1) % table_size;
+        if(index == original_index)break;
     }
-    else
-    {
-        printf("Not found\n");
-    }
+    printf("Not found\n");
+    return -1;
 
 }
