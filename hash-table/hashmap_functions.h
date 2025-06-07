@@ -15,8 +15,17 @@ typedef struct{
     int value;
 }HashEntry;
 
+typedef struct{
+    HashEntry* entries;
+    int capacity;
+    int size;
+}HashMap;
+
 int hash_function(const char* key, int table_size);
-void insert(HashEntry* table, const char* key, int value, int table_size);
-int search(HashEntry* table, const char* key, int table_size);
+void insert(HashMap* map, const char* key, int value);
+int search(HashMap* table, const char* key);
+HashMap* create_hashmap(int initial_capacity);
+void freeHashMap(HashMap* map);
+void resize(HashMap* map);
 
 #endif //HASH_TABLE_HASHMAP_FUNCTIONS_H

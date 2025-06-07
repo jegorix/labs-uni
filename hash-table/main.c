@@ -8,25 +8,16 @@
 
 int main()
 {
-   printf("Enter size of the hash-table: ");
-   int table_size = execute_verification(1, max_limit);
-   HashEntry* table = malloc(table_size * sizeof(HashEntry));
+    printf("Start HashMap work\n");
 
-   char* key_1 = "apple";
-   char* key_2 = "grape";
+    HashMap* map = create_hashmap(2);
+    insert(map, "Milk", 12);
+    insert(map, "Water", 5);
+    insert(map, "Eggs", 7);
 
-   insert(table, key_1, 5, table_size);
-   insert(table, key_2, 7, table_size);
+    search(map, "Milk");
+    search(map, "Water");
+    search(map, "Eggs");
 
-   search(table, key_1, table_size);
-   search(table, key_2, table_size);
-
-
-
-   for(int i = 0; i < table_size; i++)
-   {
-       free(table[i].key);
-   }
-   free(table);
-   return 1;
+    freeHashMap(map);
 }
