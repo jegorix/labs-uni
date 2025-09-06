@@ -1,0 +1,13 @@
+# ninja log v6
+12	241	1750499359281251298	CMakeFiles/11lab.dir/arithmetic_expressions.c.o	13bde4f923ff9fd2
+3	67	1750507659167919110	build.ninja	1a38ddacfff5c774
+3	169	1750437384186103674	CMakeFiles/11lab.dir/user_choice.c.o	c9b6e356e33e315f
+5	246	1743359059572082130	CMakeFiles/11lab.dir/validators.c.o	8143ca33f013b4f7
+2	213	1750430556412329071	CMakeFiles/11lab.dir/sort_third_stack.c.o	855f460e699119aa
+6	230	1750429548364908603	CMakeFiles/11lab.dir/integer_stack.c.o	4166ea4cab1d416f
+241	368	1750499359510043479	11lab	7f04d639c4879078
+3	253	1750426144308158123	CMakeFiles/11lab.dir/main.c.o	605e980bfe8e30aa
+9	247	1743611549538126814	CMakeFiles/11lab.dir/parse_&_calculate_expressions.c.o	884dbc0b90a97abe
+4	203	1750423217036711710	CMakeFiles/11lab.dir/getch_unix_without_conio.c.o	d59cbc676bf7b3c9
+2	225	1750507670184577437	CMakeFiles/11lab.dir/arithmetic_expressions.c.o	13bde4f923ff9fd2
+226	386	1750507670407609216	11lab	7f04d639c4879078

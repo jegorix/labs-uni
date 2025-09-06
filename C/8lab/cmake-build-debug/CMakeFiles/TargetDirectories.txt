@@ -1,0 +1,3 @@
+/Users/macbook/CLionProjects/labs-2term/8lab/cmake-build-debug/CMakeFiles/8lab.dir
+/Users/macbook/CLionProjects/labs-2term/8lab/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/macbook/CLionProjects/labs-2term/8lab/cmake-build-debug/CMakeFiles/rebuild_cache.dir
