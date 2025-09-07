@@ -3,4 +3,8 @@ project(lab1)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(lab1 main.cpp src/utils/utils.cpp)
+add_executable(lab1 main.cpp
+        src/utils/utils.cpp
+        src/Menu.cpp
+        src/StringArray.cpp
+)

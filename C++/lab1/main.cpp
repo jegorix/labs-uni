@@ -2,9 +2,10 @@
 #include <cstdlib>
 #include "include/custom/print.h"
 #include "include/utils.h"
+#include "include/Menu.h"
 
 void printLabHeader() {
-
+    clearScreen();
     std::cout <<  "\n╔═════════════════════════════════════════════════════════╗\n"
                     "║                                                         ║\n"
                     "║               Лабораторная работа №1                    ║\n"
@@ -26,8 +27,12 @@ void printLabHeader() {
 
 int main() {
     printLabHeader();
+    std::cout << "\nНажмите Enter для начала...";
+    std::cin.get();
     std::cout << "\nЗагрузка";
-    loadingAnimation(3, 250);
+    loadingAnimation(3, 300);
+    Menu::run();
+//    std::cin.get();
 
     return 0;
 }

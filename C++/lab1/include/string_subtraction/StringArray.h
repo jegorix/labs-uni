@@ -37,9 +37,9 @@ public:
     int getSecondLength() const;
 
     //setters
-    void setFirstString(std::string str);
+//    void setFirstString(std::string str);
     void setFirstString(const char* str);
-    void setSecondString(std::string str);
+//    void setSecondString(std::string str);
     void setSecondString(const char* str);
 
     //public methods
@@ -49,6 +49,7 @@ public:
     bool isEmpty() const;
     void swapStrings();
     void printStrings() const;
+    void clearStrings();
 
     //static methods
     static int getObjectCount();
