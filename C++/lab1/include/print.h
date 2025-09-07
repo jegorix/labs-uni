@@ -11,14 +11,13 @@
 #include <type_traits>
 
 namespace py {
-    void print() {
-        std::cout << std::endl;
-    }
-
 
     template<typename... Args>
-    void print_helper(std::ostringstream stream, std::string_view sep, const Args&... args)
+    void print_helper(std::ostringstream& stream, std::string_view sep, const Args&... args)
     {
+        using std::operator<<; // при переопределении этого метода например при выводе объекта юзер класса
+        // чтоб принт знал как его выводить (кастомный объект)
+
         ((stream << args << sep), ...);
         std::string content = stream.str();
 
@@ -56,5 +55,56 @@ namespace py {
     {
         print_impl(sep, end, args...);
     }
+
+    // FORMAT implementation
+namespace detail
+{
+    template<typename T, typename... Args>
+    void print_arg(std::ostringstream &result, size_t target_index,
+                   size_t &current_index, const T &first, const Args &... args) {
+        if (current_index == target_index) {
+            result << first;
+            return;
+        }
+        current_index++;
+
+        if constexpr (sizeof...(args) > 0) print_arg(result, target_index, current_index, args...);
+    }
+
+    template<typename... Args>
+    std::string format(std::string_view fmt, const Args &... args) {
+        std::ostringstream result;
+        size_t arg_index = 0;
+        const size_t total_args = sizeof...(args);
+
+        for (size_t i = 0; i < fmt.size(); i++) {
+            if (i + 1 < fmt.size() && fmt[i] == '{' && fmt[i + 1] == '}') {
+                if (arg_index >= total_args) {
+                    throw std::runtime_error("Not enough arguments for format string");
+                }
+
+                size_t current_index = 0;
+                print_arg(result, arg_index, current_index, args...);
+                arg_index++;
+                i++;
+            } else {
+                result << fmt[i];
+            }
+        }
+
+        if (arg_index != total_args) {
+            throw std::runtime_error("Too many arguments for format string");
+        }
+        return result.str();
+    }
+
+}
+    template<typename... Args>
+    void printf(std::string_view fmt, const Args&... args)
+    {
+        std::cout << detail::format(fmt, args...);
+    }
+
+
 }
 #endif //LAB1_PRINT_H
