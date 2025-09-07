@@ -2,7 +2,7 @@
 // Created by jegorix on 7.09.25.
 //
 
-#include "StringArray.h"
+#include "../include/string_subtraction/StringArray.h"
 #include <cstring>
 #include <iostream>
 #include <algorithm>
