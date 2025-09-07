@@ -33,7 +33,8 @@ public:
     // getters
     char* getFirstString() const;
     char* getSecondString() const;
-    int getLength() const;
+    int getFirstLength() const;
+    int getSecondLength() const;
 
     //setters
     void setFirstString(std::string str);
@@ -42,10 +43,12 @@ public:
     void setSecondString(const char* str);
 
     //public methods
-    int calculateStringSub();
-    int calculateLength() const;
+    int calculateStringSub() const;
+    int calculateTotalLength() const;
+
     bool isEmpty() const;
     void swapStrings();
+    void printStrings() const;
 
     //static methods
     static int getObjectCount();
