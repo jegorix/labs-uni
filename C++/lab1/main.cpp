@@ -29,10 +29,9 @@ int main() {
     printLabHeader();
     std::cout << "\nНажмите Enter для начала...";
     std::cin.get();
-    std::cout << "\nЗагрузка";
+    std::cout << "\n    Загрузка";
     loadingAnimation(3, 300);
     Menu::run();
-//    std::cin.get();
 
     return 0;
 }

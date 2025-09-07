@@ -132,8 +132,21 @@ int StringArray::getObjectCount()
 
 void StringArray::printStrings() const
 {
-    std::cout << "Строка №1: " << (this->string1 ? this->string1: "Строка №1 пуста!") << std::endl;
-    std::cout << "Строка №2: " << (this->string2 ? this->string2: "Строка №2 пуста!") << std::endl;
+ std::cout << "\n╭──────────────────────────────╮\n"
+                "│         Содержимое:          │\n"
+                "╰──────────────────────────────╯\n";
+
+    std::cout << "╭──────────────────────────────────╮\n";
+    std::cout << "│  Строка №1: "
+              << "                              \n"
+             <<"\n   "<< (this->string1 ? this->string1 : "Строка №1 пуста!") << "\n";
+    std::cout << "╰──────────────────────────────────╯\n";
+
+    std::cout << "╭──────────────────────────────────╮\n";
+    std::cout << "│  Строка №2: "
+              << "                              \n"
+            <<"\n   "<< (this->string2 ? this->string2 : "Строка №2 пуста!") << "\n";
+    std::cout << "╰──────────────────────────────────╯\n";
 }
 
 void StringArray::clearStrings()
