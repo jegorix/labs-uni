@@ -10,51 +10,42 @@
 class StringArray
 {
 private:
-    char* string1;
-    char* string2;
+    char* string;
     static int objectCount;
 
-    // implementation methods
+    // implem methods
     char* allocateAndCopy(const char* str);
     void freeMemory();
 
 public:
-    // constructors
+    // constr
     StringArray();
-    StringArray(const char* string1, const char* string2);
+    StringArray(const char* str);
     StringArray(const StringArray& other);
-    //destructors
+
+    // destr
     ~StringArray();
 
-    // assign oper
+    // assign opera
     StringArray& operator=(const StringArray& other);
 
+    // sub operator
+    int operator-(const StringArray& other) const;
 
     // getters
-    char* getFirstString() const;
-    char* getSecondString() const;
-    int getFirstLength() const;
-    int getSecondLength() const;
+    char* getString() const;
+    int getLength() const;
 
-    //setters
-//    void setFirstString(std::string str);
-    void setFirstString(const char* str);
-//    void setSecondString(std::string str);
-    void setSecondString(const char* str);
+    // setters
+    void setString(const char* str);
 
-    //public methods
-    int calculateStringSub() const;
-    int calculateTotalLength() const;
-
+    // public methods
     bool isEmpty() const;
-    void swapStrings();
-    void printStrings() const;
-    void clearStrings();
+    void printString() const;
+    void clearString();
 
-    //static methods
+    // static methods
     static int getObjectCount();
-
 };
-
 
 #endif //LAB1_STRINGARRAY_H

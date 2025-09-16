@@ -1,19 +1,13 @@
-//
-// Created by jegorix on 7.09.25.
-//
-
 #include "../include/string_subtraction/StringArray.h"
-#include <cstring>
 #include <iostream>
+#include <cstring>
 #include <algorithm>
 
 int StringArray::objectCount = 0;
 
-
-char* StringArray::allocateAndCopy(const char* str)
-{
-    if(str == nullptr)
-    {
+// Private methods
+char* StringArray::allocateAndCopy(const char* str) {
+    if(str == nullptr) {
         char* empty = new char[1];
         empty[0] = '\0';
         return empty;
@@ -24,134 +18,89 @@ char* StringArray::allocateAndCopy(const char* str)
     return buffer;
 }
 
-
-void StringArray::freeMemory()
-{
-    delete[] this->string1;
-    delete[] this->string2;
-    this->string1 = nullptr;
-    this->string2 = nullptr;
+void StringArray::freeMemory() {
+    delete[] string;
+    string = nullptr;
 }
 
-// default cons
-StringArray::StringArray(): string1(nullptr), string2(nullptr)
-{
-    this->string1 = new char[1]; this->string1[0] = '\0';
-    this->string2 = new char[1]; this->string2[0] = '\0';
+// Constructors
+StringArray::StringArray() : string(nullptr) {
+    this->string = new char[1];
+    this->string[0] = '\0';
     objectCount++;
 }
-// param cons
-StringArray::StringArray(const char* str1, const char* str2)
-{
-    this->string1 = allocateAndCopy(str1);
-    this->string2 = allocateAndCopy(str2);
+
+StringArray::StringArray(const char* str) {
+    this->string = allocateAndCopy(str);
     objectCount++;
 }
-// copy cons
-// for assign when init
-StringArray::StringArray(const StringArray& other)
-{
-    string1 = allocateAndCopy(other.string1);
-    string2 = allocateAndCopy(other.string2);
+
+StringArray::StringArray(const StringArray& other) {
+    string = allocateAndCopy(other.string);
+    objectCount++;
 }
 
-StringArray::~StringArray()
-{
+// destructor
+StringArray::~StringArray() {
     freeMemory();
     objectCount--;
 }
 
-// for already init objects
-StringArray& StringArray::operator=(const StringArray& other)
-{
-    if(this != &other) // this pointer
-    {
+// assign operator
+StringArray& StringArray::operator=(const StringArray& other) {
+    if(this != &other) {
         freeMemory();
-        this->string1 = allocateAndCopy(other.string1);
-        this->string2 = allocateAndCopy(other.string2);
+        this->string = allocateAndCopy(other.string);
     }
     return *this;
 }
 
-// getters
-char* StringArray::getFirstString() const
-{
-    return this->string1;
+// sub oper
+int StringArray::operator-(const StringArray& other) const {
+    int len1 = string ? strlen(string) : 0;
+    int len2 = other.string ? strlen(other.string) : 0;
+    return len1 - len2;
 }
 
-char* StringArray::getSecondString() const
-{
-    return this->string2;
+// Getters
+char* StringArray::getString() const {
+    return this->string;
 }
 
-int StringArray::getFirstLength() const {
-    return strlen(this->string1);
+int StringArray::getLength() const {
+    return string ? strlen(string) : 0;
 }
 
-int StringArray::getSecondLength() const {
-    return strlen(this->string2);
-}
-
-// setters
-void StringArray::setFirstString(const char *str)
-{
-    delete[] this->string1;
-    this->string1 = allocateAndCopy(str);
-}
-
-void StringArray::setSecondString(const char *str) {
-    delete[] this->string2;
-    this->string2 = allocateAndCopy(str);
-}
-
-// custom methods
-int StringArray::calculateStringSub() const
-{
-    return strlen(this->string1) - strlen(this->string2);
-}
-
-int StringArray::calculateTotalLength() const
-{
-    return strlen(this->string1) + strlen(this->string2);
-}
-
-bool StringArray::isEmpty() const
-{
-    return (strlen(this->string1) == 0 && strlen(this->string2) == 0);
-}
-
-void StringArray::swapStrings()
-{
-    std::swap(string1, string2);
-}
-
-int StringArray::getObjectCount()
-{
-    return objectCount;
-}
-
-void StringArray::printStrings() const
-{
- std::cout << "\n╭──────────────────────────────╮\n"
-                "│         Содержимое:          │\n"
-                "╰──────────────────────────────╯\n";
-
-    std::cout << "╭──────────────────────────────────╮\n";
-    std::cout << "│  Строка №1: "
-              << "                              \n"
-             <<"\n   "<< (this->string1 ? this->string1 : "Строка №1 пуста!") << "\n";
-    std::cout << "╰──────────────────────────────────╯\n";
-
-    std::cout << "╭──────────────────────────────────╮\n";
-    std::cout << "│  Строка №2: "
-              << "                              \n"
-            <<"\n   "<< (this->string2 ? this->string2 : "Строка №2 пуста!") << "\n";
-    std::cout << "╰──────────────────────────────────╯\n";
-}
-
-void StringArray::clearStrings()
-{
+// Setters
+void StringArray::setString(const char* str) {
     freeMemory();
-    string1 = nullptr;
-    string2 = nullptr;
+    this->string = allocateAndCopy(str);
+}
+
+// Public methods
+bool StringArray::isEmpty() const {
+    return string == nullptr || strlen(string) == 0;
+}
+
+void StringArray::printString() const {
+    std::cout << "\n╭──────────────────────────────╮\n"
+              << "│         Содержимое:          │\n"
+              << "╰──────────────────────────────╯\n";
+
+    std::cout << "╭──────────────────────────────────╮\n";
+    std::cout << "│  Строка: "
+              << "                              \n"
+              << "\n   " << (this->string ? this->string : "Строка пуста!") << "\n";
+    std::cout << "╰──────────────────────────────────╯\n";
+}
+
+void StringArray::clearString() {
+    freeMemory();
+    this->string = new char[1];
+    this->string[0] = '\0';
+}
+
+// static method
+int StringArray::getObjectCount() {
+    return objectCount;
 }
