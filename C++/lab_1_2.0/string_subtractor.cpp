@@ -1,75 +1,66 @@
 #include "string_subtractor.h"
-#include <iostream>
-#include <limits>
-#include <iomanip>
+#include <cstring>
 
-// Конструктор: выделяет память под init_size строк
-string_subtractor::string_subtractor(int init_size)
-{
-    ptr = new std::string[init_size];        // Создание массива строк
-    size = init_size;                        // Запоминаем размер
+// Конструктор по умолчанию
+StringSub::StringSub() {
+    text = new char[1];
+    text[0] = '\0';
 }
 
-// Конструктор копирования: глубокое копирование массива строк
-string_subtractor::string_subtractor(const string_subtractor& other)
-{
-    ptr = new std::string[other.size];       // Выделяем память под строки
-    size = other.size;                        // Копируем размер
-    for (int i = 0; i < size; i++)            // Копируем каждую строку
-        ptr[i] = other.ptr[i];
+// Конструктор c параметром
+StringSub::StringSub(const char* s) {
+    text = new char[strlen(s) + 1];
+    strcpy(text, s);
 }
 
-// Деструктор: освобождает динамическую память
-string_subtractor::~string_subtractor()
-{
-    delete[] ptr;                             // Удаляем массив строк
+// Конструктор копирования
+StringSub::StringSub(const StringSub& other) {
+    text = new char[strlen(other.text) + 1];
+    strcpy(text, other.text);
 }
 
-// Изменение размера массива с сохранением существующих строк
-void string_subtractor::set_size(int new_size)
-{
-    std::string* new_ptr = new std::string[new_size]; // Новый массив
-    for (int i = 0; i < size && i < new_size; i++)    // Копируем строки
-        new_ptr[i] = ptr[i];
-    delete[] ptr;                                     // Старый массив удаляем
-    size = new_size;                                   // Новый размер
-    ptr = new_ptr;                                     // Новый указатель
-}
-
-// Ввод всех строк с клавиатуры
-void string_subtractor::enter()
-{
-    for (int i = 0; i < size; i++)                                      // Для каждой строки
-    {
-        std::cout << "Строка " << i + 1 << ": ";                        // Приглашение
-        std::getline(std::cin, ptr[i]);                                 // Ввод всей строки
+// Оператор присваивания
+StringSub& StringSub::operator=(const StringSub& other) {
+    if (this != &other) {
+        delete[] text;
+        text = new char[strlen(other.text) + 1];
+        strcpy(text, other.text);
     }
+    return *this;
 }
 
-// Вывод всех строк на экран
-void string_subtractor::print()
-{
-    for (int i = 0; i < size; i++)                                      // Каждая строка
-        std::cout << std::setw(3) << i + 1 << ") " << ptr[i] << '\n';    // Номер и текст
+// Деструктор
+StringSub::~StringSub() {
+    delete[] text;
 }
 
-
-// Подсчёт количества символов в UTF-8 строке
-int utf8_len(const std::string& s) {
+// Подсчёт длины строки (UTF-8)
+int StringSub::length() const {
     int count = 0;
-    for (unsigned char c : s)
-        if ((c & 0xC0) != 0x80) // не продолжение символа
+    for (const unsigned char* p = (unsigned char*)text; *p; ++p)
+        if ((*p & 0xC0) != 0x80) // считаем только первые байты символов
             ++count;
     return count;
 }
 
-// Последовательное вычитание длин: длина первой минус длины остальных
-int string_subtractor::subtract_lengths()
-{
-    if (size == 0) return 0;                  // Если строк нет — вернуть 0
-    int result = utf8_len(ptr[0]);             // Начинаем с длины первой строки
-    for (int i = 1; i < size; i++)            // Проходим остальные строки
-        result -= utf8_len(ptr[i]);            // Вычитаем их длины
-    return result;                            // Возвращаем результат
+
+// Оператор вычитания
+int StringSub::operator-(const StringSub& other) const {
+    return length() - other.length();
 }
 
+// Перегрузка оператора ввода
+std::istream& operator>>(std::istream& in, StringSub& s) {
+    char buffer[1024];
+    in.getline(buffer, 1024);
+    delete[] s.text;
+    s.text = new char[strlen(buffer) + 1];
+    strcpy(s.text, buffer);
+    return in;
+}
+
+// Перегрузка оператора вывода
+std::ostream& operator<<(std::ostream& out, const StringSub& s) {
+    out << s.text;
+    return out;
+}
