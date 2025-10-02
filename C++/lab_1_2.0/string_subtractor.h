@@ -1,23 +1,21 @@
-#pragma once
-#include <iostream>
+#ifndef STRING_SUBTRACTOR_H                 // Защита от двойного включения
+#define STRING_SUBTRACTOR_H
 
-class StringSub {
-private:
-    char* text;
+#include <string>                           // Для std::string
 
+class string_subtractor
+{
+    int size;                               // Количество введённых строк
+    std::string* ptr;                        // Динамический массив строк
 public:
-    StringSub();                         // конструктор по умолчанию
-    StringSub(const char* str);          // конструктор c параметром
-    StringSub(const StringSub& other);   // конструктор копирования
-    ~StringSub();                        // деструктор
+    string_subtractor(int init_size = 0);    // // Конструктор с параметром и по умолчанию
+    string_subtractor(const string_subtractor&); // Конструктор копирования
+    ~string_subtractor();                    // Деструктор
 
-    StringSub& operator=(const StringSub& other); // оператор присваивания
-
-    int length();                  // длина строки
-
-    int operator-(const StringSub& other);  // разница длин
-
-    // Перегрузка ввода/вывода
-    friend std::istream& operator>>(std::istream& in, StringSub& s);
-    friend std::ostream& operator<<(std::ostream& out, const StringSub& s);
+    void set_size(int new_size);             // Изменение размера массива строк
+    void enter();                            // Ввод всех строк
+    void print();                             // Вывод всех строк
+    int subtract_lengths();                   // Последовательное вычитание длин
 };
+
+#endif // STRING_SUBTRACTOR_H
