@@ -3,55 +3,61 @@
 //
 
 #ifndef LAB_3_1_UCHASCHIYSYA_H
+#define LAB_3_1_UCHASCHIYSYA_H
 
 #pragma once
-#define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
-#include <cmath>
 #include <cstring>
-#include <limits>
-#include <cstdlib>
 #include <iomanip>
-#include <typeinfo>
 
-class Uchaschiysya
-{
+class Uchaschiysya {
 protected:
-    char name[32];
-    int age;
+    char name[32];  // строка для имени (фиксированный размер 32 символа)
+    int age;        // возраст учащегося
 
 public:
-    Uchaschiysya()
-    {
-        name[0] = '\0';
-        age = 0;
+    // Конструктор по умолчанию
+    Uchaschiysya() {
+        name[0] = '\0';  // делаем имя пустым
+        age = 0;         // возраст = 0
     }
 
-    Uchaschiysya(char* name)
-    {
-        strcpy(this->name, name);
-        age = 0;
+    // Конструктор с параметром (принимает имя)
+    Uchaschiysya(char* name) {
+        strcpy(this->name, name); // копируем имя
+        age = 0;                  // возраст не задаём
     }
 
-    Uchaschiysya(Uchaschiysya& other)
-    {
-        strcpy(name, other.name);
-        age = other.age;
+    // Конструктор копирования
+    Uchaschiysya(Uchaschiysya& other) {
+        strcpy(name, other.name); // копируем имя
+        age = other.age;          // копируем возраст
     }
 
+    // Деструктор
     ~Uchaschiysya() {}
 
+    // Геттеры
     char* getName();
     int getAge();
 
+    // Сеттеры
     void setName(char* new_name);
     void setAge(int new_age);
 
+    // Виртуальная функция (можно переопределять в наследниках)
+    virtual void printHeader() const;
+    virtual void printTable() const;
     virtual void showMenu();
 
+    // Перегрузка оператора присваивания "="
     Uchaschiysya& operator = (const Uchaschiysya& object);
+
+    // Перегрузка оператора вывода (cout << obj)
     friend std::ostream& operator << (std::ostream& os, const Uchaschiysya& object);
+
+    // Перегрузка оператора ввода (cin >> obj)
     friend std::istream& operator >> (std::istream& is, Uchaschiysya& object);
 };
 

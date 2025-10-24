@@ -3,38 +3,34 @@
 //
 
 #ifndef LAB_3_1_SHKOLNIK_H
-
 #pragma once
 #include "Uchaschiysya.h"
 
-class Shkolnik : public Uchaschiysya
-{
+class Shkolnik : public Uchaschiysya {
 protected:
     int grade;
 
 public:
-    Shkolnik() : Uchaschiysya()
-    {
+    Shkolnik() : Uchaschiysya() {
         grade = 0;
     }
 
-    Shkolnik(char* name) : Uchaschiysya(name)
-    {
+    Shkolnik(char* name) : Uchaschiysya(name) {
         grade = 1;
     }
 
-    Shkolnik(Shkolnik& other) : Uchaschiysya(other)
-    {
+    Shkolnik(Shkolnik& other) : Uchaschiysya(other) {
         grade = other.grade;
     }
 
     ~Shkolnik() {}
 
     int getGrade();
-
     void setGrade(int new_grade);
 
     void showMenu() override;
+    void printHeader() const override;
+    void printTable() const override;
 
     Shkolnik& operator = (const Shkolnik& object);
     friend std::ostream& operator << (std::ostream& os, const Shkolnik& object);
