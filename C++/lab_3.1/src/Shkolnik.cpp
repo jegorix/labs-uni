@@ -40,7 +40,7 @@ void Shkolnik::showMenu() {
 
 void Shkolnik::printHeader() const {
     std::cout << " | " << std::left << std::setw(20) << "Имя";
-    std::cout << "| " << std::left << std::setw(20) << "Возраст";
+    std::cout << " | " << std::left << std::setw(20) << "Возраст";
     std::cout << "| " << std::left << std::setw(20) << "Класс" << "|" << std::endl;
 }
 

@@ -45,7 +45,6 @@ void Uchaschiysya::showMenu() {
     std::cout << " |  4. Изменить имя" << std::setw(width - 19) << " " << "|" << std::endl;
     std::cout << " |  5. Показать возраст" << std::setw(width - 24) << " " << "|" << std::endl;
     std::cout << " |  6. Изменить возраст" << std::setw(width - 23) << " " << "|" << std::endl;
-    // Derived classes will add more
 }
 
 void Uchaschiysya::printHeader() const {

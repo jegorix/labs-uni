@@ -17,11 +17,11 @@ void printMenu() {
     cout << "\n " << setfill('=') << setw(width) << "=" << setfill(' ') << endl;
     string title = "СИСТЕМА УПРАВЛЕНИЯ ШКОЛЬНИКАМИ";
     int padding = (width - 2 - (int)title.length()) / 2;
-    cout << " |" << setw(padding) << " " << title << setw(width - 2 - padding - (int)title.length()) << " " << "|" << endl;
+    cout << " |" << setw(padding) << " " << title << setw(width - 2 - padding - (int)title.length()) << "                          " << "|" << endl;
     cout << " " << setfill('=') << setw(width) << "=" << setfill(' ') << endl;
     cout << " |  1. Добавить школьника" << setw(width - 26) << " " << "|" << endl;
     cout << " |  2. Показать всех" << setw(width - 21) << " " << "|" << endl;
-    cout << " |  3. Редактировать школьника" << setw(width - 30) << " " << "|" << endl;
+    cout << " |  3. Редактировать школьника" << setw(width - 31) << " " << "|" << endl;
     cout << " |  4. Удалить школьника" << setw(width - 25) << " " << "|" << endl;
     cout << " |  0. Выход" << setw(width - 13) << " " << "|" << endl;
     cout << " " << setfill('=') << setw(width) << "=" << setfill(' ') << endl;
