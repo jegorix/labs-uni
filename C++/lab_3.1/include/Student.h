@@ -10,7 +10,7 @@
 
 class Student : public Uchaschiysya {
 protected:
-    int course;
+    int course; // курс студента
 
 public:
     Student() : Uchaschiysya() {

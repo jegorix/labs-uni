@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/Users/macbook/CLionProjects/labs-programming/C++/lab_3.1/build",
+  "command": "/usr/bin/clang++    -w -g -std=gnu++20 -arch arm64 -o CMakeFiles/lab_3_1.dir/main.cpp.o -c /Users/macbook/CLionProjects/labs-programming/C++/lab_3.1/main.cpp",
+  "file": "/Users/macbook/CLionProjects/labs-programming/C++/lab_3.1/main.cpp",
+  "output": "CMakeFiles/lab_3_1.dir/main.cpp.o"
+},
+{
+  "directory": "/Users/macbook/CLionProjects/labs-programming/C++/lab_3.1/build",
+  "command": "/usr/bin/clang++    -w -g -std=gnu++20 -arch arm64 -o CMakeFiles/lab_3_1.dir/src/Shkolnik.cpp.o -c /Users/macbook/CLionProjects/labs-programming/C++/lab_3.1/src/Shkolnik.cpp",
+  "file": "/Users/macbook/CLionProjects/labs-programming/C++/lab_3.1/src/Shkolnik.cpp",
+  "output": "CMakeFiles/lab_3_1.dir/src/Shkolnik.cpp.o"
+},
+{
+  "directory": "/Users/macbook/CLionProjects/labs-programming/C++/lab_3.1/build",
+  "command": "/usr/bin/clang++    -w -g -std=gnu++20 -arch arm64 -o CMakeFiles/lab_3_1.dir/src/Student.cpp.o -c /Users/macbook/CLionProjects/labs-programming/C++/lab_3.1/src/Student.cpp",
+  "file": "/Users/macbook/CLionProjects/labs-programming/C++/lab_3.1/src/Student.cpp",
+  "output": "CMakeFiles/lab_3_1.dir/src/Student.cpp.o"
+},
+{
+  "directory": "/Users/macbook/CLionProjects/labs-programming/C++/lab_3.1/build",
+  "command": "/usr/bin/clang++    -w -g -std=gnu++20 -arch arm64 -o CMakeFiles/lab_3_1.dir/src/Uchaschiysya.cpp.o -c /Users/macbook/CLionProjects/labs-programming/C++/lab_3.1/src/Uchaschiysya.cpp",
+  "file": "/Users/macbook/CLionProjects/labs-programming/C++/lab_3.1/src/Uchaschiysya.cpp",
+  "output": "CMakeFiles/lab_3_1.dir/src/Uchaschiysya.cpp.o"
+}
+]

@@ -1,0 +1,1 @@
+/usr/bin/clang++ -g -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/MyProject.dir/main.cpp.o CMakeFiles/MyProject.dir/src/Student.cpp.o CMakeFiles/MyProject.dir/src/Money.cpp.o -o MyProject

@@ -17,6 +17,8 @@ Shkolnik& Shkolnik::operator=(const Shkolnik& object) {
 
 std::ostream& operator<<(std::ostream& os, const Shkolnik& object) {
     os << static_cast<const Uchaschiysya&>(object);
+    // Без static_cast это бы не скомпилировалось,
+    //потому что компилятор не знает, какой именно operator<< вызывать — для Student или Uchaschiysya.
     os << " Класс: " << object.grade << std::endl;
     return os;
 }

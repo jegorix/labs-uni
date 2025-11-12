@@ -11,10 +11,11 @@
 #include <cstring>
 #include <iomanip>
 
-class Uchaschiysya {
+class Uchaschiysya { // Полиморфный класс
 protected:
     char name[32];  // строка для имени (фиксированный размер 32 символа)
     int age;        // возраст учащегося
+
 
 public:
     // Конструктор по умолчанию

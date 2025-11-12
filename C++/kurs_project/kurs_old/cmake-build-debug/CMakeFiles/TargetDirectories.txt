@@ -1,0 +1,3 @@
+/Users/macbook/CLionProjects/labs-programming/C++/kurs_project/cmake-build-debug/CMakeFiles/kurs_project.dir
+/Users/macbook/CLionProjects/labs-programming/C++/kurs_project/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/macbook/CLionProjects/labs-programming/C++/kurs_project/cmake-build-debug/CMakeFiles/rebuild_cache.dir

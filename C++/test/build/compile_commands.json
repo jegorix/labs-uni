@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/Users/macbook/CLionProjects/labs-programming/C++/test/build",
+  "command": "/usr/bin/clang++  -I/Users/macbook/CLionProjects/labs-programming/C++/test/include -g -std=gnu++17 -arch arm64 -o CMakeFiles/MyProject.dir/main.cpp.o -c /Users/macbook/CLionProjects/labs-programming/C++/test/main.cpp",
+  "file": "/Users/macbook/CLionProjects/labs-programming/C++/test/main.cpp",
+  "output": "CMakeFiles/MyProject.dir/main.cpp.o"
+},
+{
+  "directory": "/Users/macbook/CLionProjects/labs-programming/C++/test/build",
+  "command": "/usr/bin/clang++  -I/Users/macbook/CLionProjects/labs-programming/C++/test/include -g -std=gnu++17 -arch arm64 -o CMakeFiles/MyProject.dir/src/Student.cpp.o -c /Users/macbook/CLionProjects/labs-programming/C++/test/src/Student.cpp",
+  "file": "/Users/macbook/CLionProjects/labs-programming/C++/test/src/Student.cpp",
+  "output": "CMakeFiles/MyProject.dir/src/Student.cpp.o"
+},
+{
+  "directory": "/Users/macbook/CLionProjects/labs-programming/C++/test/build",
+  "command": "/usr/bin/clang++  -I/Users/macbook/CLionProjects/labs-programming/C++/test/include -g -std=gnu++17 -arch arm64 -o CMakeFiles/MyProject.dir/src/Money.cpp.o -c /Users/macbook/CLionProjects/labs-programming/C++/test/src/Money.cpp",
+  "file": "/Users/macbook/CLionProjects/labs-programming/C++/test/src/Money.cpp",
+  "output": "CMakeFiles/MyProject.dir/src/Money.cpp.o"
+}
+]

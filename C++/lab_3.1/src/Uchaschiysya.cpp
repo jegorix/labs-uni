@@ -1,4 +1,4 @@
-#include "../include/Uchaschiysya.h"  // Adjust path if needed
+#include "../include/Uchaschiysya.h"
 
 char* Uchaschiysya::getName() {
     return name;

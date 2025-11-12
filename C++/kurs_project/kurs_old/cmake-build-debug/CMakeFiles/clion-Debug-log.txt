@@ -1,0 +1,1 @@
+CMakeLists.txt not found in /Users/macbook/CLionProjects/labs-programming/C++/kurs_project Select CMakeLists.txt

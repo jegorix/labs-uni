@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/macbook/CLionProjects/labs-programming/C++/kurs_project/course-work",
+      "program": "/Users/macbook/CLionProjects/labs-programming/C++/kurs_project/course-work/build/Debug/outDebug"
+    }
+  ]
+}

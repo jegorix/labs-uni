@@ -28,6 +28,7 @@ public:
     int getGrade();
     void setGrade(int new_grade);
 
+    // переопределенные методы из базового класса
     void showMenu() override;
     void printHeader() const override;
     void printTable() const override;

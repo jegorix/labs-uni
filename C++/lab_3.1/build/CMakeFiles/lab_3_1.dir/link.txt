@@ -1,0 +1,1 @@
+/usr/bin/clang++  -w -g -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/lab_3_1.dir/main.cpp.o CMakeFiles/lab_3_1.dir/src/Shkolnik.cpp.o CMakeFiles/lab_3_1.dir/src/Student.cpp.o CMakeFiles/lab_3_1.dir/src/Uchaschiysya.cpp.o -o lab_3_1

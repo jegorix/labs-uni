@@ -5,19 +5,23 @@
 #include <iomanip>
 #include <limits>
 using namespace std;
+
 const int MAX_OBJECTS = 5;
 Shkolnik objects[MAX_OBJECTS];
 int objectCount = 0;
+
 void clearInput() {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
+
 void printMenu() {
     const int width = 60;
     cout << "\n " << setfill('=') << setw(width) << "=" << setfill(' ') << endl;
     string title = "СИСТЕМА УПРАВЛЕНИЯ ШКОЛЬНИКАМИ";
     int padding = (width - 2 - (int)title.length()) / 2;
-    cout << " |" << setw(padding) << " " << title << setw(width - 2 - padding - (int)title.length()) << "                          " << "|" << endl;
+    cout << " |" << setw(padding) << " " << title
+         << setw(width - 2 - padding - (int)title.length()) << " " << "|" << endl;
     cout << " " << setfill('=') << setw(width) << "=" << setfill(' ') << endl;
     cout << " |  1. Добавить школьника" << setw(width - 26) << " " << "|" << endl;
     cout << " |  2. Показать всех" << setw(width - 21) << " " << "|" << endl;
@@ -27,6 +31,8 @@ void printMenu() {
     cout << " " << setfill('=') << setw(width) << "=" << setfill(' ') << endl;
     cout << " Выберите опцию: ";
 }
+
+// ---------- функции управления ----------
 void addObject() {
     if (objectCount >= MAX_OBJECTS) {
         cout << "Нельзя добавить больше объектов! Максимум достигнут.\n";
@@ -39,10 +45,12 @@ void addObject() {
     objectCount++;
     cout << "Школьник добавлен успешно!\n";
 }
+
 void showAll() {
     cout << "\n" << setfill('=') << setw(60) << "=" << setfill(' ') << endl;
     cout << "                 ШКОЛЬНИКИ" << endl;
     cout << setfill('=') << setw(60) << "=" << setfill(' ') << endl;
+
     if (objectCount > 0) {
         objects[0].printHeader();
         cout << setfill('=') << setw(60) << "=" << setfill(' ') << endl;
@@ -54,6 +62,7 @@ void showAll() {
         cout << "Школьники не найдены." << endl;
     }
 }
+
 void editObject() {
     if (objectCount == 0) {
         cout << "Нет объектов для редактирования.\n";
@@ -77,6 +86,7 @@ void editObject() {
     cin >> obj;
     cout << "Объект обновлен успешно!\n";
 }
+
 void deleteObject() {
     if (objectCount == 0) {
         cout << "Нет объектов для удаления.\n";
@@ -100,33 +110,42 @@ void deleteObject() {
     objectCount--;
     cout << "Объект удален успешно!\n";
 }
+
+// ---------- новая функция ----------
+void handleChoice(int choice) {
+    switch (choice) {
+        case 1:
+            addObject();
+            break;
+        case 2:
+            showAll();
+            break;
+        case 3:
+            editObject();
+            break;
+        case 4:
+            deleteObject();
+            break;
+        case 0:
+            cout << "До свидания!\n";
+            break;
+        default:
+            cout << "Неверная опция!\n";
+    }
+}
+
 int main() {
     int choice;
     do {
         printMenu();
         cin >> choice;
         clearInput();
-        switch (choice) {
-            case 1:
-                addObject();
-                break;
-            case 2:
-                showAll();
-                break;
-            case 3:
-                editObject();
-                break;
-            case 4:
-                deleteObject();
-                break;
-            case 0:
-                cout << "До свидания!\n";
-                break;
-            default:
-                cout << "Неверная опция!\n";
-        }
+
+        handleChoice(choice);
+
         cout << "\nНажмите Enter для продолжения...";
         clearInput();
     } while (choice != 0);
+
     return 0;
 }
