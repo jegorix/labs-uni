@@ -1,0 +1,1 @@
+/usr/bin/c++  -w -Wl,--dependency-file=CMakeFiles/laba.dir/link.d CMakeFiles/laba.dir/main.cpp.o CMakeFiles/laba.dir/src/Shkolnik.cpp.o CMakeFiles/laba.dir/src/Student.cpp.o CMakeFiles/laba.dir/src/Uchaschiysya.cpp.o -o laba
