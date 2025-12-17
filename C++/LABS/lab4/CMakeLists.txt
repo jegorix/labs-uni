@@ -11,7 +11,9 @@ add_executable(laba
         src/Shkolnik.cpp
         src/Student.cpp
         src/Uchaschiysya.cpp
-        src/Exceptions.cpp
         src/InputUtils.cpp
+        exceptions/src/Exception.cpp
+        exceptions/src/InputException.cpp
+        exceptions/src/FileException.cpp
+        exceptions/src/ContainerException.cpp
 )
-

@@ -1,10 +1,10 @@
-Quick start (Lab 4)
+Quick start (Lab 5)
 
 Requirements:
 - CMake 3.30+ and a C++20 compiler (clang++/g++).
 
 Build:
-1) From the lab4 directory: cmake -S . -B build
+1) From the lab5 directory: cmake -S . -B build
 2) Build: cmake --build build
 
 Run:

@@ -236,23 +236,20 @@ static void runForEntity(const EntityStrings& info) {
                     break;
                 }
 
-                T searchObj;
-                cout << "Введите данные " << info.single << " для удаления:\n";
                 std::string nameHint = useRussianNames() ? " (кириллица)" : " (латиница)";
-                char name[Uchaschiysya::NAME_CAP];
-                readName(cin, name, Uchaschiysya::NAME_CAP,
-                         std::string("Введите ФИО") + nameHint + " (для удаления): ",
+                char query[Uchaschiysya::NAME_CAP];
+                readName(cin, query, Uchaschiysya::NAME_CAP,
+                         std::string("Введите фрагмент ФИО") + nameHint + " (для удаления): ",
                          useRussianNames());
-                searchObj.setName(name);
-                int age = readInt(cin, "Введите возраст: ", 1, 120);
-                searchObj.setAge(age);
-                int extra = readInt(cin, "Введите " + info.extraLabel + " (" +
-                                         std::to_string(info.extraMin) + ".." +
-                                         std::to_string(info.extraMax) + "): ",
-                                   info.extraMin, info.extraMax);
-                EntityTraits<T>::setExtra(searchObj, extra);
-
-                if (ring.remove(searchObj)) {
+                auto matches = ring.findAll([&](const T& s) {
+                    return containsIgnoreCase(s.getName(), query);
+                });
+                if (matches.empty()) {
+                    cout << "Элемент с таким ФИО не найден.\n";
+                    break;
+                }
+                T target = matches.front();
+                if (ring.remove(target)) {
                     cout << "Удаление выполнено успешно!\n";
                 } else {
                     cout << "Элемент не найден в кольце.\n";

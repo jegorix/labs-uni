@@ -1,35 +1,21 @@
-//
-// Лаба 5: набор функций для безопасного ввода и валидации данных с обработкой исключений.
-//
+#pragma once
 
-#ifndef LAB4_INPUT_UTILS_H
-#define LAB4_INPUT_UTILS_H
-
-#include <string>
+#include <cstddef>
 #include <iosfwd>
+#include <string>
 
-// Считать целое число с проверкой диапазона.
-// Вместо прямого использования cin >> x вызываем эту функцию.
-// Она сама обрабатывает ошибки, просит ввести значение повторно и
-// возвращает корректное число.
+// Упрощённый ввод без исключений: возвращаем корректные значения после повторного запроса.
 int readInt(std::istream& in,
             const std::string& prompt,
             int minValue,
             int maxValue);
 
-// Считать строку-имя (например, фамилию) с валидацией.
-// Можно ограничить только буквами, только латиницей/кириллицей и т.п.
 void readName(std::istream& in,
               char* buffer,
               std::size_t bufferSize,
               const std::string& prompt,
               bool russianOnly);
 
-// Считать дату в формате "ДД.ММ.ГГГГ" с проверкой корректности.
-// Возвращает строку, уже прошедшую проверку.
-std::string readDate(std::istream& in,
-                     const std::string& prompt);
-
-#endif // LAB4_INPUT_UTILS_H
-
-
+// Глобальная настройка: использовать кириллицу или латиницу при вводе ФИО.
+bool useRussianNames();
+void setUseRussianNames(bool russian);

@@ -27,17 +27,17 @@ std::ostream& operator<<(std::ostream& os, const Student& object) {
 }
 
 std::istream& operator>>(std::istream& is, Student& object) {
-    // Сначала вводим общие данные учащегося (фамилия и возраст) с проверкой
+    // Сначала вводим общие данные учащегося (ФИО и возраст) с проверкой
     is >> static_cast<Uchaschiysya&>(object);
 
     // Затем запрашиваем курс с проверкой диапазона
-    std::string prompt = " Введите курс \"" + std::string(object.name) + "\" (1..6): ";
+    std::string prompt = "Курс \"" + std::string(object.name) + "\" (1..6): ";
     object.course = readInt(is, prompt, 1, 6);
     return is;
 }
 
 bool Student::operator==(const Student& other) const {
-    // Поиск по имени, возрасту и курсу
+    // Поиск по ФИО, возрасту и курсу
     return (static_cast<const Uchaschiysya&>(*this) == static_cast<const Uchaschiysya&>(other) 
             && course == other.course);
 }
@@ -53,13 +53,15 @@ void Student::showMenu() {
 }
 
 void Student::printHeader() const {
-    std::cout << " | " << std::left << std::setw(20) << "Имя";
-    std::cout << "| " << std::left << std::setw(15) << "Возраст";
-    std::cout << "| " << std::left << std::setw(15) << "Курс" << "|" << std::endl;
+    std::cout << "| " << std::left << std::setw(NAME_COL_WIDTH) << "ФИО"
+              << " | " << std::left << std::setw(AGE_COL_WIDTH) << "Возраст"
+              << " | " << std::left << std::setw(EXTRA_COL_WIDTH) << "Курс"
+              << " |" << std::endl;
 }
 
 void Student::printTable() const {
-    std::cout << " | " << std::left << std::setw(20) << this->name;
-    std::cout << "| " << std::left << std::setw(15) << this->age;
-    std::cout << "| " << std::left << std::setw(15) << this->course << "|" << std::endl;
+    std::cout << "| " << std::left << std::setw(NAME_COL_WIDTH) << truncateName(this->name)
+              << " | " << std::left << std::setw(AGE_COL_WIDTH) << this->age
+              << " | " << std::left << std::setw(EXTRA_COL_WIDTH) << this->course
+              << " |" << std::endl;
 }

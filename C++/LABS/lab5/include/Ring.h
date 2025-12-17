@@ -5,8 +5,7 @@
 #include <vector>
 #include <functional>
 
-// Обобщённый двусвязный кольцевой список.
-// Реализация методов вынесена в Ring.cpp и инстанцируется для нужных типов.
+// двусвязный кольцевой список.
 template<typename T>
 class Ring {
 private:

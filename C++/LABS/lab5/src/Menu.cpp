@@ -1,5 +1,7 @@
 #include "../include/Menu.h"
 #include "../include/Shkolnik.h"
+#include "../include/Student.h"
+#include "../include/Uchaschiysya.h"
 #include "../include/Ring.h"
 #include "../include/InputUtils.h"
 
@@ -8,6 +10,9 @@
 #include <limits>
 #include <cstring>
 #include <cctype>
+#include <string>
+#include <vector>
+#include <algorithm>
 
 using std::cin;
 using std::cout;
@@ -15,6 +20,8 @@ using std::setw;
 using std::setfill;
 using std::numeric_limits;
 using std::streamsize;
+using std::string;
+using std::vector;
 
 
 static void clearInput() {
@@ -22,8 +29,27 @@ static void clearInput() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
+// Объявления структур ниже по файлу
+struct EntityStrings;
+template<typename T> struct EntityTraits;
+
+// Подсчёт длины UTF-8 строки в символах (по ведущим байтам).
+static std::size_t utf8Len(const std::string& s) {
+    std::size_t count = 0;
+    for (unsigned char c : s) {
+        if ((c & 0xC0) != 0x80) ++count;
+    }
+    return count;
+}
+
+static std::string padToWidth(const std::string& s, std::size_t width) {
+    std::size_t len = utf8Len(s);
+    if (len >= width) return s;
+    return s + std::string(width - len, ' ');
+}
+
 // Проверка: содержит ли строка a подстроку b (без учета регистра).
-// Нужна для поиска школьника по части фамилии.
+// Нужна для поиска по части ФИО.
 static bool containsIgnoreCase(const char* a, const char* b) {
     if (a == nullptr || b == nullptr) return false;
     size_t lenA = std::strlen(a);
@@ -65,184 +91,252 @@ static int compareIgnoreCase(const char* a, const char* b) {
     return static_cast<unsigned char>(*a) - static_cast<unsigned char>(*b);
 }
 
-// Отрисовка основного текстового меню.
-// Здесь только "красота": рамка, выравнивание по ширине и список доступных действий.
-static void printMenu() {
+// Описание текстов и диапазонов для разных типов сущностей.
+struct EntityStrings {
+    std::string title;      // Заголовок меню
+    std::string single;     // Имя сущности (винительный падеж) — "школьника"/"студента"
+    std::string extraLabel; // Доп. поле — "класс"/"курс"
+    int extraMin;
+    int extraMax;
+};
+
+template<typename T>
+struct EntityTraits;
+
+template<>
+struct EntityTraits<Shkolnik> {
+    static EntityStrings strings() {
+        return {
+            "СИСТЕМА УПРАВЛЕНИЯ ШКОЛЬНИКАМИ С КОЛЬЦОМ",
+            "школьника",
+            "класс",
+            1, 11
+        };
+    }
+    static int getExtra(const Shkolnik& s) { return s.getGrade(); }
+    static void setExtra(Shkolnik& s, int v) { s.setGrade(v); }
+};
+
+template<>
+struct EntityTraits<Student> {
+    static EntityStrings strings() {
+        return {
+            "СИСТЕМА УПРАВЛЕНИЯ СТУДЕНТАМИ С КОЛЬЦОМ",
+            "студента",
+            "курс",
+            1, 6
+        };
+    }
+    static int getExtra(const Student& s) { return s.getCourse(); }
+    static void setExtra(Student& s, int v) { s.setCourse(v); }
+};
+
+// Построить таблицу с автошириной колонок по текущим данным.
+template<typename T>
+static void printTableData(const std::vector<T>& data, const EntityStrings& info) {
+    if (data.empty()) {
+        cout << "Кольцо пусто.\n";
+        return;
+    }
+
+    auto strlenSafe = [](const char* s) -> std::size_t {
+        return s ? utf8Len(s) : 0;
+    };
+
+    std::size_t nameW = std::max<std::size_t>(utf8Len("ФИО"), 3);
+    std::size_t ageW = std::max<std::size_t>(utf8Len("Возраст"), 7);
+    std::size_t extraW = std::max<std::size_t>(utf8Len(info.extraLabel), 5);
+
+    for (const auto& item : data) {
+        nameW = std::max(nameW, strlenSafe(item.getName()));
+        ageW = std::max<std::size_t>(ageW, utf8Len(std::to_string(item.getAge())));
+        extraW = std::max<std::size_t>(extraW, utf8Len(std::to_string(EntityTraits<T>::getExtra(item))));
+    }
+
+    std::size_t lineLen = nameW + ageW + extraW + 10; // разделители и пробелы
+    auto printLine = [&]() { cout << std::string(lineLen, '=') << '\n'; };
+
+    printLine();
+    cout << "| " << padToWidth("ФИО", nameW)
+         << " | " << padToWidth("Возраст", ageW)
+         << " | " << padToWidth(info.extraLabel, extraW)
+         << " |" << '\n';
+    printLine();
+    for (const auto& item : data) {
+        const char* nm = item.getName();
+        std::string ageStr = std::to_string(item.getAge());
+        std::string extraStr = std::to_string(EntityTraits<T>::getExtra(item));
+        cout << "| " << padToWidth(nm ? nm : "", nameW)
+             << " | " << padToWidth(ageStr, ageW)
+             << " | " << padToWidth(extraStr, extraW)
+             << " |" << '\n';
+    }
+    printLine();
+}
+
+// Отрисовка основного текстового меню для выбранного типа сущности.
+static void printMenu(const EntityStrings& info) {
     const int width = 60;
     cout << "\n " << setfill('=') << setw(width) << "=" << setfill(' ') << '\n';
-    std::string title = "СИСТЕМА УПРАВЛЕНИЯ ШКОЛЬНИКАМИ С КОЛЬЦОМ";
+    std::string title = info.title;
     int padding = (width - 2 - (int)title.length()) / 2;
     cout << " |" << setw(padding) << " " << title
          << setw(width - 2 - padding - (int)title.length()) << " " << '\n';
     cout << " " << setfill('=') << setw(width) << "=" << setfill(' ') << '\n';
-    cout << " |  1. Добавить школьника в кольцо" << setw(width - 34) << " " << '\n';
-    cout << " |  2. Показать всех из кольца" << setw(width - 28) << " " << '\n';
-    cout << " |  3. Удалить школьника из кольца" << setw(width - 31) << " " << '\n';
-    cout << " |  4. Найти школьника в кольце" << setw(width - 30) << " " << '\n';
-    cout << " |  5. Отсортировать кольцо" << setw(width - 26) << " " << '\n';
-    cout << " |  6. Показать размер кольца" << setw(width - 27) << " " << '\n';
-    cout << " |  0. Выход" << setw(width - 13) << " " << '\n';
+    auto line = [&](const std::string& text) {
+        cout << " |  " << text;
+        int spaces = width - 4 - static_cast<int>(text.length());
+        if (spaces < 0) spaces = 0;
+        cout << setw(spaces) << " " << '\n';
+    };
+    line("1. Добавить " + info.single + " в кольцо");
+    line("2. Показать всех из кольца");
+    line("3. Удалить " + info.single + " из кольца");
+    line("4. Найти " + info.single + " в кольце");
+    line("5. Отсортировать кольцо");
+    line("6. Показать размер кольца");
+    line("0. Выход");
     cout << " " << setfill('=') << setw(width) << "=" << setfill(' ') << '\n';
-    cout << " Выберите опцию: ";
 }
 
-// Основной цикл работы программы: вывод меню, чтение выбора, вызов операций над кольцом.
-void Menu::run() {
-    Ring<Shkolnik> ring;  // Кольцо для хранения школьников
+template<typename T>
+static void runForEntity(const EntityStrings& info) {
+    Ring<T> ring;
     int choice;
 
+    cout << "\nВыберите язык для ФИО:\n";
+    cout << "  1. Русский (кириллица)\n";
+    cout << "  2. Английский (латиница)\n";
+    int lang = readInt(cin, "Ваш выбор: ", 1, 2);
+    setUseRussianNames(lang == 1);
+
     do {
-        printMenu();
-        // Безопасный ввод пункта меню с обработкой исключений
+        printMenu(info);
         choice = readInt(cin, "Ваш выбор: ", 0, 6);
 
         switch (choice) {
             case 1: {
-                // Добавить школьника: считываем данные через перегруженный оператор >>
-                Shkolnik newObject;
-                cout << "Введите данные школьника:\n";
+                T newObject;
+                cout << "\nДобавление " << info.single << ":\n";
                 cin >> newObject;
-                clearInput(); // после ввода чисел подчистим хвост
+                clearInput();
                 ring.add(newObject);
-                cout << "Школьник добавлен в кольцо успешно!\n";
+                cout << "Объект добавлен в кольцо успешно!\n";
                 break;
             }
             case 2: {
-                // Показать всех: печатаем всю таблицу из кольца
-                cout << "\n" << setfill('=') << setw(60) << "=" << setfill(' ') << '\n';
-                cout << "                 ШКОЛЬНИКИ В КОЛЬЦЕ\n";
-                cout << setfill('=') << setw(60) << "=" << setfill(' ') << '\n';
-                if (!ring.isEmpty()) {
-                    ring.display();
-                } else {
-                    cout << "Кольцо пусто.\n";
-                    cout << setfill('=') << setw(60) << "=" << setfill(' ') << '\n';
-                }
+                cout << "\n";
+                auto all = ring.findAll([](const T&){ return true; });
+                printTableData(all, info);
                 break;
             }
             case 3: {
-                // Удалить школьника: просим ввести ключевые поля и удаляем первое точное совпадение
                 if (ring.isEmpty()) {
                     cout << "Кольцо пусто. Нечего удалять.\n";
                     break;
                 }
 
-                Shkolnik searchObj;
-                cout << "Введите данные школьника для удаления:\n";
-                char name[32];
-                readName(cin, name, 32,
-                         "Введите фамилию школьника (для удаления): ",
-                         false);
-                searchObj.setName(name);
-                int age = readInt(cin, "Введите возраст школьника: ", 1, 120);
-                searchObj.setAge(age);
-                int grade = readInt(cin, "Введите класс школьника (1..11): ", 1, 11);
-                searchObj.setGrade(grade);
-
-                if (ring.remove(searchObj)) {
-                    cout << "Школьник удален из кольца успешно!\n";
+                std::string nameHint = useRussianNames() ? " (кириллица)" : " (латиница)";
+                char query[Uchaschiysya::NAME_CAP];
+                readName(cin, query, Uchaschiysya::NAME_CAP,
+                         std::string("Введите фрагмент ФИО") + nameHint + " (для удаления): ",
+                         useRussianNames());
+                auto matches = ring.findAll([&](const T& s) {
+                    return containsIgnoreCase(s.getName(), query);
+                });
+                if (matches.empty()) {
+                    cout << "Элемент с таким ФИО не найден.\n";
+                    break;
+                }
+                T target = matches.front();
+                if (ring.remove(target)) {
+                    cout << "Удаление выполнено успешно!\n";
                 } else {
-                    cout << "Школьник не найден в кольце.\n";
+                    cout << "Элемент не найден в кольце.\n";
                 }
                 break;
             }
             case 4: {
-                // Расширенный поиск школьников:
-                //  - по имени (подстрока, без учета регистра)
-                //  - по возрасту (диапазон)
-                //  - по классу (диапазон)
-                //  - точное совпадение (имя, возраст, класс)
                 if (ring.isEmpty()) {
                     cout << "Кольцо пусто. Нечего искать.\n";
                     break;
                 }
 
                 cout << "\nВыберите тип поиска:\n";
-                cout << "  1. По имени (содержит, без учета регистра)\n";
+                cout << "  1. По ФИО (содержит, без учета регистра)\n";
                 cout << "  2. По возрасту (диапазон)\n";
-                cout << "  3. По классу (диапазон)\n";
-                cout << "  4. Точное совпадение (имя, возраст, класс)\n";
+                cout << "  3. По " << info.extraLabel << " (диапазон)\n";
+                cout << "  4. Точное совпадение (ФИО, возраст, " << info.extraLabel << ")\n";
                 int sChoice = readInt(cin, "Ваш выбор: ", 1, 4);
 
                 if (sChoice == 1) {
-                    char query[32];
-                    readName(cin, query, 32,
-                             "Введите часть имени (для поиска): ",
-                             false);
-                    auto results = ring.findAll([&](const Shkolnik& s) {
-                        return containsIgnoreCase(s.getName(), query);
+                    std::string nameHint = useRussianNames() ? " (кириллица)" : " (латиница)";
+                    std::string query;
+                    while (true) {
+                        cout << "Введите фрагмент ФИО" << nameHint << ": ";
+                        std::getline(cin, query);
+                        if (!query.empty()) break;
+                        cout << "Фрагмент не может быть пустым. Повторите ввод.\n";
+                    }
+                    auto results = ring.findAll([&](const T& s) {
+                        return containsIgnoreCase(s.getName(), query.c_str());
                     });
-                    // Вывод результатов в виде таблицы
                     if (results.empty()) {
                         cout << "Ничего не найдено.\n";
                     } else {
                         cout << "\nНайдено: " << results.size() << "\n";
-                        results.front().printHeader();
-                        cout << " " << setfill('=') << setw(60) << "=" << setfill(' ') << '\n';
-                        for (const auto& it : results) {
-                            it.printTable();
-                        }
-                        cout << " " << setfill('=') << setw(60) << "=" << setfill(' ') << '\n';
+                        printTableData(results, info);
                     }
                 } else if (sChoice == 2) {
                     int fromA = readInt(cin, "Введите возраст от: ", 1, 120);
                     int toA   = readInt(cin, "Введите возраст до: ", 1, 120);
                     if (fromA > toA) std::swap(fromA, toA);
-                    auto results = ring.findAll([&](const Shkolnik& s) {
+                    auto results = ring.findAll([&](const T& s) {
                         return s.getAge() >= fromA && s.getAge() <= toA;
                     });
-                    // Вывод результатов в виде таблицы
                     if (results.empty()) {
                         cout << "Ничего не найдено.\n";
                     } else {
                         cout << "\nНайдено: " << results.size() << "\n";
-                        results.front().printHeader();
-                        cout << " " << setfill('=') << setw(60) << "=" << setfill(' ') << '\n';
-                        for (const auto& it : results) {
-                            it.printTable();
-                        }
-                        cout << " " << setfill('=') << setw(60) << "=" << setfill(' ') << '\n';
+                        printTableData(results, info);
                     }
                 } else if (sChoice == 3) {
-                    int fromG = readInt(cin, "Введите класс от: ", 1, 11);
-                    int toG   = readInt(cin, "Введите класс до: ", 1, 11);
+                    int fromG = readInt(cin, "Введите " + info.extraLabel + " от: ",
+                                        info.extraMin, info.extraMax);
+                    int toG   = readInt(cin, "Введите " + info.extraLabel + " до: ",
+                                        info.extraMin, info.extraMax);
                     if (fromG > toG) std::swap(fromG, toG);
-                    auto results = ring.findAll([&](const Shkolnik& s) {
-                        return s.getGrade() >= fromG && s.getGrade() <= toG;
+                    auto results = ring.findAll([&](const T& s) {
+                        return EntityTraits<T>::getExtra(s) >= fromG &&
+                               EntityTraits<T>::getExtra(s) <= toG;
                     });
-                    // Вывод результатов в виде таблицы
                     if (results.empty()) {
                         cout << "Ничего не найдено.\n";
                     } else {
                         cout << "\nНайдено: " << results.size() << "\n";
-                        results.front().printHeader();
-                        cout << " " << setfill('=') << setw(60) << "=" << setfill(' ') << '\n';
-                        for (const auto& it : results) {
-                            it.printTable();
-                        }
-                        cout << " " << setfill('=') << setw(60) << "=" << setfill(' ') << '\n';
+                        printTableData(results, info);
                     }
                 } else if (sChoice == 4) {
-                    Shkolnik searchObj;
-                    char name[32];
-                    readName(cin, name, 32,
-                             "Введите фамилию (для точного поиска): ",
-                             false);
+                    std::string nameHint = useRussianNames() ? " (кириллица)" : " (латиница)";
+                    T searchObj;
+                    char name[Uchaschiysya::NAME_CAP];
+                    readName(cin, name, Uchaschiysya::NAME_CAP,
+                             std::string("Введите ФИО") + nameHint + " (для точного поиска): ",
+                             useRussianNames());
                     searchObj.setName(name);
                     int age = readInt(cin, "Введите возраст: ", 1, 120);
                     searchObj.setAge(age);
-                    int grade = readInt(cin, "Введите класс (1..11): ", 1, 11);
-                    searchObj.setGrade(grade);
+                    int extra = readInt(cin, "Введите " + info.extraLabel + " (" +
+                                             std::to_string(info.extraMin) + ".." +
+                                             std::to_string(info.extraMax) + "): ",
+                                       info.extraMin, info.extraMax);
+                    EntityTraits<T>::setExtra(searchObj, extra);
                     auto found = ring.search(searchObj);
                     if (found != nullptr) {
-                        cout << "\nШкольник найден в кольце:\n";
-                        cout << setfill('=') << setw(60) << "=" << setfill(' ') << '\n';
-                        found->data.printHeader();
-                        cout << " " << setfill('=') << setw(60) << "=" << setfill(' ') << '\n';
-                        found->data.printTable();
-                        cout << " " << setfill('=') << setw(60) << "=" << setfill(' ') << '\n';
+                        cout << "\nНайден элемент в кольце:\n";
+                        printTableData(std::vector<T>{found->data}, info);
                     } else {
-                        cout << "Школьник не найден в кольце.\n";
+                        cout << "Ничего не найдено.\n";
                     }
                 } else {
                     cout << "Неверный выбор типа поиска.\n";
@@ -250,20 +344,19 @@ void Menu::run() {
                 break;
             }
             case 5: {
-                // Расширенная сортировка кольца: по имени/возрасту/классу, по возрастанию или убыванию
                 if (ring.isEmpty()) {
                     cout << "Кольцо пусто. Нечего сортировать.\n";
                     break;
                 }
                 cout << "\nВыберите поле сортировки:\n";
-                cout << "  1. Имя\n";
+                cout << "  1. ФИО\n";
                 cout << "  2. Возраст\n";
-                cout << "  3. Класс\n";
+                cout << "  3. " << info.extraLabel << "\n";
                 int f = readInt(cin, "Ваш выбор: ", 1, 3);
                 int o = readInt(cin, "Порядок: 1. По возрастанию  2. По убыванию: ", 1, 2);
                 bool asc = (o != 2);
                 if (f == 1) {
-                    ring.sortWith([&](const Shkolnik& a, const Shkolnik& b){
+                    ring.sortWith([&](const T& a, const T& b){
                         const char* na = a.getName(); const char* nb = b.getName();
                         if (na == nullptr) na = "";
                         if (nb == nullptr) nb = "";
@@ -271,12 +364,13 @@ void Menu::run() {
                         return asc ? (cmp < 0) : (cmp > 0);
                     });
                 } else if (f == 2) {
-                    ring.sortWith([&](const Shkolnik& a, const Shkolnik& b){
+                    ring.sortWith([&](const T& a, const T& b){
                         return asc ? (a.getAge() < b.getAge()) : (a.getAge() > b.getAge());
                     });
                 } else if (f == 3) {
-                    ring.sortWith([&](const Shkolnik& a, const Shkolnik& b){
-                        return asc ? (a.getGrade() < b.getGrade()) : (a.getGrade() > b.getGrade());
+                    ring.sortWith([&](const T& a, const T& b){
+                        return asc ? (EntityTraits<T>::getExtra(a) < EntityTraits<T>::getExtra(b))
+                                   : (EntityTraits<T>::getExtra(a) > EntityTraits<T>::getExtra(b));
                     });
                 } else {
                     cout << "Неверный выбор поля. Выполняется сортировка по имени (по умолчанию)...\n";
@@ -286,7 +380,6 @@ void Menu::run() {
                 break;
             }
             case 6: {
-                // Показать размер кольца
                 cout << "Размер кольца: " << ring.getSize() << " элементов.\n";
                 break;
             }
@@ -305,4 +398,18 @@ void Menu::run() {
             clearInput();
         }
     } while (choice != 0);
+}
+
+// Основной цикл: выбор типа сущности и запуск соответствующего меню.
+void Menu::run() {
+    cout << "Выберите тип объектов для работы:\n";
+    cout << "  1. Школьники\n";
+    cout << "  2. Студенты\n";
+    int entityChoice = readInt(cin, "Ваш выбор: ", 1, 2);
+
+    if (entityChoice == 2) {
+        runForEntity<Student>(EntityTraits<Student>::strings());
+    } else {
+        runForEntity<Shkolnik>(EntityTraits<Shkolnik>::strings());
+    }
 }

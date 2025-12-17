@@ -1,5 +1,6 @@
 #include "../include/Ring.h"
 #include "../include/Shkolnik.h"
+#include "../include/Student.h"
 #include <iostream>
 #include <iomanip>
 #include <cstring>
@@ -76,7 +77,7 @@ void Ring<T>::display() const {
     }
     // Предполагаем, что T умеет печатать заголовок и строку таблицы
     head->data.printHeader();
-    std::cout << " " << std::setfill('=') << std::setw(60) << "=" << std::setfill(' ') << std::endl;
+    std::cout << std::string(Uchaschiysya::TABLE_WIDTH, '=') << std::endl;
 
     RingNote<T>* current = head;
     int count = 0;
@@ -86,7 +87,7 @@ void Ring<T>::display() const {
         count++;
     } while (current != head && count < size);
 
-    std::cout << " " << std::setfill('=') << std::setw(60) << "=" << std::setfill(' ') << std::endl;
+    std::cout << std::string(Uchaschiysya::TABLE_WIDTH, '=') << std::endl;
 }
 
 // ----------------------------------------
@@ -229,5 +230,6 @@ void Ring<T>::clear() {
     size = 0;
 }
 
-// Явная инстанциация для Shkolnik
+// Явные инстанциации для используемых типов
 template class Ring<Shkolnik>;
+template class Ring<Student>;
