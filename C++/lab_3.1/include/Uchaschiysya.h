@@ -9,7 +9,6 @@
 
 #include <iostream>
 #include <cstring>
-#include <iomanip>
 
 class Uchaschiysya { // Полиморфный класс
 protected:
@@ -48,8 +47,6 @@ public:
     void setAge(int new_age);
 
     // Виртуальная функция (можно переопределять в наследниках)
-    virtual void printHeader() const;
-    virtual void printTable() const;
     virtual void showMenu();
 
     // Перегрузка оператора присваивания "="

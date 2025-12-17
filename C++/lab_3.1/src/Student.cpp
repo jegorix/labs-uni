@@ -10,19 +10,32 @@ void Student::setCourse(int new_course) {
 }
 
 Student& Student::operator=(const Student& object) {
-    Uchaschiysya::operator=(object);
-    course = object.course;
+    Uchaschiysya::operator=(object); // копируем часть базового класса
+    course = object.course; // копируем часть производного класса
     return *this;
 }
 
 std::ostream& operator<<(std::ostream& os, const Student& object) {
-    os << static_cast<const Uchaschiysya&>(object);
-    os << " Курс: " << object.course << std::endl;
+    static bool headerPrinted = false;
+
+    if (!headerPrinted) {
+        char oldFill = os.fill(' ');
+        os << " | " << std::left << std::setw(20) << "Имя";
+        os << "| " << std::left << std::setw(10) << "Возраст";
+        os << "| " << std::left << std::setw(10) << "Курс" << "|" << std::endl;
+        os.fill(oldFill);
+        headerPrinted = true;
+    }
+
+    char oldFill = os.fill(' ');
+    os << static_cast<const Uchaschiysya&>(object); // для вывода полей базового класса, т.к там реализована перегрузка вывода
+    os << "| " << std::left << std::setw(10) << object.course << "|" << std::endl;
+    os.fill(oldFill);
     return os;
 }
 
 std::istream& operator>>(std::istream& is, Student& object) {
-    is >> static_cast<Uchaschiysya&>(object);
+    is >> static_cast<Uchaschiysya&>(object); // для ввода полей базового класса, т.к там реализована перегрузка ввода
     std::cout << " Введите курс " << "\"" << object.name << "\"" << ": ";
     is >> object.course;
     return is;
@@ -36,16 +49,4 @@ void Student::showMenu() {
     std::cout << " |  0. Выход" << std::setw(width - 12) << " " << "|\n";
     std::cout << " +" << std::setfill('=') << std::setw(width - 1) << "+" << "\n";
     std::cout << " Ваш выбор: ";
-}
-
-void Student::printHeader() const {
-    std::cout << " | " << std::left << std::setw(20) << "Имя";
-    std::cout << "| " << std::left << std::setw(15) << "Возраст";
-    std::cout << "| " << std::left << std::setw(15) << "Курс" << "|" << std::endl;
-}
-
-void Student::printTable() const {
-    std::cout << " | " << std::left << std::setw(20) << this->name;
-    std::cout << "| " << std::left << std::setw(15) << this->age;
-    std::cout << "| " << std::left << std::setw(15) << this->course << "|" << std::endl;
 }

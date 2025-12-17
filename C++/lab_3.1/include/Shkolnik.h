@@ -30,8 +30,6 @@ public:
 
     // переопределенные методы из базового класса
     void showMenu() override;
-    void printHeader() const override;
-    void printTable() const override;
 
     Shkolnik& operator = (const Shkolnik& object);
     friend std::ostream& operator << (std::ostream& os, const Shkolnik& object);

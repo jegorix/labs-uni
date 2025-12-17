@@ -1,0 +1,97 @@
+@startuml
+skinparam linetype polyline
+title Лабораторная 7 — UML (очередь)
+
+class Exception {
+  - code : int
+  - msg : std::string
+  + getCode() : int
+  + what() : const char*
+}
+class InputException
+class FileException
+class ContainerException
+Exception <|-- InputException
+Exception <|-- FileException
+Exception <|-- ContainerException
+
+class Uchaschiysya {
+  - name[32] : char
+  - age : int
+  + getName() : char*
+  + getAge() : int
+  + setName(char*) : void
+  + setAge(int) : void
+  + printHeader() : void
+  + printTable() : void
+}
+
+class Shkolnik {
+  - grade : int
+  + getGrade() : int
+  + setGrade(int) : void
+  + toTextRecord() : std::string
+  + toBinaryRecord() : BinaryRecord
+  + fromTextRecord(line) : Shkolnik
+  + fromBinaryRecord(rec) : Shkolnik
+  + operator==()
+}
+
+Uchaschiysya <|-- Shkolnik
+
+class Node {
+  + data : Shkolnik
+  + next : Node*
+}
+
+class Ring {
+  - head : RingNote<Shkolnik>*
+  - size : int
+  + add(const Shkolnik&) : void
+  + remove(const Shkolnik&) : bool
+  + search(const Shkolnik&) : RingNote*
+  + findAll(pred) : vector<Shkolnik>
+  + sortWith(comp) : void
+  + toVector() : vector<Shkolnik>
+  + getSize() : int
+  + isEmpty() : bool
+}
+
+Ring o-- RingNote : head
+
+class BaseFile {
+  - filename : std::string
+  - ifs : std::ifstream
+  - ofs : std::ofstream
+  - bfs : std::fstream
+}
+
+class "TextFile<Shkolnik>" as TextFile <<template>> {
+  + write(items) : void
+  + read() : std::vector<Shkolnik>
+}
+
+class "BinaryFile<Shkolnik>" as BinaryFile <<template>> {
+  + write(items) : void
+  + read() : std::vector<Shkolnik>
+}
+
+BaseFile <|-- TextFile
+BaseFile <|-- BinaryFile
+TextFile ..> Shkolnik : сериализация
+BinaryFile ..> Shkolnik : сериализация
+
+class Menu {
+  + run() : void
+}
+Menu ..> Queue : управляет контейнером
+Menu ..> InputException
+Menu ..> FileException
+
+note right of Uchaschiysya
+  Ввод с валидацией: InputUtils
+  (readInt, readName, readDate)
+  выбрасывают InputException.
+end note
+
+@enduml

@@ -1,3 +1,0 @@
-/home/ekuz/Programming/CppProjects/egor/laba/build/CMakeFiles/laba.dir
-/home/ekuz/Programming/CppProjects/egor/laba/build/CMakeFiles/edit_cache.dir
-/home/ekuz/Programming/CppProjects/egor/laba/build/CMakeFiles/rebuild_cache.dir

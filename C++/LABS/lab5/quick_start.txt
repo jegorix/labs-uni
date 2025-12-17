@@ -1,0 +1,12 @@
+Quick start (Lab 4)
+
+Requirements:
+- CMake 3.30+ and a C++20 compiler (clang++/g++).
+
+Build:
+1) From the lab4 directory: cmake -S . -B build
+2) Build: cmake --build build
+
+Run:
+- Start the console app: ./build/laba
+- Follow the menu prompts to add, list, search, sort, or delete pupils stored in the ring.

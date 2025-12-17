@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\CLasses">
+      <UniqueIdentifier>{677f8aff-f9c6-4609-b600-7e5739d8ff92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Container">
+      <UniqueIdentifier>{0ee5b4db-ac3f-415c-9f25-73562ca02e16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Files">
+      <UniqueIdentifier>{6ab194ca-f288-4313-9940-27b38012d798}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Main">
+      <UniqueIdentifier>{c375218f-1599-4f85-9326-7272d1ffb020}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\ClassedHeaders">
+      <UniqueIdentifier>{c2e15acf-12f2-4b68-8ec7-0ab44e66f8a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Container">
+      <UniqueIdentifier>{bed733a5-2586-4327-8d26-9e8ce80eedd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\ExceptionClassesHeaders">
+      <UniqueIdentifier>{91039e11-58cb-4890-9451-cf5eb1c61aac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\FileClassesHeaders">
+      <UniqueIdentifier>{397441c7-f4cf-4d87-a90e-79748d0fd8a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Functions">
+      <UniqueIdentifier>{891ea0ff-0737-4df2-913c-86d52b0df459}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Airplane.cpp">
+      <Filter>Исходные файлы\CLasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Auto.cpp">
+      <Filter>Исходные файлы\CLasses</Filter>
+    </ClCompile>
+    <ClCompile Include="CargoCrarrier.cpp">
+      <Filter>Исходные файлы\CLasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Train.cpp">
+      <Filter>Исходные файлы\CLasses</Filter>
+    </ClCompile>
+    <ClCompile Include="com_fun.cpp">
+      <Filter>Исходные файлы\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="OneWayQueue.cpp">
+      <Filter>Исходные файлы\Container</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Airplane.h">
+      <Filter>Файлы заголовков\ClassedHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Auto.h">
+      <Filter>Файлы заголовков\ClassedHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="CargoCarrier.h">
+      <Filter>Файлы заголовков\ClassedHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="OneWayQueue.h">
+      <Filter>Файлы заголовков\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Exception.h">
+      <Filter>Файлы заголовков\ExceptionClassesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="FileException.h">
+      <Filter>Файлы заголовков\ExceptionClassesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="InputException.h">
+      <Filter>Файлы заголовков\ExceptionClassesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="OneWayQueueException.h">
+      <Filter>Файлы заголовков\ExceptionClassesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryFile.h">
+      <Filter>Файлы заголовков\FileClassesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryFile.hpp">
+      <Filter>Файлы заголовков\FileClassesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="File.h">
+      <Filter>Файлы заголовков\FileClassesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="TextFile.h">
+      <Filter>Файлы заголовков\FileClassesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="TextFile.hpp">
+      <Filter>Файлы заголовков\FileClassesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="com_fun.h">
+      <Filter>Файлы заголовков\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="type_fun.h">
+      <Filter>Файлы заголовков\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Train.h">
+      <Filter>Файлы заголовков\ClassedHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="OneWayQueue.hpp">
+      <Filter>Файлы заголовков\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Iterator.h">
+      <Filter>Файлы заголовков\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Iterator.hpp">
+      <Filter>Файлы заголовков\Container</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

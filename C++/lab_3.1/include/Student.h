@@ -31,8 +31,6 @@ public:
     void setCourse(int new_course);
 
     void showMenu() override;
-    void printHeader() const override;
-    void printTable() const override;
 
     Student& operator = (const Student& object);
     friend std::ostream& operator << (std::ostream& os, const Student& object);

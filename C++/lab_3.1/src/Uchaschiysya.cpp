@@ -1,4 +1,6 @@
 #include "../include/Uchaschiysya.h"
+#include <iomanip>
+#include <limits>
 
 char* Uchaschiysya::getName() {
     return name;
@@ -23,12 +25,15 @@ Uchaschiysya& Uchaschiysya::operator=(const Uchaschiysya& object) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Uchaschiysya& object) {
-    os << "Имя: " << ((object.name[0] != '\0') ? object.name : "неопределенно") << std::endl;
-    os << "Возраст: " << object.age << " лет" << std::endl;
-    return os;
+    os << " | " << std::left << std::setw(20)
+       << ((object.name[0] != '\0') ? object.name : "неопределенно");
+    os << "| " << std::left << std::setw(10) << object.age;
+    return os; // завершающую черту и перевод строки добавляют производные классы
 }
 
 std::istream& operator>>(std::istream& is, Uchaschiysya& object) {
+    // очищаем буфер от возможного оставшегося символа новой строки
+    is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cout << "Введите имя (до 31 символа): ";
     is.getline(object.name, 32);
     std::cout << "Введите возраст: ";
@@ -45,14 +50,4 @@ void Uchaschiysya::showMenu() {
     std::cout << " |  4. Изменить имя" << std::setw(width - 19) << " " << "|" << std::endl;
     std::cout << " |  5. Показать возраст" << std::setw(width - 24) << " " << "|" << std::endl;
     std::cout << " |  6. Изменить возраст" << std::setw(width - 23) << " " << "|" << std::endl;
-}
-
-void Uchaschiysya::printHeader() const {
-    std::cout << " | " << std::left << std::setw(20) << "Имя";
-    std::cout << "| " << std::left << std::setw(15) << "Возраст" << "|" << std::endl;
-}
-
-void Uchaschiysya::printTable() const {
-    std::cout << " | " << std::left << std::setw(20) << name;
-    std::cout << "| " << std::left << std::setw(15) << age << "|" << std::endl;
 }

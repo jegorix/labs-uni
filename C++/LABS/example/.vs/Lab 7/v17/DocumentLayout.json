@@ -1,0 +1,466 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\type_fun.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:type_fun.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\OneWayQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:OneWayQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\BinaryFile.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:BinaryFile.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\OneWayQueueException.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:OneWayQueueException.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Iterator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:Iterator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Iterator.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:Iterator.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\OneWayQueue.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:OneWayQueue.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\CargoCarrier.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:CargoCarrier.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Exception.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:Exception.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\BinaryFile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:BinaryFile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\com_fun.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:com_fun.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\com_fun.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:com_fun.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\OneWayQueue.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:OneWayQueue.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\TextFile.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:TextFile.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\TextFile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:TextFile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\InputException.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:InputException.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\FileException.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:FileException.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\File.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:File.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Train.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:Train.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Auto.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:Auto.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Airplane.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:Airplane.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Train.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:Train.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\CargoCrarrier.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:CargoCrarrier.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Auto.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:Auto.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Airplane.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ADDE5F6E-16DA-4235-9D05-B8D9F44AA6FB}|Lab 7.vcxproj|solutionrelative:Airplane.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 262,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "type_fun.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\type_fun.h",
+              "RelativeDocumentMoniker": "type_fun.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\type_fun.h",
+              "RelativeToolTip": "type_fun.h",
+              "ViewState": "AgIAAFMBAAAAAAAAAAAswHMBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:25:03.978Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Iterator.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Iterator.h",
+              "RelativeDocumentMoniker": "Iterator.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Iterator.h",
+              "RelativeToolTip": "Iterator.h",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T17:05:15.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Iterator.hpp",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Iterator.hpp",
+              "RelativeDocumentMoniker": "Iterator.hpp",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Iterator.hpp",
+              "RelativeToolTip": "Iterator.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T17:05:49.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OneWayQueue.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\OneWayQueue.h",
+              "RelativeDocumentMoniker": "OneWayQueue.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\OneWayQueue.h",
+              "RelativeToolTip": "OneWayQueue.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:17:26.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BinaryFile.hpp",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\BinaryFile.hpp",
+              "RelativeDocumentMoniker": "BinaryFile.hpp",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\BinaryFile.hpp",
+              "RelativeToolTip": "BinaryFile.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:18:13.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OneWayQueueException.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\OneWayQueueException.h",
+              "RelativeDocumentMoniker": "OneWayQueueException.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\OneWayQueueException.h",
+              "RelativeToolTip": "OneWayQueueException.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:17:43.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CargoCarrier.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\CargoCarrier.h",
+              "RelativeDocumentMoniker": "CargoCarrier.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\CargoCarrier.h",
+              "RelativeToolTip": "CargoCarrier.h",
+              "ViewState": "AgIAACUAAAAAAAAAAAAwwEAAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:17:09.989Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "OneWayQueue.hpp",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\OneWayQueue.hpp",
+              "RelativeDocumentMoniker": "OneWayQueue.hpp",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\OneWayQueue.hpp",
+              "RelativeToolTip": "OneWayQueue.hpp",
+              "ViewState": "AgIAACwAAAAAAAAAAAAcwEUAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T16:09:26.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "main.cpp",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\main.cpp",
+              "RelativeDocumentMoniker": "main.cpp",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\main.cpp",
+              "RelativeToolTip": "main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-12-10T15:16:45.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BinaryFile.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\BinaryFile.h",
+              "RelativeDocumentMoniker": "BinaryFile.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\BinaryFile.h",
+              "RelativeToolTip": "BinaryFile.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:18:10.103Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "com_fun.cpp",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\com_fun.cpp",
+              "RelativeDocumentMoniker": "com_fun.cpp",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\com_fun.cpp",
+              "RelativeToolTip": "com_fun.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-12-10T15:16:42.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Exception.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Exception.h",
+              "RelativeDocumentMoniker": "Exception.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Exception.h",
+              "RelativeToolTip": "Exception.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:17:33.853Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "com_fun.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\com_fun.h",
+              "RelativeDocumentMoniker": "com_fun.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\com_fun.h",
+              "RelativeToolTip": "com_fun.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:24:57.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "OneWayQueue.cpp",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\OneWayQueue.cpp",
+              "RelativeDocumentMoniker": "OneWayQueue.cpp",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\OneWayQueue.cpp",
+              "RelativeToolTip": "OneWayQueue.cpp",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAAAJwAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-12-10T16:06:24.833Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TextFile.hpp",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\TextFile.hpp",
+              "RelativeDocumentMoniker": "TextFile.hpp",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\TextFile.hpp",
+              "RelativeToolTip": "TextFile.hpp",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAADsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:18:24.766Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TextFile.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\TextFile.h",
+              "RelativeDocumentMoniker": "TextFile.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\TextFile.h*",
+              "RelativeToolTip": "TextFile.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:18:21.12Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "InputException.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\InputException.h",
+              "RelativeDocumentMoniker": "InputException.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\InputException.h*",
+              "RelativeToolTip": "InputException.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:17:40.149Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "FileException.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\FileException.h",
+              "RelativeDocumentMoniker": "FileException.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\FileException.h*",
+              "RelativeToolTip": "FileException.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:17:37.523Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "File.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\File.h",
+              "RelativeDocumentMoniker": "File.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\File.h*",
+              "RelativeToolTip": "File.h*",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAwwCUAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:18:17.873Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Train.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Train.h",
+              "RelativeDocumentMoniker": "Train.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Train.h*",
+              "RelativeToolTip": "Train.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T16:04:42.562Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Auto.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Auto.h",
+              "RelativeDocumentMoniker": "Auto.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Auto.h*",
+              "RelativeToolTip": "Auto.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:17:06.05Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Airplane.h",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Airplane.h",
+              "RelativeDocumentMoniker": "Airplane.h",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Airplane.h*",
+              "RelativeToolTip": "Airplane.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-10T15:17:02.866Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Train.cpp",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Train.cpp",
+              "RelativeDocumentMoniker": "Train.cpp",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Train.cpp*",
+              "RelativeToolTip": "Train.cpp*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-12-10T15:15:58.869Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CargoCrarrier.cpp",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\CargoCrarrier.cpp",
+              "RelativeDocumentMoniker": "CargoCrarrier.cpp",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\CargoCrarrier.cpp*",
+              "RelativeToolTip": "CargoCrarrier.cpp*",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAwwM8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-12-10T15:15:55.461Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Auto.cpp",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Auto.cpp",
+              "RelativeDocumentMoniker": "Auto.cpp",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Auto.cpp*",
+              "RelativeToolTip": "Auto.cpp*",
+              "ViewState": "AgIAADkAAAAAAAAAAAAwwF0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-12-10T15:15:53.304Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Airplane.cpp",
+              "DocumentMoniker": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Airplane.cpp",
+              "RelativeDocumentMoniker": "Airplane.cpp",
+              "ToolTip": "D:\\\u041B\u0410\u0411\u042B 2\\Lab 7\\Airplane.cpp*",
+              "RelativeToolTip": "Airplane.cpp*",
+              "ViewState": "AgIAACIAAAAAAAAAAAAwwFsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-12-10T15:15:50.154Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 262,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

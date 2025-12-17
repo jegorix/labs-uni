@@ -1,151 +1,34 @@
-#include "include/Uchaschiysya.h"
 #include "include/Shkolnik.h"
-#include "include/Student.h"
 #include <iostream>
-#include <iomanip>
-#include <limits>
 using namespace std;
 
 const int MAX_OBJECTS = 5;
+const int INPUT_COUNT = 3;
 Shkolnik objects[MAX_OBJECTS];
+Shkolnik copies[MAX_OBJECTS];
 int objectCount = 0;
 
-void clearInput() {
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-}
-
-void printMenu() {
-    const int width = 60;
-    cout << "\n " << setfill('=') << setw(width) << "=" << setfill(' ') << endl;
-    string title = "СИСТЕМА УПРАВЛЕНИЯ ШКОЛЬНИКАМИ";
-    int padding = (width - 2 - (int)title.length()) / 2;
-    cout << " |" << setw(padding) << " " << title
-         << setw(width - 2 - padding - (int)title.length()) << " " << "|" << endl;
-    cout << " " << setfill('=') << setw(width) << "=" << setfill(' ') << endl;
-    cout << " |  1. Добавить школьника" << setw(width - 26) << " " << "|" << endl;
-    cout << " |  2. Показать всех" << setw(width - 21) << " " << "|" << endl;
-    cout << " |  3. Редактировать школьника" << setw(width - 31) << " " << "|" << endl;
-    cout << " |  4. Удалить школьника" << setw(width - 25) << " " << "|" << endl;
-    cout << " |  0. Выход" << setw(width - 13) << " " << "|" << endl;
-    cout << " " << setfill('=') << setw(width) << "=" << setfill(' ') << endl;
-    cout << " Выберите опцию: ";
-}
-
-// ---------- функции управления ----------
-void addObject() {
-    if (objectCount >= MAX_OBJECTS) {
-        cout << "Нельзя добавить больше объектов! Максимум достигнут.\n";
-        return;
-    }
-    Shkolnik newObject;
-    cout << "Введите данные школьника:\n";
-    cin >> newObject;
-    objects[objectCount] = newObject;
-    objectCount++;
-    cout << "Школьник добавлен успешно!\n";
-}
-
-void showAll() {
-    cout << "\n" << setfill('=') << setw(60) << "=" << setfill(' ') << endl;
-    cout << "                 ШКОЛЬНИКИ" << endl;
-    cout << setfill('=') << setw(60) << "=" << setfill(' ') << endl;
-
-    if (objectCount > 0) {
-        objects[0].printHeader();
-        cout << setfill('=') << setw(60) << "=" << setfill(' ') << endl;
-        for (int i = 0; i < objectCount; i++) {
-            objects[i].printTable();
-        }
-        cout << setfill('=') << setw(60) << "=" << setfill(' ') << endl;
-    } else {
-        cout << "Школьники не найдены." << endl;
-    }
-}
-
-void editObject() {
-    if (objectCount == 0) {
-        cout << "Нет объектов для редактирования.\n";
-        return;
-    }
-    cout << "\nДоступные школьники:\n";
-    for (int i = 0; i < objectCount; i++) {
-        cout << i + 1 << ". " << objects[i] << endl;
-    }
-    cout << "Выберите объект для редактирования: ";
-    int index;
-    cin >> index;
-    clearInput();
-    if (index < 1 || index > objectCount) {
-        cout << "Неверный выбор.\n";
-        return;
-    }
-    Shkolnik& obj = objects[index - 1];
-    cout << "Текущие данные: " << obj << endl;
-    cout << "Введите новые данные:\n";
-    cin >> obj;
-    cout << "Объект обновлен успешно!\n";
-}
-
-void deleteObject() {
-    if (objectCount == 0) {
-        cout << "Нет объектов для удаления.\n";
-        return;
-    }
-    cout << "\nДоступные школьники:\n";
-    for (int i = 0; i < objectCount; i++) {
-        cout << i + 1 << ". " << objects[i] << endl;
-    }
-    cout << "Выберите объект для удаления: ";
-    int index;
-    cin >> index;
-    if (index < 1 || index > objectCount) {
-        cout << "Неверный выбор.\n";
-        return;
-    }
-    cout << "Удаление: " << objects[index - 1] << endl;
-    for (int i = index - 1; i < objectCount - 1; i++) {
-        objects[i] = objects[i + 1];
-    }
-    objectCount--;
-    cout << "Объект удален успешно!\n";
-}
-
-// ---------- новая функция ----------
-void handleChoice(int choice) {
-    switch (choice) {
-        case 1:
-            addObject();
-            break;
-        case 2:
-            showAll();
-            break;
-        case 3:
-            editObject();
-            break;
-        case 4:
-            deleteObject();
-            break;
-        case 0:
-            cout << "До свидания!\n";
-            break;
-        default:
-            cout << "Неверная опция!\n";
-    }
-}
-
 int main() {
-    int choice;
-    do {
-        printMenu();
-        cin >> choice;
-        clearInput();
+    // Вводим вручную несколько (3) школьников
+    for (int i = 0; i < INPUT_COUNT && i < MAX_OBJECTS; ++i) {
+        cout << "Введите данные для школьника #" << i + 1 << ":\n";
+        cin >> objects[i];
+        ++objectCount;
+    }
 
-        handleChoice(choice);
+    // Копируем введённые объекты в другой массив,
+    // чтобы продемонстрировать работу оператора присваивания
+    for (int i = 0; i < objectCount; ++i) {
+        copies[i] = objects[i];
+    }
 
-        cout << "\nНажмите Enter для продолжения...";
-        clearInput();
-    } while (choice != 0);
+
+    // Выводим скопированные объекты в виде аккуратной таблицы
+    if (objectCount > 0) {
+        for (int i = 0; i < objectCount; ++i) {
+            cout << copies[i];
+        }
+    }
 
     return 0;
 }
